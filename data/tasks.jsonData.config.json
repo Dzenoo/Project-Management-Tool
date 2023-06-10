@@ -1,0 +1,46 @@
+{
+  "tasks": [
+    {
+      "projectName": "Website Redesign",
+      "name": "Gather User Requirements",
+      "assignee": "Emily Johnson",
+      "dueDate": "2023-06-20",
+      "status": "In Progress"
+    },
+    {
+      "projectName": "Website Redesign",
+      "name": "Create Wireframes and Design Concepts",
+      "assignee": "Sarah Thompson",
+      "dueDate": "2023-07-05",
+      "status": "Not Started"
+    },
+    {
+      "projectName": "Website Redesign",
+      "name": "Develop Frontend Components",
+      "assignee": "Michael Davis",
+      "dueDate": "2023-07-20",
+      "status": "Not Started"
+    },
+    {
+      "projectName": "Mobile App Development",
+      "name": "Conduct Market Research",
+      "assignee": "David Wilson",
+      "dueDate": "2023-07-10",
+      "status": "Not Started"
+    },
+    {
+      "projectName": "Mobile App Development",
+      "name": "Design App UI/UX",
+      "assignee": "Lisa Roberts",
+      "dueDate": "2023-07-25",
+      "status": "Not Started"
+    },
+    {
+      "projectName": "Mobile App Development",
+      "name": "Implement Backend Functionality",
+      "assignee": "Mark Taylor",
+      "dueDate": "2023-08-10",
+      "status": "Not Started"
+    }
+  ]
+}
