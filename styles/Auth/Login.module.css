@@ -1,0 +1,33 @@
+.login_form_card {
+  max-width: 460px;
+  margin: 10em auto;
+  padding: 20px;
+  overflow: auto;
+}
+
+.login_form_card .login_form .login_header {
+  text-align: center;
+  padding-bottom: 20px;
+  width: fit-content;
+  display: block;
+  margin: auto;
+}
+
+.login_form_card .login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px;
+}
+
+.login_form_card .login_form .login_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 0 0;
+}
+
+.login_form_card .login_form .login_actions a {
+  color: rgb(32, 15, 189);
+  border-bottom: 1px solid blue;
+}
