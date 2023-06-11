@@ -29,7 +29,7 @@ const ProjectOverview = ({ totalProjects, completed, progress, out }) => {
         </Box>
         <Box className={classes.project_card}>
           <Image
-            src="/images/graphic/check.png"
+            src="/images/graphic/checkmark.png"
             width={30}
             height={30}
             alt="completed"
@@ -43,7 +43,7 @@ const ProjectOverview = ({ totalProjects, completed, progress, out }) => {
         </Box>
         <Box className={classes.project_card}>
           <Image
-            src="/images/graphic/checkmark.png"
+            src="/images/graphic/check.png"
             width={30}
             height={30}
             alt="progress"

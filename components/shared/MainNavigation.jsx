@@ -16,7 +16,6 @@ import { useState } from "react";
 
 const MainNavigation = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
-
   const menuClasses = menuIsOpen
     ? `${classes.main_navigation}`
     : `${classes.main_navigation} ${classes.open}`;

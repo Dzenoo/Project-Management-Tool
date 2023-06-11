@@ -1,5 +1,6 @@
 "use client";
 
+import DashboardChart from "@/components/dashboard/components/DashboardChart";
 import ProjectOverview from "@/components/dashboard/components/ProjectOverview";
 import { Grid, Typography } from "@mui/material";
 
@@ -17,6 +18,9 @@ export default function Dashboard() {
             progress="13"
             out="2"
           />
+        </Grid>
+        <Grid item xl={3} paddingTop={2}>
+          <DashboardChart />
         </Grid>
       </Grid>
     </>
