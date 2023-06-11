@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import classes from "@/styles/Auth/Login.module.css";
+import classes from "@/styles/auth/Login.module.css";
 import Link from "next/link";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "@/utils/validators";

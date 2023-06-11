@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import classes from "@/styles/Auth/Signup.module.css";
+import classes from "@/styles/auth/Signup.module.css";
 import Link from "next/link";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import {

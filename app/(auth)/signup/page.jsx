@@ -1,6 +1,6 @@
 "use client";
 
-import SignupForm from "@/components/Auth/SignupForm";
+import SignupForm from "@/components/auth/SignupForm";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
