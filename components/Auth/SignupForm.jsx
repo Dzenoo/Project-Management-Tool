@@ -128,7 +128,7 @@ const SignupForm = ({ submitHandler }) => {
             required
           />
         </FormControl>
-        <FormControl>
+        <Box className={classes.flex_input}>
           <TextField
             placeholder="Enter Your Password"
             label="Password"
@@ -142,10 +142,9 @@ const SignupForm = ({ submitHandler }) => {
               password.isTouched &&
               "Please enter valid password"
             }
+            fullWidth
             required
           />
-        </FormControl>
-        <FormControl>
           <TextField
             placeholder="Confirm Your Password"
             type="password"
@@ -159,9 +158,11 @@ const SignupForm = ({ submitHandler }) => {
               confirmPassword.isTouched &&
               "Please enter valid password"
             }
+            fullWidth
             required
           />
-        </FormControl>
+        </Box>
+
         <Box className={classes.signup_actions}>
           <Typography variant="p">
             Have Account? <Link href="/login">Go here</Link>

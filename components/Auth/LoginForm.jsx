@@ -10,11 +10,32 @@ import {
 } from "@mui/material";
 import classes from "@/styles/Auth/Login.module.css";
 import Link from "next/link";
+import { useValidation } from "@/hooks/Auth/useValidation";
+import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "@/utils/validators";
 
-const LoginForm = () => {
+const LoginForm = ({ submitLoginHandler }) => {
+  const email = useValidation([VALIDATOR_EMAIL()]);
+  const password = useValidation([VALIDATOR_MINLENGTH(6)]);
+
+  let formIsValid = false;
+  if (email.isValid && password.isValid) {
+    formIsValid = true;
+  }
+
+  const loginData = {
+    email: email.value,
+    password: password.value,
+  };
+
+  const submitLogin = (e) => {
+    e.preventDefault();
+
+    submitLoginHandler(loginData);
+  };
+
   return (
     <Card className={classes.login_form_card}>
-      <form className={classes.login_form}>
+      <form className={classes.login_form} onSubmit={submitLogin}>
         <Box className={classes.login_header}>
           <Typography variant="h4" fontWeight="bold" textTransform="uppercase">
             Login
@@ -25,12 +46,32 @@ const LoginForm = () => {
           </Typography>
         </Box>
         <FormControl>
-          <TextField placeholder="Enter Your Email" label="Email" required />
+          <TextField
+            placeholder="Enter Your Email"
+            label="Email"
+            onChange={email.onChangeInputHandler}
+            onBlur={email.onBlurInputHandler}
+            value={email.value}
+            error={!email.isValid && email.isTouched}
+            helperText={
+              !email.isValid && email.isTouched && "Please enter valid email"
+            }
+            required
+          />
         </FormControl>
         <FormControl>
           <TextField
             placeholder="Enter Your Password"
             label="Password"
+            onChange={password.onChangeInputHandler}
+            onBlur={password.onBlurInputHandler}
+            value={password.value}
+            error={!password.isValid && password.isTouched}
+            helperText={
+              !password.isValid &&
+              password.isTouched &&
+              "Please enter valid password"
+            }
             required
           />
         </FormControl>
@@ -38,7 +79,7 @@ const LoginForm = () => {
           <Typography variant="p">
             Dont Have Account? <Link href="/signup">Go here</Link>
           </Typography>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={!formIsValid}>
             Login
           </Button>
         </Box>
