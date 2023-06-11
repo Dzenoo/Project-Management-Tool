@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProjectOverview = () => {
-  return <></>;
+  return <>Project</>;
 };
 
 export default ProjectOverview;

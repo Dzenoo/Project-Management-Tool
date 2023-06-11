@@ -22,3 +22,13 @@ a {
   left: 0;
   bottom: 0;
 }
+
+.main_layout {
+  display: flex;
+  min-height: 100vh;
+  gap: 0.9rem;
+}
+
+.content {
+  flex-grow: 1;
+}
