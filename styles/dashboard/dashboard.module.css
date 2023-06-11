@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 12px;
   padding: 30px;
+  position: relative;
 }
 
 .project_overview .project_header {
@@ -26,3 +27,9 @@
 }
 
 /* Project overview */
+
+.num {
+  position: absolute;
+  top: 56%;
+  left: 47%;
+}

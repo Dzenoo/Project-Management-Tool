@@ -25,6 +25,9 @@ const DashboardChart = () => {
       <CardContent className={classes.task_chart}>
         <Doughnut data={data} />
       </CardContent>
+      <Box className={classes.num}>
+        <strong>120</strong>
+      </Box>
     </Card>
   );
 };
