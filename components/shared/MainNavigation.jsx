@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const MainNavigation = () => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(true);
 
   const menuClasses = menuIsOpen
     ? `${classes.main_navigation}`

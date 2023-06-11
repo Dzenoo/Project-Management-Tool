@@ -1,0 +1,28 @@
+/* Project overview */
+
+.project_overview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px;
+}
+
+.project_overview .project_header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project_overview .project_cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.project_overview .project_cards .project_card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Project overview */
