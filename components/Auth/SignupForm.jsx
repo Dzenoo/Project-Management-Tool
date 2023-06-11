@@ -18,8 +18,9 @@ import {
   VALIDATOR_PASSWORD_MATCH,
   VALIDATOR_REQUIRE,
 } from "@/utils/validators";
+import PropTypes from "prop-types";
 
-const SignupForm = ({ submitHandler }) => {
+const SignupForm = ({ submitSignupHandler }) => {
   const firstName = useValidation([VALIDATOR_FIRSTNAME()]);
   const lastName = useValidation([VALIDATOR_REQUIRE()]);
   const userName = useValidation([VALIDATOR_MINLENGTH(4)]);
@@ -51,7 +52,7 @@ const SignupForm = ({ submitHandler }) => {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    submitHandler(signupData);
+    submitSignupHandler(signupData);
   };
 
   return (
@@ -174,6 +175,10 @@ const SignupForm = ({ submitHandler }) => {
       </form>
     </Card>
   );
+};
+
+SignupForm.propTypes = {
+  submitSignupHandler: PropTypes.func,
 };
 
 export default SignupForm;

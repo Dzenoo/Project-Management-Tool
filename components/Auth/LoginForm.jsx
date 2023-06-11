@@ -12,6 +12,7 @@ import classes from "@/styles/Auth/Login.module.css";
 import Link from "next/link";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "@/utils/validators";
+import PropTypes from "prop-types";
 
 const LoginForm = ({ submitLoginHandler }) => {
   const email = useValidation([VALIDATOR_EMAIL()]);
@@ -29,7 +30,6 @@ const LoginForm = ({ submitLoginHandler }) => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-
     submitLoginHandler(loginData);
   };
 
@@ -86,6 +86,10 @@ const LoginForm = ({ submitLoginHandler }) => {
       </form>
     </Card>
   );
+};
+
+LoginForm.propTypes = {
+  submitLoginHandler: PropTypes.func,
 };
 
 export default LoginForm;
