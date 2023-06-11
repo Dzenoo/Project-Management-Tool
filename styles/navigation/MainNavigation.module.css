@@ -1,0 +1,41 @@
+.main_navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  padding: 12px;
+  transition: 0.2s;
+}
+
+.main_navigation .menu_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.main_navigation .menu_list .menu_item {
+  display: flex;
+  gap: 1.2em;
+  align-items: center;
+}
+
+.main_navigation .menu_list .menu_item .menu_wider {
+  display: none;
+}
+
+.main_navigation.open {
+  width: 260px;
+}
+
+.main_navigation.open.main_navigation .menu_list .menu_item .menu_wider {
+  display: block;
+}
+
+.main_navigation .arr.open {
+  transform: rotate(180deg);
+}
