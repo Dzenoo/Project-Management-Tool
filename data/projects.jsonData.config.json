@@ -9,7 +9,8 @@
       "projectManager": "John Smith",
       "teamMembers": ["Emily Johnson", "Michael Davis", "Sarah Thompson"],
       "status": "In Progress",
-      "type": "Favorites"
+      "type": "Favorites",
+      "projectImage": "/images/graphic/chat.png"
     },
     {
       "id": "p2",
@@ -19,8 +20,9 @@
       "endDate": "2023-12-31",
       "projectManager": "Jane Anderson",
       "teamMembers": ["David Wilson", "Lisa Roberts", "Mark Taylor"],
-      "status": "Not Started",
-      "type": "Archived"
+      "status": "Cancelled",
+      "type": "Archived",
+      "projectImage": "/images/graphic/chat.png"
     },
     {
       "id": "p3",
@@ -30,7 +32,8 @@
       "endDate": "2023-12-31",
       "projectManager": "Jane Anderson",
       "teamMembers": ["David Wilson", "Lisa Roberts", "Mark Taylor"],
-      "status": "Not Started"
+      "status": "Finished",
+      "projectImage": "/images/graphic/chat.png"
     }
   ]
 }

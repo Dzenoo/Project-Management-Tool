@@ -79,10 +79,11 @@ function ProjectTable() {
                 <TableCell align="right">{row.date}</TableCell>
                 <TableCell align="right">
                   <Box
+                    sx={{ float: "right" }}
                     className={`${
-                      (row.status === "In Progress" && classes.progress) ||
-                      (row.status === "Cancelled" && classes.cancelled) ||
-                      (row.status === "Finished" && classes.finished)
+                      (row.status === "In Progress" && "progress") ||
+                      (row.status === "Cancelled" && "cancelled") ||
+                      (row.status === "Finished" && "finished")
                     }`}
                   >
                     <Typography>{row.status}</Typography>

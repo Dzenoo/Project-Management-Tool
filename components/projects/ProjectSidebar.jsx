@@ -37,7 +37,7 @@ const ProjectSidebar = () => {
           fullWidth
           InputProps={{
             endAdornment: (
-              <InputAdornment>
+              <InputAdornment position="end">
                 <IconButton>
                   <Image
                     src="/images/graphic/posts.png"
@@ -81,9 +81,11 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {favoritedProjects.map((fp) => (
-                  <ListItemButton input>
+                  <ListItemButton key={fp.id}>
                     <Link href={`/projects/${fp.id}`}>
-                      <Typography variant="p">{fp.name}</Typography>
+                      <Typography variant="p" color="textSecondary">
+                        {fp.name}
+                      </Typography>
                     </Link>
                   </ListItemButton>
                 ))}
@@ -120,9 +122,11 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {projects.map((fp) => (
-                  <ListItemButton>
+                  <ListItemButton key={fp.id}>
                     <Link href={`/projects/${fp.id}`}>
-                      <Typography variant="p">{fp.name}</Typography>
+                      <Typography variant="p" color="textSecondary">
+                        {fp.name}
+                      </Typography>
                     </Link>{" "}
                   </ListItemButton>
                 ))}
@@ -159,9 +163,11 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {archivedProjects.map((fp) => (
-                  <ListItemButton>
+                  <ListItemButton key={fp.id}>
                     <Link href={`/projects/${fp.id}`}>
-                      <Typography variant="p">{fp.name}</Typography>
+                      <Typography variant="p" color="textSecondary">
+                        {fp.name}
+                      </Typography>
                     </Link>
                   </ListItemButton>
                 ))}
