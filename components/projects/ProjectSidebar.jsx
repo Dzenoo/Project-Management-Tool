@@ -85,13 +85,13 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {favoritedProjects.map((fp) => (
-                  <ListItemButton key={fp.id}>
-                    <Link href={`/projects/${fp.id}`}>
+                  <Link href={`/projects/${fp.id}`}>
+                    <ListItemButton key={fp.id}>
                       <Typography variant="p" color="textSecondary">
                         {fp.name}
                       </Typography>
-                    </Link>
-                  </ListItemButton>
+                    </ListItemButton>
+                  </Link>
                 ))}
               </ListItemText>
             </List>
@@ -126,13 +126,13 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {projects.map((fp) => (
-                  <ListItemButton key={fp.id}>
-                    <Link href={`/projects/${fp.id}`}>
+                  <Link href={`/projects/${fp.id}`}>
+                    <ListItemButton key={fp.id}>
                       <Typography variant="p" color="textSecondary">
                         {fp.name}
                       </Typography>
-                    </Link>{" "}
-                  </ListItemButton>
+                    </ListItemButton>
+                  </Link>
                 ))}
               </ListItemText>
             </List>
@@ -167,13 +167,13 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {archivedProjects.map((fp) => (
-                  <ListItemButton key={fp.id}>
-                    <Link href={`/projects/${fp.id}`}>
+                  <Link href={`/projects/${fp.id}`}>
+                    <ListItemButton key={fp.id}>
                       <Typography variant="p" color="textSecondary">
                         {fp.name}
                       </Typography>
-                    </Link>
-                  </ListItemButton>
+                    </ListItemButton>
+                  </Link>
                 ))}
               </ListItemText>
             </List>

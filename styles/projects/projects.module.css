@@ -96,10 +96,11 @@
 .main_project_details .main_information .main_tooltip .iconBtn {
   background-color: aqua;
   padding: 20px;
+  border-radius: 20px;
 }
 
 .main_project_details .main_tasks_dashboard {
-  background-color: #0066ff25;
+  background-color: #0066ff17;
   padding: 30px;
 }
 
@@ -110,5 +111,18 @@
 
 .main_project_details .main_tasks_dashboard .show_actions button {
   display: flex;
+  gap: 12px;
+}
+
+.main_project_details .status_tasks_container {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  margin-top: 20px;
+}
+
+.main_project_details .status_tasks_container .status_task {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }

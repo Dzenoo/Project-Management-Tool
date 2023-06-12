@@ -5,42 +5,77 @@
       "name": "Gather User Requirements",
       "assignee": "Emily Johnson",
       "dueDate": "2023-06-20",
-      "status": "In Progress"
+      "status": "In Progress",
+      "description": "All the details are in file, im sure it will be good",
+      "comments": ["You need to fix this", "Ok I will", "What about design"],
+      "categories": ["Development", "Website"],
+      "tags": ["About", "Contact"]
     },
     {
       "projectName": "Website Redesign",
       "name": "Create Wireframes and Design Concepts",
       "assignee": "Sarah Thompson",
       "dueDate": "2023-07-05",
-      "status": "Not Started"
+      "description": "All the details are in file, im sure it will be good",
+      "categories": ["Development", "Website"],
+      "tags": ["About", "Contact"],
+      "status": "Lag",
+      "comments": ["You need to fix this", "Ok I will", "What about design"]
     },
     {
       "projectName": "Website Redesign",
       "name": "Develop Frontend Components",
+      "tags": ["About", "Contact"],
       "assignee": "Michael Davis",
+      "categories": ["Development", "Design"],
       "dueDate": "2023-07-20",
-      "status": "Not Started"
+      "description": "All the details are in file, im sure it will be good",
+      "status": "Wrok",
+      "comments": ["You need to fix this", "Ok I will", "What about design"]
     },
     {
       "projectName": "Mobile App Development",
+      "tags": ["About", "Contact"],
       "name": "Conduct Market Research",
+      "categories": ["Development", "Website"],
       "assignee": "David Wilson",
       "dueDate": "2023-07-10",
-      "status": "Not Started"
+      "description": "All the details are in file, im sure it will be good",
+      "status": "To Do",
+      "comments": ["You need to fix this", "Ok I will", "What about design"]
     },
     {
+      "tags": ["About", "Contact"],
       "projectName": "Mobile App Development",
+      "categories": ["Development", "Website"],
       "name": "Design App UI/UX",
+      "description": "All the details are in file, im sure it will be good",
       "assignee": "Lisa Roberts",
       "dueDate": "2023-07-25",
-      "status": "Not Started"
+      "status": "Done",
+      "comments": ["You need to fix this", "Ok I will", "What about design"]
     },
     {
+      "tags": ["About", "Contact"],
       "projectName": "Mobile App Development",
+      "categories": ["Development", "Management"],
       "name": "Implement Backend Functionality",
+      "description": "All the details are in file, im sure it will be good",
       "assignee": "Mark Taylor",
       "dueDate": "2023-08-10",
-      "status": "Not Started"
+      "status": "To Do",
+      "comments": ["You need to fix this", "Ok I will", "What about design"]
+    },
+    {
+      "tags": ["About", "Contact"],
+      "projectName": "Mobile App Development",
+      "categories": ["Management", "Website"],
+      "name": "Implement Backend Functionality",
+      "description": "All the details are in file, im sure it will be good",
+      "assignee": "Mark Taylor",
+      "dueDate": "2023-08-10",
+      "status": "Work",
+      "comments": ["You need to fix this", "Ok I will", "What about design"]
     }
   ],
   "teams": [

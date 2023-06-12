@@ -1,6 +1,7 @@
 "use client";
 
 import { projects } from "@/data/projects.jsonData.config.json";
+import { tasks } from "@/data/tasks.jsonData.config.json";
 import {
   Box,
   Button,
@@ -11,6 +12,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/projects/projects.module.css";
+import KanbanType from "@/components/tasks/KanbanType";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -20,6 +22,11 @@ export async function generateStaticParams() {
 
 const Project = ({ params }) => {
   const project = projects.find((p) => p.id === params.projectId);
+
+  const todoTasks = tasks.filter((task) => task.status === "To Do");
+  const doneTasks = tasks.filter((task) => task.status === "Done");
+  const workTasks = tasks.filter((task) => task.status === "Work");
+  const lagTasks = tasks.filter((task) => task.status === "Lag");
 
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>
@@ -87,7 +94,13 @@ const Project = ({ params }) => {
           </Button>
         </Box>
         <hr />
-        <Box></Box>
+        <KanbanType
+          classes={classes}
+          workTasks={workTasks}
+          doneTasks={doneTasks}
+          todoTasks={todoTasks}
+          lagTasks={lagTasks}
+        />
       </Box>
     </Container>
   );
