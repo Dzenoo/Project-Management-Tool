@@ -20,13 +20,14 @@ import Collapse from "@mui/material/Collapse";
 import Link from "next/link";
 import { projects } from "@/data/projects.jsonData.config.json";
 import { AppContext } from "@/context/AppContext";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const ProjectSidebar = () => {
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
   const [openArchived, setOpenArchived] = useState(true);
   const { handleProjectInput } = useContext(AppContext);
-
+  const pathname = usePathname();
   const favoritedProjects = projects.filter((p) => p.type === "Favorites");
   const archivedProjects = projects.filter((p) => p.type === "Archived");
 
@@ -35,7 +36,7 @@ const ProjectSidebar = () => {
       <Box>
         <TextField
           onChange={(e) => handleProjectInput(e)}
-          label="Search Projects"
+          label={pathname === "/projects" ? "Search Projects" : "Search Tasks"}
           placeholder="Search..."
           fullWidth
           InputProps={{
