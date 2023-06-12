@@ -13,7 +13,7 @@ import Image from "next/image";
 import classes from "@/styles/dashboard/dashboard.module.css";
 
 const TeamsCard = () => {
-  const [selectValue, setSelectValue] = useState("");
+  const [selectValue, setSelectValue] = useState("Workers");
   const [team, setteam] = useState();
   const teamsNames = teams.map((team) => team.teamName);
 
@@ -44,41 +44,43 @@ const TeamsCard = () => {
           </Select>
         </FormControl>
       </Box>
-      <Box className={classes.team_cards}>
-        {team.teamMembers.map((tm) => (
-          <Card className={classes.team_card}>
-            <Image src={tm?.image} width={120} height={120} alt="img" />
-            <Box className={classes.team_card_box}>
-              <div>
-                <Typography variant="p" fontWeight="bold">
-                  {tm?.firstName}
-                </Typography>{" "}
-                <Typography variant="p" fontWeight="bold">
-                  {tm?.lastName}
-                </Typography>
-              </div>
-              <div>
-                <Typography variant="p" color="textSecondary">
-                  {tm?.email}
-                </Typography>
-              </div>
-              <div>
-                <Typography
-                  variant="p"
-                  fontWeight="bold"
-                  color={
-                    (tm.specialize === "Designer" && "orange") ||
-                    (tm.specialize === "Developer" && "royalblue") ||
-                    (tm.specialize === "Manager" && "greenyellow")
-                  }
-                >
-                  {tm?.specialize}
-                </Typography>
-              </div>
-            </Box>
-          </Card>
-        ))}
-      </Box>
+      {selectValue !== "" && (
+        <Box className={classes.team_cards}>
+          {team?.teamMembers.map((tm) => (
+            <Card className={classes.team_card}>
+              <Image src={tm?.image} width={120} height={120} alt="img" />
+              <Box className={classes.team_card_box}>
+                <div>
+                  <Typography variant="p" fontWeight="bold">
+                    {tm?.firstName}
+                  </Typography>{" "}
+                  <Typography variant="p" fontWeight="bold">
+                    {tm?.lastName}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography variant="p" color="textSecondary">
+                    {tm?.email}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography
+                    variant="p"
+                    fontWeight="bold"
+                    color={
+                      (tm.specialize === "Designer" && "orange") ||
+                      (tm.specialize === "Developer" && "royalblue") ||
+                      (tm.specialize === "Manager" && "greenyellow")
+                    }
+                  >
+                    {tm?.specialize}
+                  </Typography>
+                </div>
+              </Box>
+            </Card>
+          ))}
+        </Box>
+      )}
     </>
   );
 };
