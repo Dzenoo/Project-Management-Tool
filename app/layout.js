@@ -1,6 +1,7 @@
 import MainNavigation from "@/components/shared/MainNavigation";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { AppProvider } from "@/context/AppContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="main_layout">
           <MainNavigation />
-          <div className="content">{children}</div>
+          <div className="content">
+            <AppProvider>{children}</AppProvider>
+          </div>
         </div>
       </body>
     </html>

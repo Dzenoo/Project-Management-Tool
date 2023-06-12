@@ -12,18 +12,20 @@ import {
 } from "@mui/material";
 import classes from "@/styles/projects/projects.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import Link from "next/link";
 import { projects } from "@/data/projects.jsonData.config.json";
+import { AppContext } from "@/context/AppContext";
 
 const ProjectSidebar = () => {
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
   const [openArchived, setOpenArchived] = useState(true);
+  const { handleProjectInput } = useContext(AppContext);
 
   const favoritedProjects = projects.filter((p) => p.type === "Favorites");
   const archivedProjects = projects.filter((p) => p.type === "Archived");
@@ -32,6 +34,7 @@ const ProjectSidebar = () => {
     <Card className={classes.projects_sidebar}>
       <Box>
         <TextField
+          onChange={(e) => handleProjectInput(e)}
           label="Search Projects"
           placeholder="Search..."
           fullWidth
