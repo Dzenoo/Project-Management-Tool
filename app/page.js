@@ -3,6 +3,7 @@
 import DashboardChart from "@/components/dashboard/components/DashboardChart";
 import ProjectOverview from "@/components/dashboard/components/ProjectOverview";
 import ProjectTable from "@/components/dashboard/components/ProjectTable";
+import TeamsCard from "@/components/dashboard/components/TeamsCard";
 import { Grid, Typography } from "@mui/material";
 
 export default function Dashboard() {
@@ -25,6 +26,9 @@ export default function Dashboard() {
         </Grid>
         <Grid item xl={9} paddingTop={2} paddingLeft={2}>
           <ProjectTable />
+        </Grid>
+        <Grid>
+          <TeamsCard />
         </Grid>
       </Grid>
     </>

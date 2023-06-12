@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Card, Toolbar, Tooltip, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/dashboard/dashboard.module.css";
 
