@@ -26,7 +26,6 @@ a {
 .main_layout {
   display: flex;
   min-height: 100vh;
-  gap: 0.9rem;
 }
 
 .content {

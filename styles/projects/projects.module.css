@@ -1,0 +1,28 @@
+.projects_sidebar {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.projects_sidebar .project_types {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects_sidebar .hover_favorites:hover {
+  background-color: #ffd90034;
+  border-radius: 12px;
+}
+
+.projects_sidebar .hover_all:hover {
+  background-color: #00ff0849;
+  border-radius: 12px;
+}
+
+.projects_sidebar .hover_archived:hover {
+  background-color: #9e9e9e44;
+  border-radius: 12px;
+}
