@@ -42,5 +42,65 @@
       "dueDate": "2023-08-10",
       "status": "Not Started"
     }
+  ],
+  "teams": [
+    {
+      "teamName": "Workers",
+      "teamMembers": [
+        {
+          "id": "m1",
+          "firstName": "John",
+          "image": "/images/graphic/charging-circle.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "specialize": "Manager"
+        },
+        {
+          "id": "m2",
+          "firstName": "John",
+          "image": "/images/graphic/charging-circle.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "specialize": "Designer"
+        },
+        {
+          "id": "m2",
+          "firstName": "John",
+          "image": "/images/graphic/charging-circle.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "specialize": "Developer"
+        }
+      ]
+    },
+    {
+      "teamName": "Designers",
+      "teamMembers": [
+        {
+          "id": "m1",
+          "image": "/images/graphic/charging-circle.png",
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "email": "JaneSmith@gmail.com",
+          "specialize": "Designer"
+        },
+        {
+          "id": "m2",
+          "image": "/images/graphic/charging-circle.png",
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "email": "JaneSmith@gmail.com",
+          "specialize": "Developer"
+        },
+        {
+          "id": "m2",
+          "image": "/images/graphic/charging-circle.png",
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "email": "JaneSmith@gmail.com",
+          "specialize": "Manager"
+        }
+      ]
+    }
   ]
 }

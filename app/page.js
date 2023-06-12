@@ -27,7 +27,7 @@ export default function Dashboard() {
         <Grid item xl={9} paddingTop={2} paddingLeft={2}>
           <ProjectTable />
         </Grid>
-        <Grid>
+        <Grid xl={12}>
           <TeamsCard />
         </Grid>
       </Grid>
