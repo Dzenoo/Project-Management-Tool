@@ -69,12 +69,12 @@
 }
 
 /* Project Details */
-
 .main_project_details {
   padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  height: 100vh;
 }
 
 .main_project_details .main_topbar {
@@ -103,7 +103,8 @@
 .main_project_details .main_tasks_dashboard {
   background-color: #0066ff17;
   padding: 30px;
-  overflow: auto;
+  overflow: scroll;
+  flex: 1; /* Fill remaining space */
 }
 
 .main_project_details .main_tasks_dashboard .show_actions {

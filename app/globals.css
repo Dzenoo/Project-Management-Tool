@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+body {
+  overflow-y: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
