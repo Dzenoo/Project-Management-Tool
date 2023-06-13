@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   overflow-y: auto;
+  height: 100vh;
 }
 
 .projects_sidebar .project_types {
@@ -102,6 +103,7 @@
 .main_project_details .main_tasks_dashboard {
   background-color: #0066ff17;
   padding: 30px;
+  overflow: auto;
 }
 
 .main_project_details .main_tasks_dashboard .show_actions {

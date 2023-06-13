@@ -8,6 +8,7 @@
   width: 100px;
   padding: 12px;
   transition: 0.2s;
+  height: 100vh;
 }
 
 .main_navigation .menu_list {

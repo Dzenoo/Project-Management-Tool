@@ -18,7 +18,7 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
           ))}
         </Box>
       </Box>
-      <Box>
+      <Box className={classes.list_task_status}>
         <Typography color="#daa000" variant="p" fontWeight="bold">
           Work
         </Typography>
@@ -28,7 +28,7 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
           ))}
         </Box>
       </Box>
-      <Box>
+      <Box className={classes.list_task_status}>
         <Typography color="#ff4229" variant="p" fontWeight="bold">
           Lag
         </Typography>
@@ -38,7 +38,7 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
           ))}
         </Box>
       </Box>
-      <Box>
+      <Box className={classes.list_task_status}>
         <Typography color="#1cc800" variant="p" fontWeight="bold">
           Done
         </Typography>
