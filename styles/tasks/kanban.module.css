@@ -1,0 +1,50 @@
+.status_tasks_container {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  margin-top: 20px;
+}
+
+.status_task {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task_card {
+  max-width: 360px;
+  height: max-content;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.task_card .task_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task_card .task_top .task_categories {
+  display: flex;
+  gap: 12px;
+}
+
+.task_card .task_info {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task_card .task_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task_card .iconBtn {
+  width: 48px;
+  height: 48px;
+  background-color: #1cc800;
+}

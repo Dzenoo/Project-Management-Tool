@@ -58,3 +58,43 @@ a {
   font-weight: bold;
   width: fit-content;
 }
+
+.development {
+  color: #7638dc;
+  background-color: #7738dc3f;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.design {
+  color: #2d81ff;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  background-color: #2d81ff56;
+}
+
+.management {
+  color: #1cc800;
+  background-color: #1bc8003f;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.website {
+  color: #b51ed3;
+  background-color: #b51ed34f;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.category {
+  background-color: lightblue;
+  padding: 12px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+}

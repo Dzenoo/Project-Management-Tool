@@ -1,0 +1,35 @@
+.card_task_list_type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+  overflow: hidden;
+}
+
+.card_task_list_type .card_task_details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2em;
+}
+
+.card_task_list_type .card_task_details .card_task_categories {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card_task_list_type .card_task_details .card_task_categories .task_category {
+  background-color: lightblue !important;
+  padding: 12px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.card_task_list_type .card_task_details .iconBtn {
+  background-color: lightblue !important;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+}

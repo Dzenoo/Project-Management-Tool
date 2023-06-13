@@ -13,6 +13,8 @@ import {
 import Image from "next/image";
 import classes from "@/styles/projects/projects.module.css";
 import KanbanType from "@/components/tasks/KanbanType";
+import { useState } from "react";
+import ListType from "@/components/tasks/ListType";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -21,6 +23,7 @@ export async function generateStaticParams() {
 }
 
 const Project = ({ params }) => {
+  const [isType, setisType] = useState("kanban");
   const project = projects.find((p) => p.id === params.projectId);
 
   const todoTasks = tasks.filter((task) => task.status === "To Do");
@@ -74,7 +77,10 @@ const Project = ({ params }) => {
       </Box>
       <Box className={classes.main_tasks_dashboard}>
         <Box className={classes.show_actions}>
-          <Button size="large">
+          <Button
+            onClick={() => setisType("kanban")}
+            variant={isType === "kanban" && "contained"}
+          >
             <Image
               src="/images/graphic/kanban.png"
               width={40}
@@ -83,7 +89,11 @@ const Project = ({ params }) => {
             />
             Kanban
           </Button>
-          <Button size="large">
+          <Button
+            size="large"
+            onClick={() => setisType("list")}
+            variant={isType === "list" && "contained"}
+          >
             <Image
               src="/images/graphic/list.png"
               width={40}
@@ -93,14 +103,25 @@ const Project = ({ params }) => {
             List View
           </Button>
         </Box>
+        <br />
         <hr />
-        <KanbanType
-          classes={classes}
-          workTasks={workTasks}
-          doneTasks={doneTasks}
-          todoTasks={todoTasks}
-          lagTasks={lagTasks}
-        />
+        {isType === "kanban" ? (
+          <KanbanType
+            classes={classes}
+            workTasks={workTasks}
+            doneTasks={doneTasks}
+            todoTasks={todoTasks}
+            lagTasks={lagTasks}
+          />
+        ) : (
+          <ListType
+            classes={classes}
+            workTasks={workTasks}
+            doneTasks={doneTasks}
+            todoTasks={todoTasks}
+            lagTasks={lagTasks}
+          />
+        )}
       </Box>
     </Container>
   );

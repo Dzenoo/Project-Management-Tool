@@ -3,8 +3,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import TaskKanban from "@/components/tasks/TaskKanban";
 import PropTypes from "prop-types";
+import classes from "@/styles/tasks/kanban.module.css";
 
-const KanbanType = ({ classes, todoTasks, workTasks, lagTasks, doneTasks }) => {
+const KanbanType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
   return (
     <Box className={classes.status_tasks_container}>
       <Box className={classes.status_task}>

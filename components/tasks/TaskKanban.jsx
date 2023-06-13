@@ -1,6 +1,7 @@
 "use client";
 
-import classes from "@/styles/tasks/tasks.module.css";
+import classes from "@/styles/tasks/kanban.module.css";
+
 import {
   Box,
   Button,
@@ -23,10 +24,10 @@ const Task = ({ task }) => {
           {categories.map((ca) => (
             <Box
               className={
-                (ca === "Development" && classes.development) ||
-                (ca === "Design" && classes.design) ||
-                (ca === "Management" && classes.management) ||
-                (ca === "Website" && classes.website) ||
+                (ca === "Development" && "development") ||
+                (ca === "Design" && "design") ||
+                (ca === "Management" && "management") ||
+                (ca === "Website" && "website") ||
                 classes.task_category
               }
               key={ca}
