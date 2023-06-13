@@ -2,6 +2,7 @@ import KanbanType from "@/components/tasks/KanbanType";
 import ListType from "@/components/tasks/ListType";
 import Image from "next/image";
 import { Box, Button } from "@mui/material";
+import PropTypes, { object } from "prop-types";
 
 const ProjectTasks = ({
   setisTypeTask,
@@ -60,6 +61,15 @@ const ProjectTasks = ({
       )}
     </Box>
   );
+};
+
+ProjectTasks.propTypes = {
+  setisTypeTask: PropTypes.func,
+  isTypeTask: PropTypes.string,
+  workTasks: PropTypes.arrayOf(object),
+  doneTasks: PropTypes.arrayOf(object),
+  todoTasks: PropTypes.arrayOf(object),
+  lagTasks: PropTypes.arrayOf(object),
 };
 
 export default ProjectTasks;

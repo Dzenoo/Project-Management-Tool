@@ -85,8 +85,8 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {favoritedProjects.map((fp) => (
-                  <Link href={`/projects/${fp.id}`}>
-                    <ListItemButton key={fp.id}>
+                  <Link href={`/projects/${fp.id}`} key={fp.id}>
+                    <ListItemButton>
                       <Typography variant="p" color="textSecondary">
                         {fp.name}
                       </Typography>
@@ -126,8 +126,8 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {projects.map((fp) => (
-                  <Link href={`/projects/${fp.id}`}>
-                    <ListItemButton key={fp.id}>
+                  <Link href={`/projects/${fp.id}`} key={fp.id}>
+                    <ListItemButton>
                       <Typography variant="p" color="textSecondary">
                         {fp.name}
                       </Typography>
@@ -167,8 +167,8 @@ const ProjectSidebar = () => {
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
                 {archivedProjects.map((fp) => (
-                  <Link href={`/projects/${fp.id}`}>
-                    <ListItemButton key={fp.id}>
+                  <Link href={`/projects/${fp.id}`} key={fp.id}>
+                    <ListItemButton>
                       <Typography variant="p" color="textSecondary">
                         {fp.name}
                       </Typography>

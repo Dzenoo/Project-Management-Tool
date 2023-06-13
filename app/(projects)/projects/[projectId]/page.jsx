@@ -84,7 +84,7 @@ const Project = ({ params }) => {
         </Box>
         <Box className={classes.main_tooltip}>
           {project?.teamMembers.map((mb) => (
-            <Tooltip title={mb} placement="top">
+            <Tooltip title={mb} placement="top" key={mb}>
               <IconButton size="large" className={classes.iconBtn}></IconButton>
             </Tooltip>
           ))}
