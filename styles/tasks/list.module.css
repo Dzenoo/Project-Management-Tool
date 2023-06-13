@@ -12,6 +12,12 @@
   gap: 1.2em;
 }
 
+.list_tasks_container .list_task_status .list_task_add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .list_tasks_container .list_task_status .list_task_cards {
   display: flex;
   flex-direction: column;

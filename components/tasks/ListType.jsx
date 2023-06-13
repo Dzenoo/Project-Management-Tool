@@ -9,9 +9,14 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
   return (
     <Box className={classes.list_tasks_container}>
       <Box className={classes.list_task_status}>
-        <Typography color="#7638dc" variant="p" fontWeight="bold">
-          Todo
-        </Typography>
+        <Box className={classes.list_task_add}>
+          <Typography color="#7638dc" variant="p" fontWeight="bold">
+            Todo
+          </Typography>
+          <Button fontWeight="bold" variant="contained">
+            +
+          </Button>
+        </Box>
         <Box className={classes.list_task_cards}>
           {todoTasks.map((todo) => (
             <TaskList key={todo.id} task={todo} />
@@ -19,9 +24,14 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
         </Box>
       </Box>
       <Box className={classes.list_task_status}>
-        <Typography color="#daa000" variant="p" fontWeight="bold">
-          Work
-        </Typography>
+        <Box className={classes.list_task_add}>
+          <Typography color="#7638dc" variant="p" fontWeight="bold">
+            Work
+          </Typography>
+          <Button fontWeight="bold" variant="contained">
+            +
+          </Button>
+        </Box>
         <Box className={classes.list_task_cards}>
           {workTasks.map((work) => (
             <TaskList key={work.id} task={work} />
@@ -29,9 +39,14 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
         </Box>
       </Box>
       <Box className={classes.list_task_status}>
-        <Typography color="#ff4229" variant="p" fontWeight="bold">
-          Lag
-        </Typography>
+        <Box className={classes.list_task_add}>
+          <Typography color="#7638dc" variant="p" fontWeight="bold">
+            Lag
+          </Typography>
+          <Button fontWeight="bold" variant="contained">
+            +
+          </Button>
+        </Box>
         <Box className={classes.list_task_cards}>
           {lagTasks.map((lag) => (
             <TaskList key={lag.id} task={lag} />
@@ -39,9 +54,14 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
         </Box>
       </Box>
       <Box className={classes.list_task_status}>
-        <Typography color="#1cc800" variant="p" fontWeight="bold">
-          Done
-        </Typography>
+        <Box className={classes.list_task_add}>
+          <Typography color="#7638dc" variant="p" fontWeight="bold">
+            Done
+          </Typography>
+          <Button fontWeight="bold" variant="contained">
+            +
+          </Button>
+        </Box>
         <Box className={classes.list_task_cards}>
           {doneTasks.map((done) => (
             <TaskList key={done.id} task={done} />
