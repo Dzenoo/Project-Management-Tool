@@ -34,26 +34,28 @@ const ProjectSidebar = () => {
   return (
     <Card className={classes.projects_sidebar}>
       <Box>
-        <TextField
-          onChange={(e) => handleProjectInput(e)}
-          label={pathname === "/projects" ? "Search Projects" : "Search Tasks"}
-          placeholder="Search..."
-          fullWidth
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton>
-                  <Image
-                    src="/images/graphic/posts.png"
-                    width={20}
-                    height={20}
-                    alt="lg"
-                  />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+        {pathname === "/projects" && (
+          <TextField
+            onChange={(e) => handleProjectInput(e)}
+            label={"Search Projects"}
+            placeholder="Search..."
+            fullWidth
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <Image
+                      src="/images/graphic/posts.png"
+                      width={20}
+                      height={20}
+                      alt="lg"
+                    />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
         <CardContent className={classes.project_types}>
           {/* FAVORITES */}
           <ListItemButton

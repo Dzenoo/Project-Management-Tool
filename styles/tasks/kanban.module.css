@@ -11,6 +11,12 @@
   gap: 12px;
 }
 
+.status_task .status_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .task_card {
   max-width: 360px;
   height: max-content;
