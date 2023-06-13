@@ -2,6 +2,7 @@
 
 import { Box, Button, Typography } from "@mui/material";
 import TaskKanban from "@/components/tasks/TaskKanban";
+import PropTypes from "prop-types";
 
 const KanbanType = ({ classes, todoTasks, workTasks, lagTasks, doneTasks }) => {
   return (
@@ -52,6 +53,13 @@ const KanbanType = ({ classes, todoTasks, workTasks, lagTasks, doneTasks }) => {
       </Box>
     </Box>
   );
+};
+
+KanbanType.propTypes = {
+  todoTasks: PropTypes.array.isRequired,
+  workTasks: PropTypes.array.isRequired,
+  lagTasks: PropTypes.array.isRequired,
+  doneTasks: PropTypes.array.isRequired,
 };
 
 export default KanbanType;
