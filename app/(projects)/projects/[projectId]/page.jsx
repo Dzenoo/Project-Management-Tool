@@ -2,6 +2,7 @@
 
 import { projects } from "@/data/projects.jsonData.config.json";
 import { tasks } from "@/data/tasks.jsonData.config.json";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -12,9 +13,9 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/projects/projects.module.css";
-import KanbanType from "@/components/tasks/KanbanType";
-import { useState } from "react";
-import ListType from "@/components/tasks/ListType";
+import ProjectTasks from "@/components/projects/details/ProjectTasks";
+import ProjectDiscussion from "@/components/projects/details/ProjectDiscussion";
+import ProjectFiles from "@/components/projects/details/ProjectFiles";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -23,7 +24,9 @@ export async function generateStaticParams() {
 }
 
 const Project = ({ params }) => {
-  const [isType, setisType] = useState("kanban");
+  const [isTypeTask, setisTypeTask] = useState("kanban");
+  const [typeOfProjectDetail, settypeOfProjectDetail] = useState("discussion");
+
   const project = projects.find((p) => p.id === params.projectId);
 
   const todoTasks = tasks.filter((task) => task.status === "To Do");
@@ -60,9 +63,24 @@ const Project = ({ params }) => {
       </Box>
       <Box className={classes.main_information}>
         <Box>
-          <Button>Discussion</Button>
-          <Button>Tasks</Button>
-          <Button>Files</Button>
+          <Button
+            onClick={() => settypeOfProjectDetail("discussion")}
+            variant={typeOfProjectDetail === "discussion" && "contained"}
+          >
+            Discussion
+          </Button>
+          <Button
+            onClick={() => settypeOfProjectDetail("tasks")}
+            variant={typeOfProjectDetail === "tasks" && "contained"}
+          >
+            Tasks
+          </Button>
+          <Button
+            onClick={() => settypeOfProjectDetail("files")}
+            variant={typeOfProjectDetail === "files" && "contained"}
+          >
+            Files
+          </Button>
         </Box>
         <Box className={classes.main_tooltip}>
           {project?.teamMembers.map((mb) => (
@@ -75,54 +93,19 @@ const Project = ({ params }) => {
           </Button>
         </Box>
       </Box>
-      <Box className={classes.main_tasks_dashboard}>
-        <Box className={classes.show_actions}>
-          <Button
-            onClick={() => setisType("kanban")}
-            variant={isType === "kanban" && "contained"}
-          >
-            <Image
-              src="/images/graphic/kanban.png"
-              width={40}
-              height={40}
-              alt="img"
-            />
-            Kanban
-          </Button>
-          <Button
-            size="large"
-            onClick={() => setisType("list")}
-            variant={isType === "list" && "contained"}
-          >
-            <Image
-              src="/images/graphic/list.png"
-              width={40}
-              height={40}
-              alt="img"
-            />
-            List View
-          </Button>
-        </Box>
-        <br />
-        <hr />
-        {isType === "kanban" ? (
-          <KanbanType
-            classes={classes}
-            workTasks={workTasks}
-            doneTasks={doneTasks}
-            todoTasks={todoTasks}
-            lagTasks={lagTasks}
-          />
-        ) : (
-          <ListType
-            classes={classes}
-            workTasks={workTasks}
-            doneTasks={doneTasks}
-            todoTasks={todoTasks}
-            lagTasks={lagTasks}
-          />
-        )}
-      </Box>
+      {typeOfProjectDetail === "discussion" && <ProjectDiscussion />}
+      {typeOfProjectDetail === "tasks" && (
+        <ProjectTasks
+          classes={classes}
+          setisTypeTask={setisTypeTask}
+          isTypeTask={isTypeTask}
+          workTasks={workTasks}
+          doneTasks={doneTasks}
+          lagTasks={lagTasks}
+          todoTasks={todoTasks}
+        />
+      )}
+      {typeOfProjectDetail === "files" && <ProjectFiles />}
     </Container>
   );
 };
