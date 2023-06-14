@@ -67,6 +67,7 @@
 .task_card .task_actions {
   display: flex;
   justify-content: space-between;
+  cursor: move;
   align-items: center;
 }
 
@@ -74,4 +75,37 @@
   width: 48px;
   height: 48px;
   background-color: #1cc800;
+}
+
+.add_task_form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categories {
+  display: flex;
+  gap: 1.2em;
+}
+
+.categories .category_inp {
+  background-color: lightblue;
+  color: #fff;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  border-radius: 30px;
+}
+
+.categories .category_inp button {
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 0, 0, 0.349);
+  color: #ec0707;
+  padding: 6px;
+  cursor: pointer;
 }

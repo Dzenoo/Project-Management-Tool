@@ -35,26 +35,28 @@ const ProjectSidebar = () => {
     <Card className={classes.projects_sidebar}>
       <Box>
         {pathname === "/projects" && (
-          <TextField
-            onChange={(e) => handleProjectInput(e)}
-            label={"Search Projects"}
-            placeholder="Search..."
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton>
-                    <Image
-                      src="/images/graphic/posts.png"
-                      width={20}
-                      height={20}
-                      alt="lg"
-                    />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
+          <div style={{ padding: "12px" }}>
+            <TextField
+              onChange={(e) => handleProjectInput(e)}
+              label={"Search Projects"}
+              placeholder="Search..."
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton>
+                      <Image
+                        src="/images/graphic/posts.png"
+                        width={20}
+                        height={20}
+                        alt="lg"
+                      />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
         )}
         <CardContent className={classes.project_types}>
           {/* FAVORITES */}

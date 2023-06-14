@@ -4,11 +4,11 @@ import Modal from "@mui/material/Modal";
 
 const style = {
   position: "absolute",
-  top: "30%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
-  height: 300,
+  height: "fit-content",
   bgcolor: "background.paper",
   borderRadius: "12px",
   boxShadow: 12,
@@ -23,6 +23,7 @@ const MainModal = ({
   onClick,
   content,
   disabled,
+  showButtons,
 }) => {
   return (
     <Modal
@@ -52,12 +53,17 @@ const MainModal = ({
             gap: "12px",
           }}
         >
-          <Button variant="outlined" onClick={close}>
-            Cancel
-          </Button>
-          <Button variant="contained" onClick={onClick} disabled={disabled}>
-            Confirm
-          </Button>
+          {showButtons && (
+            <>
+              <Button variant="outlined" onClick={close}>
+                Cancel
+              </Button>
+
+              <Button variant="contained" onClick={onClick} disabled={disabled}>
+                Confirm
+              </Button>
+            </>
+          )}
         </Box>
       </Box>
     </Modal>

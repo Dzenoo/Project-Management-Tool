@@ -51,8 +51,6 @@ const Task = ({ task, onClickDelete, onClickView }) => {
     />
   );
 
-  console.log(id);
-
   return (
     <Card className={classes.task_card}>
       <Box className={classes.task_top}>
@@ -114,7 +112,7 @@ const Task = ({ task, onClickDelete, onClickView }) => {
         </Box>
       </Box>
       <hr />
-      <CardActions className={classes.task_actions}>
+      <CardActions className={classes.task_actions} draggable="true">
         <Tooltip title={assignee} placement="top">
           <IconButton size="large" className={classes.iconBtn}></IconButton>
         </Tooltip>
