@@ -17,7 +17,7 @@ const TaskList = ({ task }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
-  const { name, assignee, dueDate, categories } = task;
+  const { id, name, assignee, dueDate, categories } = task;
 
   const boxClasses = isOpenBox
     ? `${classes.open_details_box} ${classes.openBox}`
