@@ -16,7 +16,8 @@ import { useState } from "react";
 
 const Task = ({ task }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
-  const toggleBox = () => setisOpenBox((prevState) => !prevState);
+  const openBox = () => setisOpenBox(true);
+  const closeBox = () => setisOpenBox(false);
   const { name, assignee, dueDate, description, categories, tags, comments } =
     task;
 
@@ -61,7 +62,7 @@ const Task = ({ task }) => {
             </Box>
           ))}
         </Box>
-        <Button onClick={toggleBox}>
+        <Button onMouseEnter={openBox} onMouseLeave={closeBox}>
           <Image
             src="/images/graphic/option.png"
             width={30}
@@ -69,7 +70,11 @@ const Task = ({ task }) => {
             alt="option"
           />
         </Button>
-        <Card className={boxClasses}>
+        <Card
+          className={boxClasses}
+          onMouseEnter={openBox}
+          onMouseLeave={closeBox}
+        >
           <Button startIcon={deleteIcon} variant="outlined" color="error">
             Delete Task
           </Button>

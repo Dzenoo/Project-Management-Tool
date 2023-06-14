@@ -11,9 +11,35 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
 const TaskList = ({ task }) => {
+  const [isOpenBox, setisOpenBox] = useState(false);
+  const openBox = () => setisOpenBox(true);
+  const closeBox = () => setisOpenBox(false);
   const { name, assignee, dueDate, categories } = task;
+
+  const boxClasses = isOpenBox
+    ? `${classes.open_details_box} ${classes.openBox}`
+    : `${classes.open_details_box}`;
+
+  const deleteIcon = (
+    <Image
+      src="/images/graphic/x-mark.png"
+      width={30}
+      height={30}
+      alt="delete"
+    />
+  );
+
+  const viewIcon = (
+    <Image
+      src="/images/graphic/list-search.png"
+      width={30}
+      height={30}
+      alt="view"
+    />
+  );
 
   return (
     <Card className={classes.card_task_list_type}>
@@ -21,7 +47,7 @@ const TaskList = ({ task }) => {
         {name}
       </Typography>
       <Box className={classes.card_task_details}>
-        <Button>
+        <Button onMouseEnter={openBox} onMouseLeave={closeBox}>
           <Image
             src="/images/graphic/option.png"
             width={30}
@@ -29,6 +55,18 @@ const TaskList = ({ task }) => {
             alt="option"
           />
         </Button>
+        <Card
+          className={boxClasses}
+          onMouseLeave={closeBox}
+          onMouseEnter={openBox}
+        >
+          <Button startIcon={deleteIcon} variant="outlined" color="error">
+            Delete Task
+          </Button>
+          <Button startIcon={viewIcon} variant="outlined">
+            View Task
+          </Button>
+        </Card>
         <Box>
           <Tooltip title={assignee} placement="top">
             <IconButton size="large" className={classes.iconBtn}></IconButton>

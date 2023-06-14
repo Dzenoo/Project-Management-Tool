@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 2em;
   padding: 12px;
-  overflow: hidden;
 }
 
 .list_tasks_container .list_task_status {
@@ -29,14 +28,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 20px;
-  overflow: hidden;
 }
 
 .card_task_list_type .card_task_details {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-around;
   gap: 2em;
+  position: relative;
 }
 
 .card_task_list_type .card_task_details .card_task_categories {
@@ -58,4 +57,26 @@
   border-radius: 30px;
   width: 40px;
   height: 40px;
+}
+
+.card_task_list_type .card_task_details .open_details_box {
+  padding: 12px;
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  gap: 12px;
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 20;
+  right: 33em;
+  top: 20px;
+  overflow: visible;
+  flex-direction: column;
+}
+
+.card_task_list_type .card_task_details .open_details_box.openBox {
+  opacity: 2;
+  visibility: visible;
 }
