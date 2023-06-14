@@ -59,6 +59,7 @@ const ProjectTasks = ({
           doneTasks={doneTasks}
           todoTasks={todoTasks}
           lagTasks={lagTasks}
+          openDetailsHandler={openDetailsHandler}
         />
       )}
     </Box>

@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 
-const TaskList = ({ task }) => {
+const TaskList = ({ task, onClickView }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
@@ -63,7 +63,11 @@ const TaskList = ({ task }) => {
           <Button startIcon={deleteIcon} variant="outlined" color="error">
             Delete Task
           </Button>
-          <Button startIcon={viewIcon} variant="outlined">
+          <Button
+            startIcon={viewIcon}
+            onClick={() => onClickView(id)}
+            variant="outlined"
+          >
             View Task
           </Button>
         </Card>

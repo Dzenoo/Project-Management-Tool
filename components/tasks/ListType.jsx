@@ -7,7 +7,13 @@ import classes from "@/styles/tasks/list.module.css";
 import { useState } from "react";
 import MainModal from "../shared/MainModal";
 
-const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
+const ListType = ({
+  todoTasks,
+  workTasks,
+  lagTasks,
+  doneTasks,
+  openDetailsHandler,
+}) => {
   const [statusTitle, setstatusTitle] = useState("");
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [listColumns, setListColumns] = useState([
@@ -56,7 +62,11 @@ const ListType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
             </Box>
             <Box className={classes.list_task_cards}>
               {li.tasks.map((task) => (
-                <TaskList key={task.id} task={task} />
+                <TaskList
+                  key={task.id}
+                  task={task}
+                  onClickView={openDetailsHandler}
+                />
               ))}
             </Box>
           </Box>
