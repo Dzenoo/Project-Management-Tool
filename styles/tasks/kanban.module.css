@@ -28,12 +28,33 @@
 .task_card .task_top {
   display: flex;
   align-items: center;
+  position: relative;
   justify-content: space-between;
 }
 
 .task_card .task_top .task_categories {
   display: flex;
   gap: 12px;
+}
+
+.task_card .task_top .open_details_box {
+  padding: 12px;
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  right: 40px;
+  top: 44px;
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.task_card .task_top .open_details_box.openBox {
+  opacity: 2;
+  visibility: visible;
 }
 
 .task_card .task_info {

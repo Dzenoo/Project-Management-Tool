@@ -12,10 +12,35 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
 const Task = ({ task }) => {
+  const [isOpenBox, setisOpenBox] = useState(false);
+  const toggleBox = () => setisOpenBox((prevState) => !prevState);
   const { name, assignee, dueDate, description, categories, tags, comments } =
     task;
+
+  const boxClasses = isOpenBox
+    ? `${classes.open_details_box} ${classes.openBox}`
+    : `${classes.open_details_box}`;
+
+  const deleteIcon = (
+    <Image
+      src="/images/graphic/x-mark.png"
+      width={30}
+      height={30}
+      alt="delete"
+    />
+  );
+
+  const viewIcon = (
+    <Image
+      src="/images/graphic/list-search.png"
+      width={30}
+      height={30}
+      alt="view"
+    />
+  );
 
   return (
     <Card className={classes.task_card}>
@@ -36,7 +61,7 @@ const Task = ({ task }) => {
             </Box>
           ))}
         </Box>
-        <Button>
+        <Button onClick={toggleBox}>
           <Image
             src="/images/graphic/option.png"
             width={30}
@@ -44,6 +69,14 @@ const Task = ({ task }) => {
             alt="option"
           />
         </Button>
+        <Card className={boxClasses}>
+          <Button startIcon={deleteIcon} variant="outlined" color="error">
+            Delete Task
+          </Button>
+          <Button startIcon={viewIcon} variant="outlined">
+            View Task
+          </Button>
+        </Card>
       </Box>
       <Box className={classes.task_info}>
         <Typography fontWeight="bold" variant="p">
