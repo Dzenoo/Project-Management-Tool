@@ -36,6 +36,8 @@ a {
   flex-grow: 1;
 }
 
+/* PROJECTS STATUS CLASSES */
+
 .progress {
   background-color: #f9ce625b;
   color: #f0ae07fd;
@@ -62,6 +64,8 @@ a {
   font-weight: bold;
   width: fit-content;
 }
+
+/* PROJECTS TYPE CLASSES */
 
 .development {
   color: #7638dc;
@@ -101,4 +105,52 @@ a {
   border-radius: 30px;
   color: #fff;
   font-weight: bold;
+}
+
+/* TASKS STATUS CLASSES */
+
+.todo {
+  background-color: rgba(145, 37, 207, 0.349);
+  padding: 12px;
+  border-radius: 30px;
+  color: #9d16d3;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+}
+
+.work {
+  background-color: rgba(255, 208, 0, 0.459);
+  padding: 12px;
+  border-radius: 30px;
+  color: #f0b923;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+}
+
+.lag {
+  background-color: rgba(228, 5, 5, 0.466);
+  padding: 12px;
+  border-radius: 30px;
+  color: #f13131;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+}
+
+.done {
+  background-color: rgba(21, 146, 5, 0.349);
+  padding: 12px;
+  border-radius: 30px;
+  color: #51c007;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+}
+
+.iconBtn {
+  width: 48px;
+  height: 48px;
+  background-color: #1cc800;
 }

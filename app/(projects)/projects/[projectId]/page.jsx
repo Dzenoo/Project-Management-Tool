@@ -1,3 +1,5 @@
+// @refresh disable
+
 "use client";
 
 import { projects } from "@/data/projects.jsonData.config.json";
@@ -16,6 +18,7 @@ import classes from "@/styles/projects/projects.module.css";
 import ProjectTasks from "@/components/projects/details/ProjectTasks";
 import ProjectDiscussion from "@/components/projects/details/ProjectDiscussion";
 import ProjectFiles from "@/components/projects/details/ProjectFiles";
+import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -25,7 +28,16 @@ export async function generateStaticParams() {
 
 const Project = ({ params }) => {
   const [isTypeTask, setisTypeTask] = useState("kanban");
-  const [typeOfProjectDetail, settypeOfProjectDetail] = useState("discussion");
+  const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
+  const [task, settask] = useState();
+  const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
+
+  const openTaskDetail = (id) => {
+    const currentOpenedTask = tasks.find((task) => task.id === id);
+    settask(currentOpenedTask);
+    settaskDetailIsOpen(true);
+  };
+  const closeTaskDetail = () => settaskDetailIsOpen(false);
 
   const project = projects.find((p) => p.id === params.projectId);
 
@@ -36,6 +48,9 @@ const Project = ({ params }) => {
 
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>
+      {taskDetailIsOpen && (
+        <TaskDetailsSidebar task={task} onClose={closeTaskDetail} />
+      )}
       <Box className={classes.main_topbar}>
         <Box>
           <Typography variant="h4" fontWeight="bold">
@@ -103,6 +118,7 @@ const Project = ({ params }) => {
           doneTasks={doneTasks}
           lagTasks={lagTasks}
           todoTasks={todoTasks}
+          openDetailsHandler={openTaskDetail}
         />
       )}
       {typeOfProjectDetail === "files" && <ProjectFiles />}

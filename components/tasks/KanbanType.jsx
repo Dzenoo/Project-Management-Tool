@@ -7,7 +7,13 @@ import classes from "@/styles/tasks/kanban.module.css";
 import { useState } from "react";
 import MainModal from "../shared/MainModal";
 
-const KanbanType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
+const KanbanType = ({
+  todoTasks,
+  workTasks,
+  lagTasks,
+  doneTasks,
+  openDetailsHandler,
+}) => {
   const [statusTitle, setstatusTitle] = useState("");
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [kanbanColumns, setKanbanColumns] = useState([
@@ -83,7 +89,11 @@ const KanbanType = ({ todoTasks, workTasks, lagTasks, doneTasks }) => {
               +
             </Button>
             {column.tasks.map((task) => (
-              <TaskKanban task={task} key={task} />
+              <TaskKanban
+                task={task}
+                key={task.id}
+                onClickView={openDetailsHandler}
+              />
             ))}
           </Box>
         ))}

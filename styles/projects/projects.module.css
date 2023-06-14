@@ -115,3 +115,106 @@
   display: flex;
   gap: 12px;
 }
+
+/* TASK DETAILS */
+
+.task_details_wrapper {
+  background-color: #1212125b;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  right: 0;
+  top: 0;
+  z-index: 20;
+  transition: 0.4s;
+}
+
+.task_details_wrapper .task_details_sidebar {
+  height: 100vh;
+  position: relative;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.4s;
+  gap: 2em;
+  overflow: hidden;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.task_details_wrapper .task_details_sidebar .task_details_buttons {
+  display: flex;
+  justify-content: end;
+  gap: 12px;
+}
+
+.task_details_wrapper .task_details_sidebar .task_details_top_info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_top_info
+  .task_details_flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.task_details_wrapper .task_details_sidebar .task_details_mid_info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_mid_info
+  .task_details_categories {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_mid_info
+  .task_details_tags {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_comments
+  .task_details_form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_comments
+  .task_details_comment {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 20px 0 0 0;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_comments
+  .task_details_comment
+  img {
+  border-radius: 100px;
+}

@@ -69,10 +69,10 @@
   transition: 0.3s;
   visibility: hidden;
   opacity: 0;
-  z-index: 20;
+  z-index: 40;
   right: 33em;
   top: 20px;
-  overflow: visible;
+  overflow: visible !important;
   flex-direction: column;
 }
 

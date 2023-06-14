@@ -1,17 +1,35 @@
 {
   "tasks": [
     {
+      "id": "t1",
       "projectName": "Website Redesign",
       "name": "Gather User Requirements",
       "assignee": "Emily Johnson",
       "dueDate": "2023-06-20",
       "status": "In Progress",
       "description": "All the details are in file, im sure it will be good",
-      "comments": ["You need to fix this", "Ok I will", "What about design"],
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ],
       "categories": ["Development", "Website"],
       "tags": ["About", "Contact"]
     },
     {
+      "id": "t2",
       "projectName": "Website Redesign",
       "name": "Create Wireframes and Design Concepts",
       "assignee": "Sarah Thompson",
@@ -20,9 +38,26 @@
       "categories": ["Development", "Website"],
       "tags": ["About", "Contact"],
       "status": "Lag",
-      "comments": ["You need to fix this", "Ok I will", "What about design"]
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ]
     },
     {
+      "id": "t3",
       "projectName": "Website Redesign",
       "name": "Develop Frontend Components",
       "tags": ["About", "Contact"],
@@ -31,9 +66,26 @@
       "dueDate": "2023-07-20",
       "description": "All the details are in file, im sure it will be good",
       "status": "Wrok",
-      "comments": ["You need to fix this", "Ok I will", "What about design"]
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ]
     },
     {
+      "id": "t4",
       "projectName": "Mobile App Development",
       "tags": ["About", "Contact"],
       "name": "Conduct Market Research",
@@ -42,9 +94,26 @@
       "dueDate": "2023-07-10",
       "description": "All the details are in file, im sure it will be good",
       "status": "To Do",
-      "comments": ["You need to fix this", "Ok I will", "What about design"]
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ]
     },
     {
+      "id": "t5",
       "tags": ["About", "Contact"],
       "projectName": "Mobile App Development",
       "categories": ["Development", "Website"],
@@ -53,9 +122,26 @@
       "assignee": "Lisa Roberts",
       "dueDate": "2023-07-25",
       "status": "Done",
-      "comments": ["You need to fix this", "Ok I will", "What about design"]
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ]
     },
     {
+      "id": "t6",
       "tags": ["About", "Contact"],
       "projectName": "Mobile App Development",
       "categories": ["Development", "Management"],
@@ -64,9 +150,26 @@
       "assignee": "Mark Taylor",
       "dueDate": "2023-08-10",
       "status": "To Do",
-      "comments": ["You need to fix this", "Ok I will", "What about design"]
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ]
     },
     {
+      "id": "t7",
       "tags": ["About", "Contact"],
       "projectName": "Mobile App Development",
       "categories": ["Management", "Website"],
@@ -75,7 +178,23 @@
       "assignee": "Mark Taylor",
       "dueDate": "2023-08-10",
       "status": "Work",
-      "comments": ["You need to fix this", "Ok I will", "What about design"]
+      "comments": [
+        {
+          "user": "Jane Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "You need to fix this"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "comment": "Ok I will"
+        },
+        {
+          "user": "John Doe",
+          "userImage": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "comment": "What about design"
+        }
+      ]
     }
   ],
   "teams": [

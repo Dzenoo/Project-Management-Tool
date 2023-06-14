@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 
-const Task = ({ task }) => {
+const Task = ({ task, onClickDelete, onClickView }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
@@ -51,6 +51,8 @@ const Task = ({ task }) => {
     />
   );
 
+  console.log(id);
+
   return (
     <Card className={classes.task_card}>
       <Box className={classes.task_top}>
@@ -86,7 +88,11 @@ const Task = ({ task }) => {
           <Button startIcon={deleteIcon} variant="outlined" color="error">
             Delete Task
           </Button>
-          <Button startIcon={viewIcon} variant="outlined">
+          <Button
+            startIcon={viewIcon}
+            variant="outlined"
+            onClick={() => onClickView(id)}
+          >
             View Task
           </Button>
         </Card>

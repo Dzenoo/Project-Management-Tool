@@ -12,6 +12,7 @@ const ProjectTasks = ({
   doneTasks,
   todoTasks,
   lagTasks,
+  openDetailsHandler,
 }) => {
   return (
     <Box className={classes.main_tasks_dashboard}>
@@ -50,6 +51,7 @@ const ProjectTasks = ({
           doneTasks={doneTasks}
           todoTasks={todoTasks}
           lagTasks={lagTasks}
+          openDetailsHandler={openDetailsHandler}
         />
       ) : (
         <ListType
