@@ -38,7 +38,10 @@ const KanbanType = ({
   const openModal = () => setmodalIsOpen(true);
 
   const closeAddTaskModal = () => setisOpenTaskModal(false);
-  const openAddTaskModal = () => setisOpenTaskModal(true);
+  const openAddTaskModal = (type) => {
+    console.log(type);
+    setisOpenTaskModal(true);
+  };
 
   const title = useValidation([VALIDATOR_MINLENGTH(3)]);
   const description = useValidation([VALIDATOR_MINLENGTH(20)]);
@@ -252,7 +255,7 @@ const KanbanType = ({
               fontWeight="bold"
               variant="outlined"
               fullWidth
-              onClick={openAddTaskModal}
+              onClick={() => openAddTaskModal(column.title)}
             >
               +
             </Button>
