@@ -144,7 +144,12 @@ const Project = ({ params }) => {
               <IconButton size="large" className={classes.iconBtn}></IconButton>
             </Tooltip>
           ))}
-          <Button variant="contained" size="large" onClick={openInviteModal}>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ borderRadius: "100px", bgcolor: "royalblue" }}
+            onClick={openInviteModal}
+          >
             +
           </Button>
         </Box>
