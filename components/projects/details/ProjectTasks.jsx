@@ -13,6 +13,7 @@ const ProjectTasks = ({
   todoTasks,
   lagTasks,
   openDetailsHandler,
+  columns,
 }) => {
   return (
     <Box className={classes.main_tasks_dashboard}>
@@ -46,21 +47,9 @@ const ProjectTasks = ({
       <br />
       <hr />
       {isTypeTask === "kanban" ? (
-        <KanbanType
-          workTasks={workTasks}
-          doneTasks={doneTasks}
-          todoTasks={todoTasks}
-          lagTasks={lagTasks}
-          openDetailsHandler={openDetailsHandler}
-        />
+        <KanbanType columns={columns} openDetailsHandler={openDetailsHandler} />
       ) : (
-        <ListType
-          workTasks={workTasks}
-          doneTasks={doneTasks}
-          todoTasks={todoTasks}
-          lagTasks={lagTasks}
-          openDetailsHandler={openDetailsHandler}
-        />
+        <ListType columns={columns} openDetailsHandler={openDetailsHandler} />
       )}
     </Box>
   );

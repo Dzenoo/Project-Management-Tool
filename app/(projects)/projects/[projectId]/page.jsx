@@ -4,7 +4,7 @@
 
 import { projects } from "@/data/projects.jsonData.config.json";
 import { tasks } from "@/data/tasks.jsonData.config.json";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -22,6 +22,7 @@ import ProjectDiscussion from "@/components/projects/details/ProjectDiscussion";
 import ProjectFiles from "@/components/projects/details/ProjectFiles";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import MainModal from "@/components/shared/MainModal";
+import { AppContext } from "@/context/AppContext";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -36,6 +37,7 @@ const Project = ({ params }) => {
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
+  const { columns } = useContext(AppContext);
 
   const openTaskDetail = (id) => {
     const currentOpenedTask = tasks.find((task) => task.id === id);
@@ -47,11 +49,6 @@ const Project = ({ params }) => {
   const openInviteModal = () => setisOpenInviteModal(true);
 
   const project = projects.find((p) => p.id === params.projectId);
-
-  const todoTasks = tasks.filter((task) => task.status === "To Do");
-  const doneTasks = tasks.filter((task) => task.status === "Done");
-  const workTasks = tasks.filter((task) => task.status === "Work");
-  const lagTasks = tasks.filter((task) => task.status === "Lag");
 
   const deleteIcon = (
     <Image
@@ -158,10 +155,7 @@ const Project = ({ params }) => {
           classes={classes}
           setisTypeTask={setisTypeTask}
           isTypeTask={isTypeTask}
-          workTasks={workTasks}
-          doneTasks={doneTasks}
-          lagTasks={lagTasks}
-          todoTasks={todoTasks}
+          columns={columns}
           openDetailsHandler={openTaskDetail}
         />
       )}
