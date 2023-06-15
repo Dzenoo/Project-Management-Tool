@@ -239,3 +239,85 @@
   justify-content: space-between;
   gap: 12px;
 }
+
+.add_form_top {
+  text-align: center;
+  padding: 20px;
+}
+
+.add_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 40px;
+}
+
+.add_form .add_details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6em;
+}
+
+.add_form .add_details .flex_inputs {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.add_form .add_actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.categories {
+  display: flex;
+  gap: 1.2em;
+  overflow-y: scroll;
+}
+
+.categories .category_inp {
+  background-color: rgb(0, 87, 168);
+  color: #fff;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  border-radius: 30px;
+  margin-top: 12px;
+}
+
+.categories .category_inp button {
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 0, 0, 0.349);
+  color: #ec0707;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.step_container {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  gap: 12px;
+}
+
+.step_container span {
+  padding: 12px;
+  width: 16px;
+  height: 12px;
+  border-radius: 100px;
+  background-color: rgb(201, 201, 201);
+  transition: 0.3s;
+}
+
+.step_container span.isActive {
+  width: 36px;
+  transition: 0.3s;
+  background-color: rgb(0, 87, 168);
+}
