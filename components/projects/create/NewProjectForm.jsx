@@ -15,12 +15,20 @@ import { useState } from "react";
 import Image from "next/image";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { useValidation } from "@/hooks/Auth/useValidation";
+import { ProjectStatusTypes } from "@/data/data";
 
 const NewProjectForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [categories, setCategories] = useState([]);
 
+  const name = useValidation([VALIDATOR_REQUIRE()]);
+  const description = useValidation([VALIDATOR_REQUIRE()]);
+  const startDate = useValidation([VALIDATOR_REQUIRE()]);
+  const endDate = useValidation([VALIDATOR_REQUIRE()]);
   const category = useValidation([VALIDATOR_REQUIRE()]);
+  const projectManager = useValidation([VALIDATOR_REQUIRE()]);
+  const budget = useValidation([VALIDATOR_REQUIRE()]);
+  const status = useValidation([VALIDATOR_REQUIRE()]);
 
   const handleCategoryInput = (event) => {
     if (event.key === "Enter") {
@@ -59,13 +67,24 @@ const NewProjectForm = () => {
         {/* Step 1 */}
         {currentStep === 0 && (
           <div className={classes.add_details}>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Project Name</b>
               </label>
-              <TextField placeholder="Enter name of project" fullWidth />
+              <TextField
+                onChange={name.onChangeInputHandler}
+                onBlur={name.onBlurInputHandler}
+                value={name.value}
+                error={!name.isValid && name.isTouched}
+                helperText={
+                  !name.isValid && name.isTouched && "Please enter valid name"
+                }
+                required
+                placeholder="Enter name of project"
+                fullWidth
+              />
             </FormControl>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Project Description</b>
               </label>
@@ -74,40 +93,89 @@ const NewProjectForm = () => {
                 rows={3}
                 fullWidth
                 multiline
+                onChange={description.onChangeInputHandler}
+                onBlur={description.onBlurInputHandler}
+                value={description.value}
+                error={!description.isValid && description.isTouched}
+                helperText={
+                  !description.isValid &&
+                  description.isTouched &&
+                  "Please enter valid description"
+                }
+                required
               />
             </FormControl>
             <div className={classes.flex_inputs}>
-              <div>
+              <FormControl className={classes.form_control}>
                 <label>
                   <b>Start Date</b>
                 </label>
-                <TextField type="date" required fullWidth />
-              </div>
-              <div>
+                <TextField
+                  type="date"
+                  onChange={startDate.onChangeInputHandler}
+                  onBlur={startDate.onBlurInputHandler}
+                  value={startDate.value}
+                  error={!startDate.isValid && startDate.isTouched}
+                  helperText={
+                    !startDate.isValid &&
+                    startDate.isTouched &&
+                    "Please enter valid startDate"
+                  }
+                  required
+                  fullWidth
+                />
+              </FormControl>
+              <FormControl className={classes.form_control}>
                 <label>
                   <b>End Date</b>
                 </label>
-                <TextField type="date" required fullWidth />
-              </div>
+                <TextField
+                  type="date"
+                  onChange={endDate.onChangeInputHandler}
+                  onBlur={endDate.onBlurInputHandler}
+                  value={endDate.value}
+                  error={!endDate.isValid && endDate.isTouched}
+                  helperText={
+                    !endDate.isValid &&
+                    endDate.isTouched &&
+                    "Please enter valid endDate"
+                  }
+                  required
+                  fullWidth
+                />
+              </FormControl>
             </div>
           </div>
         )}
         {/* Step 2 */}
         {currentStep === 1 && (
           <div className={classes.add_details}>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Project Manager</b>
               </label>
-              <TextField placeholder="Enter Project Manager" fullWidth />
+              <TextField
+                placeholder="Enter Project Manager"
+                fullWidth
+                onChange={projectManager.onChangeInputHandler}
+                onBlur={projectManager.onBlurInputHandler}
+                value={projectManager.value}
+                error={!projectManager.isValid && projectManager.isTouched}
+                helperText={
+                  !projectManager.isValid &&
+                  projectManager.isTouched &&
+                  "Please enter valid projectManager"
+                }
+                required
+              />
             </FormControl>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Select Team</b>
               </label>
               <Select placeholder="Select Team" fullWidth></Select>
             </FormControl>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Budget</b>
               </label>
@@ -115,6 +183,16 @@ const NewProjectForm = () => {
                 placeholder="Enter currrent budget ($)"
                 type="number"
                 fullWidth
+                onChange={budget.onChangeInputHandler}
+                onBlur={budget.onBlurInputHandler}
+                value={budget.value}
+                error={!budget.isValid && budget.isTouched}
+                helperText={
+                  !budget.isValid &&
+                  budget.isTouched &&
+                  "Please enter valid budget"
+                }
+                required
               />
             </FormControl>
           </div>
@@ -123,17 +201,35 @@ const NewProjectForm = () => {
         {/* Step 3 */}
         {currentStep === 2 && (
           <div className={classes.add_details}>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Status</b>
               </label>
-              <Select placeholder="Select Status" fullWidth>
-                <MenuItem>In Progress</MenuItem>
-                <MenuItem>Finished</MenuItem>
-                <MenuItem>Cancelled</MenuItem>
+              <Select
+                placeholder="Select Status"
+                fullWidth
+                onChange={status.onChangeInputHandler}
+                onBlur={status.onBlurInputHandler}
+                value={status.value}
+              >
+                {ProjectStatusTypes.map((pr) => (
+                  <MenuItem
+                    value={pr.name}
+                    key={pr.id}
+                    className={classes.status_menu_item}
+                  >
+                    <Image
+                      src={pr.image}
+                      width={20}
+                      height={20}
+                      alt={pr.name}
+                    />
+                    <Typography>{pr.name}</Typography>
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
-            <FormControl>
+            <FormControl className={classes.form_control}>
               <label>
                 <b>Categories</b>
               </label>
@@ -180,6 +276,12 @@ const NewProjectForm = () => {
             {(currentStep === 1 && "Back") || (currentStep === 2 && "Back")}
           </Button>
           <Button
+            disabled={
+              !name.isValid ||
+              !description.isValid ||
+              !startDate.isValid ||
+              !endDate.isValid
+            }
             variant="contained"
             onClick={() => {
               if (currentStep >= 2) {
