@@ -64,3 +64,27 @@ export const CategoryasksSelect = [
     name: "Design",
   },
 ];
+
+export const NotificationsData = [
+  {
+    id: "n1",
+    message: "John Doe invite you to project",
+    date: "2023/02/06",
+    image:
+      "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+  },
+  {
+    id: "n2",
+    message: "John Doe invite you to project",
+    date: "2023/02/06",
+    image:
+      "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+  },
+  {
+    id: "n3",
+    message: "John Doe invite you to project",
+    date: "2023/02/06",
+    image:
+      "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+  },
+];
