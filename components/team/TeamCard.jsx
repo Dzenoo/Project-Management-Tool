@@ -4,11 +4,11 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import Link from "next/link";
 
-const TeamCard = ({ image, teamName, teamDescription, dateCreated }) => {
+const TeamCard = ({ id, image, teamName, teamDescription, dateCreated }) => {
   return (
     <Card className={classes.team_card}>
       <Image src={image} width={100} height={100} alt="img" />
-      <Link href="/team">
+      <Link href={`/team/${id}`}>
         <Typography variant="h4" fontWeight="bold">
           {teamName}
         </Typography>

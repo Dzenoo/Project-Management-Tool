@@ -28,3 +28,36 @@
   max-width: 400px;
   text-align: center;
 }
+
+/* CARD TYPE */
+
+.team_user_card {
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.team_user_card .team_user_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team_user_card .team_user_header .team_user_links {
+  display: flex;
+  gap: 1.2em;
+}
+
+.team_user_card .team_user_content {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
+  flex-direction: column;
+  padding: 38px 12px;
+}
+
+/* CARD TYPE */

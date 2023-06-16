@@ -18,6 +18,7 @@ const TeamPage = () => {
         {teams.map((team) => (
           <TeamCard
             key={team.id}
+            id={team.id}
             image={team.teamImage}
             teamName={team.teamName}
             teamDescription={team.teamDescription}

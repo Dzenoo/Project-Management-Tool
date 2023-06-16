@@ -154,3 +154,35 @@ a {
   height: 48px;
   background-color: #1cc800;
 }
+
+.admin {
+  color: #7638dc;
+  background-color: #7738dc3f;
+  padding: 12px;
+  border-radius: 30px;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.manager {
+  color: #2d81ff;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  width: fit-content;
+  background-color: #2d81ff56;
+}
+
+.teamember {
+  color: #1cc800;
+  background-color: #1bc8003f;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.workAs {
+  color: #0c86b6;
+  font-weight: bold;
+}

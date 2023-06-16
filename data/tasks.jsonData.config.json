@@ -208,26 +208,29 @@
         {
           "id": "m1",
           "firstName": "John",
-          "image": "/images/graphic/charging-circle.png",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
           "lastName": "Doe",
           "email": "johndoe@gmail.com",
-          "specialize": "Manager"
+          "role": "Admin",
+          "workAs": "Web Developer"
         },
         {
           "id": "m2",
           "firstName": "John",
-          "image": "/images/graphic/charging-circle.png",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
           "lastName": "Doe",
           "email": "johndoe@gmail.com",
-          "specialize": "Designer"
+          "role": "Manager",
+          "workAs": "Web Designer"
         },
         {
           "id": "m2",
           "firstName": "John",
-          "image": "/images/graphic/charging-circle.png",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
           "lastName": "Doe",
           "email": "johndoe@gmail.com",
-          "specialize": "Developer"
+          "role": "Team Member",
+          "workAs": "Project Manager"
         }
       ]
     },
@@ -240,27 +243,30 @@
       "teamMembers": [
         {
           "id": "m1",
-          "image": "/images/graphic/charging-circle.png",
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "JaneSmith@gmail.com",
-          "specialize": "Designer"
+          "firstName": "John",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "role": "Admin",
+          "workAs": "Web Developer"
         },
         {
           "id": "m2",
-          "image": "/images/graphic/charging-circle.png",
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "JaneSmith@gmail.com",
-          "specialize": "Developer"
+          "firstName": "John",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "role": "Manager",
+          "workAs": "Web Designer"
         },
         {
           "id": "m2",
-          "image": "/images/graphic/charging-circle.png",
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "JaneSmith@gmail.com",
-          "specialize": "Manager"
+          "firstName": "John",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "role": "Team Member",
+          "workAs": "Project Manager"
         }
       ]
     },
@@ -273,27 +279,30 @@
       "teamMembers": [
         {
           "id": "m1",
-          "image": "/images/graphic/charging-circle.png",
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "JaneSmith@gmail.com",
-          "specialize": "Designer"
+          "firstName": "John",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "role": "Admin",
+          "workAs": "Web Developer"
         },
         {
           "id": "m2",
-          "image": "/images/graphic/charging-circle.png",
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "JaneSmith@gmail.com",
-          "specialize": "Developer"
+          "firstName": "John",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "role": "Manager",
+          "workAs": "Web Designer"
         },
         {
           "id": "m2",
-          "image": "/images/graphic/charging-circle.png",
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "JaneSmith@gmail.com",
-          "specialize": "Manager"
+          "firstName": "John",
+          "image": "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+          "lastName": "Doe",
+          "email": "johndoe@gmail.com",
+          "role": "Team Member",
+          "workAs": "Project Manager"
         }
       ]
     }
