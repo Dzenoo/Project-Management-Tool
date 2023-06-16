@@ -1,0 +1,34 @@
+.tasks_container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4em;
+}
+
+.tasks_container .tasks_top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasks_container .tasks_top input {
+  width: 600px;
+}
+
+.tasks_container .tasks_mid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasks_container .tasks_mid .tasks_filters {
+  display: flex;
+  gap: 2em;
+}
+
+.tasks_container .tasks_cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}

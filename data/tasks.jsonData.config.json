@@ -6,7 +6,7 @@
       "name": "Gather User Requirements",
       "assignee": "Emily Johnson",
       "dueDate": "2023-06-20",
-      "status": "In Progress",
+      "status": "To Do",
       "description": "All the details are in file, im sure it will be good",
       "comments": [
         {
@@ -65,7 +65,7 @@
       "categories": ["Development", "Design"],
       "dueDate": "2023-07-20",
       "description": "All the details are in file, im sure it will be good",
-      "status": "Wrok",
+      "status": "Work",
       "comments": [
         {
           "user": "Jane Doe",
