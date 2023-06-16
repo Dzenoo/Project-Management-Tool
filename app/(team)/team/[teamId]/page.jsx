@@ -5,20 +5,20 @@ import { teams } from "@/data/tasks.jsonData.config.json";
 import {
   Box,
   Button,
-  Menu,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import classes from "@/styles/team/team.module.css";
 
 const TeamDetail = ({ params }) => {
   const team = teams.find((team) => team.id === params.teamId);
 
   return (
-    <Box>
-      <div>
+    <Box className={classes.team_details_container}>
+      <div className={classes.team_details_top}>
         <Typography variant="h4" fontWeight="bold">
           {team?.teamName}
         </Typography>
@@ -50,9 +50,9 @@ const TeamDetail = ({ params }) => {
           List View
         </Button>
       </div>
-      <div>
+      <div className={classes.team_details_content}>
         <TextField placeholder="Search..." label="Search Here" />
-        <Select>
+        <Select label="Role" className={classes.select}>
           <MenuItem>Member</MenuItem>
           <MenuItem>Admin</MenuItem>
           <MenuItem>Manager</MenuItem>
@@ -61,7 +61,7 @@ const TeamDetail = ({ params }) => {
           Invite Member
         </Button>
       </div>
-      <div>
+      <div className={classes.team_details_cards}>
         {team.teamMembers.map((tm) => (
           <UserCard
             key={tm.id}

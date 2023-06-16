@@ -1,5 +1,5 @@
 .team_wrapper {
-  padding: 40px 12px;
+  padding: 20px 12px;
 }
 
 .team_wrapper .team_actions {
@@ -13,7 +13,7 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 6em 12px;
+  padding: 3em 12px;
   justify-content: center;
 }
 
@@ -28,6 +28,44 @@
   max-width: 400px;
   text-align: center;
 }
+
+/* TEAM DETAILS  */
+
+.team_details_container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.team_details_container .team_details_top {
+  display: flex;
+  gap: 2em;
+}
+
+.team_details_container .team_details_content {
+  display: flex;
+  gap: 2em;
+}
+
+.team_details_container .team_details_content input {
+  width: 600px;
+}
+
+.team_details_container .team_details_content .select {
+  width: 200px;
+}
+
+.team_details_container .team_details_cards {
+  display: flex;
+  gap: 1.7em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* TEAM DETAILS  */
 
 /* CARD TYPE */
 
@@ -57,7 +95,7 @@
   align-items: center;
   gap: 0.8em;
   flex-direction: column;
-  padding: 38px 12px;
+  padding: 28px 12px;
 }
 
 /* CARD TYPE */
