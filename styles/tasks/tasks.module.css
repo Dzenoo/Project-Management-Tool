@@ -4,6 +4,8 @@
   flex-direction: column;
   flex-grow: 1;
   gap: 4em;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .tasks_container .tasks_top {
