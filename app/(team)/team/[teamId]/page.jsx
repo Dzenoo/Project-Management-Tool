@@ -13,9 +13,11 @@ import {
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
+import { useState } from "react";
 
 const TeamDetail = ({ params }) => {
   const team = teams.find((team) => team.id === params.teamId);
+  const [isMode, setisMode] = useState("card");
 
   return (
     <Box className={classes.team_details_container}>
@@ -24,8 +26,8 @@ const TeamDetail = ({ params }) => {
           {team?.teamName}
         </Typography>
         <Button
-        //   onClick={() => setisTypeTask("kanban")}
-        //   variant={isTypeTask === "kanban" && "contained"}
+          onClick={() => setisMode("card")}
+          variant={isMode === "card" && "contained"}
         >
           <Image
             src="/images/graphic/kanban.png"
@@ -38,8 +40,8 @@ const TeamDetail = ({ params }) => {
         </Button>
         <Button
           size="large"
-          //   onClick={() => setisTypeTask("list")}
-          //   variant={isTypeTask === "list" && "contained"}
+          onClick={() => setisMode("table")}
+          variant={isMode === "table" && "contained"}
         >
           <Image
             src="/images/graphic/list.png"
@@ -63,18 +65,21 @@ const TeamDetail = ({ params }) => {
         </Button>
       </div>
       <div className={classes.team_details_cards}>
-        {team.teamMembers.map((tm) => (
-          <UserCard
-            key={tm.id}
-            image={tm.image}
-            fname={tm.firstName}
-            lname={tm.lastName}
-            email={tm.email}
-            role={tm.role}
-            workAs={tm.workAs}
-          />
-        ))}
-        <UserTable team={team} />
+        {isMode === "card" ? (
+          team.teamMembers.map((tm) => (
+            <UserCard
+              key={tm.id}
+              image={tm.image}
+              fname={tm.firstName}
+              lname={tm.lastName}
+              email={tm.email}
+              role={tm.role}
+              workAs={tm.workAs}
+            />
+          ))
+        ) : (
+          <UserTable team={team} />
+        )}
       </div>
     </Box>
   );
