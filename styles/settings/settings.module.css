@@ -8,7 +8,7 @@
 }
 
 .settings_wrapper .gradient {
-  height: 307px;
+  height: 400px;
   background: linear-gradient(to top right, #00caca, blue);
 }
 
@@ -32,4 +32,24 @@
   gap: 20px;
   align-items: center;
   margin-left: 40px;
+}
+
+.settings_form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  position: relative;
+  bottom: 70px;
+  padding: 40px;
+}
+
+.settings_form .settings_form_control {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.settings_form .settings_form_control .settings_inputs {
+  display: flex;
+  gap: 1.2em;
 }
