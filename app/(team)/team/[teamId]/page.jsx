@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
+import UserTable from "@/components/team/UserTable";
 
 const TeamDetail = ({ params }) => {
   const team = teams.find((team) => team.id === params.teamId);
@@ -47,7 +48,7 @@ const TeamDetail = ({ params }) => {
             style={{ marginRight: "10px" }}
             alt="img"
           />
-          List View
+          Table View
         </Button>
       </div>
       <div className={classes.team_details_content}>
@@ -73,6 +74,7 @@ const TeamDetail = ({ params }) => {
             workAs={tm.workAs}
           />
         ))}
+        <UserTable team={team} />
       </div>
     </Box>
   );

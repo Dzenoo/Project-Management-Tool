@@ -99,3 +99,19 @@
 }
 
 /* CARD TYPE */
+
+/* TABLE TYPE */
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.name img {
+  border-radius: 100px;
+}
+
+.role {
+}
+/* TABLE TYPE */
