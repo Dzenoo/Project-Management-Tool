@@ -160,7 +160,7 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
               </Button>
             </form>
           </div>
-          <div>
+          <div style={{ marginTop: "40px" }}>
             {comments.map((comment) => (
               <div key={comment.user} className={classes.task_details_comment}>
                 <Image

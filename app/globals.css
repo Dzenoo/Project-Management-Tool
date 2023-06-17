@@ -140,10 +140,10 @@ a {
 }
 
 .done {
-  background-color: rgba(21, 146, 5, 0.349);
+  color: #1cc800;
+  background-color: #1bc8007a;
   padding: 12px;
   border-radius: 30px;
-  color: #51c007;
   font-weight: bold;
   width: 100px;
   text-align: center;
