@@ -2,6 +2,7 @@ import { connectToDB } from "@/lib/database";
 import bcrypt from "bcrypt";
 import User from "@/models/user/user";
 import jwt from "jsonwebtoken";
+import { response } from "@/lib/response";
 
 export const POST = async (request) => {
   try {
@@ -15,26 +16,22 @@ export const POST = async (request) => {
   try {
     existingUser = await User.findOne({ email: email });
   } catch (error) {
-    return new Response("Could not find user", { status: 404 });
+    return response("Cannot find a user", 404);
   }
 
   if (!existingUser) {
-    return new Response("User cannot be found", { status: 500 });
+    return response("User cannot be found", 404);
   }
 
   let isPasswordValid;
   try {
     isPasswordValid = await bcrypt.compare(password, existingUser.password);
   } catch (error) {
-    return new Response("Could not login, please check credentials", {
-      status: 500,
-    });
+    return response("Could not login, please check credentials", 500);
   }
 
   if (!isPasswordValid) {
-    return new Response("Could not login, please check credentials", {
-      status: 500,
-    });
+    return response("Could not login, please check credentials", 500);
   }
 
   let token;
@@ -43,7 +40,7 @@ export const POST = async (request) => {
       expiresIn: "2h",
     });
   } catch (error) {
-    return new Response("Failed to login", { status: 500 });
+    return response("Failed to login, please try again", 500);
   }
 
   const userInfo = {
