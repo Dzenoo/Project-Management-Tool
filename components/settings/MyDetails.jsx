@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import classes from "@/styles/settings/settings.module.css";
 
 const MyDetails = () => {

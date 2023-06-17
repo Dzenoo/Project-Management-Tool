@@ -8,7 +8,7 @@
 }
 
 .settings_wrapper .gradient {
-  height: 400px;
+  height: 200px;
   background: linear-gradient(to top right, #00caca, blue);
 }
 
@@ -46,10 +46,17 @@
 .settings_form .settings_form_control {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.2em;
 }
 
 .settings_form .settings_form_control .settings_inputs {
   display: flex;
   gap: 1.2em;
+}
+
+.settings_form .settings_form_control .settings_password {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
 }

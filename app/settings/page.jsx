@@ -5,8 +5,11 @@ import MyPassword from "@/components/settings/MyPassword";
 import classes from "@/styles/settings/settings.module.css";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
 const Settings = () => {
+  const [isMode, setisMode] = useState("details");
+
   return (
     <div className={classes.settings_wrapper}>
       <div className={classes.gradient}></div>
@@ -25,12 +28,21 @@ const Settings = () => {
         </div>
       </div>
       <div className={classes.settings_tabs}>
-        <Button>My Details</Button>
-        <Button>Password</Button>
+        <Button
+          sx={isMode === "details" && { borderBottom: "4px solid royalblue" }}
+          onClick={() => setisMode("details")}
+        >
+          My Details
+        </Button>
+        <Button
+          sx={isMode === "password" && { borderBottom: "4px solid royalblue" }}
+          onClick={() => setisMode("password")}
+        >
+          Password
+        </Button>
       </div>
       <div className={classes.settings_content}>
-        <MyDetails />
-        <MyPassword />
+        {isMode === "details" ? <MyDetails /> : <MyPassword />}
       </div>
     </div>
   );
