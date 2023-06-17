@@ -43,9 +43,9 @@ const SignupForm = ({ submitSignupHandler }) => {
   }
 
   const signupData = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    userName: userName.value,
+    first_name: firstName.value,
+    last_name: lastName.value,
+    username: userName.value,
     email: email.value,
     password: password.value,
   };

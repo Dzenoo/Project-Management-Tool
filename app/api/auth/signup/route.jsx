@@ -16,11 +16,16 @@ export const POST = async (request) => {
   try {
     existingUser = await User.findOne({ email: email });
   } catch (error) {
-    return new Response("Could not find user", { status: 404 });
+    return new Response(JSON.stringify({ message: "Could not find user" }), {
+      status: 404,
+    });
   }
 
   if (existingUser) {
-    return new Response("User already exist with this email", { status: 500 });
+    return new Response(
+      JSON.stringify({ message: "User already exists with this email" }),
+      { status: 500 }
+    );
   }
 
   let hashedPassword;
@@ -44,14 +49,16 @@ export const POST = async (request) => {
   try {
     user = await createdUser.save();
   } catch (error) {
-    return new Response("Failed to create a new user", { status: 500 });
+    console.log(error);
   }
 
   let token;
   try {
     token = jwt.sign({ userId: user.id }, "strongsecret", { expiresIn: "2h" });
   } catch (error) {
-    return new Response("Failed to sign up", { status: 500 });
+    return new Response(JSON.stringify({ message: "Failed to sign up" }), {
+      status: 500,
+    });
   }
 
   const userInfo = {

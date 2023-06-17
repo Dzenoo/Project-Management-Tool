@@ -10,7 +10,7 @@ const Signup = () => {
   const { sendPostRequest, isLoading, error } = useHttpPost();
 
   const submitSignup = async (enteredData) => {
-    await sendPostRequest("", "", enteredData);
+    await sendPostRequest("/api/auth/signup", "POST", enteredData);
   };
 
   if (isLoading) {
@@ -23,6 +23,7 @@ const Signup = () => {
 
   if (error) {
     toast.error(error);
+    console.log(error);
   }
 
   return (

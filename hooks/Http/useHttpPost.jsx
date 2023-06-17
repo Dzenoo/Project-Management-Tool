@@ -14,14 +14,19 @@ export const useHttpPost = () => {
       const response = await fetch(url, {
         method: typeOfMethod,
         body: JSON.stringify(bodyData),
+        headers: { "Content-Type": "application/json" },
       });
+
+      const resData = await response.json();
 
       if (response.ok) {
         setIsLoading(false);
+      } else {
+        setError(resData.message);
       }
-    } catch (error) {
-      console.log(error.message);
-      setError(error.message);
+    } catch (err) {
+      console.log(err.message);
+      setError(err.message);
       setIsLoading(false);
     } finally {
       setIsLoading(false);
