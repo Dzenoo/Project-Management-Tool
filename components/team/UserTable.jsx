@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { MenuItem, Select, Typography } from "@mui/material";
+import { Button, MenuItem, Select, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 
@@ -54,7 +54,7 @@ const UserTable = ({ team }) => {
                 >
                   {row.role}
                 </span>
-                <Select sx={{ width: "160px" }}>
+                <Select sx={{ width: "160px" }} value={row.role}>
                   <MenuItem value="Admin">Admin</MenuItem>
                   <MenuItem value="User">User</MenuItem>
                   <MenuItem value="Manager">Manager</MenuItem>
@@ -62,6 +62,16 @@ const UserTable = ({ team }) => {
               </TableCell>
               <TableCell align="right">
                 <Typography color="textSecondary">{row.dateAdded}</Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Button>
+                  <Image
+                    src={"/images/graphic/option.png"}
+                    width={30}
+                    height={30}
+                    alt="options"
+                  />
+                </Button>
               </TableCell>
             </TableRow>
           ))}

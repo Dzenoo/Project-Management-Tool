@@ -43,6 +43,7 @@
 .team_details_container .team_details_top {
   display: flex;
   gap: 2em;
+  justify-content: space-between;
 }
 
 .team_details_container .team_details_content {

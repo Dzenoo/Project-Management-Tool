@@ -25,32 +25,42 @@ const TeamDetail = ({ params }) => {
         <Typography variant="h4" fontWeight="bold">
           {team?.teamName}
         </Typography>
-        <Button
-          onClick={() => setisMode("card")}
-          variant={isMode === "card" && "contained"}
-        >
+        <div>
+          <Button
+            onClick={() => setisMode("card")}
+            variant={isMode === "card" && "contained"}
+          >
+            <Image
+              src="/images/graphic/kanban.png"
+              width={30}
+              height={30}
+              style={{ marginRight: "10px" }}
+              alt="img"
+            />
+            Card View
+          </Button>
+          <Button
+            size="large"
+            onClick={() => setisMode("table")}
+            variant={isMode === "table" && "contained"}
+          >
+            <Image
+              src="/images/graphic/list.png"
+              width={30}
+              height={30}
+              style={{ marginRight: "10px" }}
+              alt="img"
+            />
+            Table View
+          </Button>
+        </div>
+        <Button>
           <Image
-            src="/images/graphic/kanban.png"
+            src={"/images/graphic/option.png"}
             width={30}
             height={30}
-            style={{ marginRight: "10px" }}
-            alt="img"
+            alt="options"
           />
-          Card View
-        </Button>
-        <Button
-          size="large"
-          onClick={() => setisMode("table")}
-          variant={isMode === "table" && "contained"}
-        >
-          <Image
-            src="/images/graphic/list.png"
-            width={30}
-            height={30}
-            style={{ marginRight: "10px" }}
-            alt="img"
-          />
-          Table View
         </Button>
       </div>
       <div className={classes.team_details_content}>
