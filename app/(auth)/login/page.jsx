@@ -16,7 +16,7 @@ const Login = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    if (user.token) {
+    if (user?.token) {
       router.replace("/");
     }
   }, []);
@@ -28,6 +28,7 @@ const Login = () => {
       enteredData
     );
     login(response.token);
+    router.push("/");
   };
 
   if (isLoading) {
@@ -45,7 +46,7 @@ const Login = () => {
   return (
     <>
       <ToastContainer />
-      <LoginForm submitLoginHandler={submitLogin} />;
+      <LoginForm submitLoginHandler={submitLogin} />
     </>
   );
 };

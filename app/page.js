@@ -14,8 +14,8 @@ export default function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    if (user.token) {
-      router.replace("/");
+    if (!user?.token) {
+      router.replace("/login");
     }
   }, []);
 

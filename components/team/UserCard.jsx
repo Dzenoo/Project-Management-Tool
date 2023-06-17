@@ -68,7 +68,6 @@ const UserCard = ({ image, role, fname, lname, workAs, email }) => {
     </Card>
   );
 };
-
 UserCard.propTypes = {
   image: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,

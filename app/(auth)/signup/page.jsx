@@ -16,7 +16,7 @@ const Signup = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    if (user.token) {
+    if (user?.token) {
       router.replace("/");
     }
   }, []);
@@ -28,6 +28,7 @@ const Signup = () => {
       enteredData
     );
     login(response.token);
+    router.push("/");
   };
 
   if (isLoading) {

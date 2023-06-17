@@ -73,6 +73,7 @@ const LoginForm = ({ submitLoginHandler }) => {
               "Please enter valid password"
             }
             required
+            type="password"
           />
         </FormControl>
         <Box className={classes.login_actions}>
