@@ -1,0 +1,35 @@
+.settings_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.settings_wrapper .gradient {
+  height: 307px;
+  background: linear-gradient(to top right, #00caca, blue);
+}
+
+.settings_wrapper .settings_top {
+  display: flex;
+  gap: 1.2em;
+  padding: 12px;
+}
+
+.settings_wrapper .settings_top img {
+  border-radius: 100px;
+  padding: 20px;
+  position: relative;
+  bottom: 70px;
+}
+
+.settings_wrapper .settings_tabs {
+  position: relative;
+  bottom: 70px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-left: 40px;
+}
