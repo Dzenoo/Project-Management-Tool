@@ -4,10 +4,21 @@ import DashboardChart from "@/components/dashboard/components/DashboardChart";
 import ProjectOverview from "@/components/dashboard/components/ProjectOverview";
 import ProjectTable from "@/components/dashboard/components/ProjectTable";
 import TeamsCard from "@/components/dashboard/components/TeamsCard";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 import classes from "@/styles/dashboard/dashboard.module.css";
+import { useEffect } from "react";
 
 export default function Dashboard() {
+  const router = useRouter();
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (user.token) {
+      router.replace("/");
+    }
+  }, []);
+
   return (
     <Box className={classes.dashboard_page}>
       <Typography variant="h4" fontWeight="bold" sx={{ padding: "12px" }}>
