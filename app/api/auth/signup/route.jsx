@@ -45,7 +45,7 @@ export const POST = async (request) => {
   try {
     user = await createdUser.save();
   } catch (error) {
-    console.log(error);
+    return response("Failed to signup, please try again", 500);
   }
 
   let token;

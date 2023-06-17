@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+let logoutTimer;
 export const useAuth = () => {
-  const [token, settoken] = useState(false);
+  const [token, settoken] = useState();
   const [tokenExpirationTime, settokenExpirationTime] = useState();
   const router = useRouter();
 
-  const login = useCallback((token, expirationDate) => {
-    settoken(token);
+  const login = useCallback((tokene, expirationDate) => {
+    settoken(tokene);
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     settokenExpirationTime(tokenExpirationDate);
@@ -15,8 +16,8 @@ export const useAuth = () => {
     localStorage.setItem(
       "user",
       JSON.stringify({
-        token: token,
-        expiration: tokenExpirationTime.toISOString(),
+        token: tokene,
+        expiration: tokenExpirationDate.toISOString(),
       })
     );
   }, []);
@@ -38,16 +39,16 @@ export const useAuth = () => {
     }
   }, [token, logout, tokenExpirationTime]);
 
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (
-      storedData &&
-      storedData.token &&
-      new Date(storedData.expiration) > new Date()
-    ) {
-      login(storedData.token, new Date(storedData.expiration));
-    }
-  }, [login]);
+  // useEffect(() => {
+  //   const storedData = JSON.parse(localStorage.getItem("userData"));
+  //   if (
+  //     storedData &&
+  //     storedData.token &&
+  //     new Date(storedData.expiration) > new Date()
+  //   ) {
+  //     login(storedData.token, new Date(storedData.expiration));
+  //   }
+  // }, [login]);
 
   return { token, login, logout };
 };

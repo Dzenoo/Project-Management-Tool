@@ -5,12 +5,29 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
+import { useAuth } from "@/hooks/Auth/useAuth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Signup = () => {
+  const { login } = useAuth();
   const { sendPostRequest, isLoading, error } = useHttpPost();
+  const router = useRouter();
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (user.token) {
+      router.replace("/");
+    }
+  }, []);
 
   const submitSignup = async (enteredData) => {
-    await sendPostRequest("/api/auth/signup", "POST", enteredData);
+    const response = await sendPostRequest(
+      "/api/auth/signup",
+      "POST",
+      enteredData
+    );
+    login(response.token);
   };
 
   if (isLoading) {
@@ -23,7 +40,6 @@ const Signup = () => {
 
   if (error) {
     toast.error(error);
-    console.log(error);
   }
 
   return (

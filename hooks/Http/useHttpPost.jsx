@@ -24,6 +24,7 @@ export const useHttpPost = () => {
       } else {
         setError(resData.message);
       }
+      return resData;
     } catch (err) {
       console.log(err.message);
       setError(err.message);
