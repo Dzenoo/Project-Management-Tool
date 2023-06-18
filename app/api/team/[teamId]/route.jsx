@@ -5,38 +5,26 @@ import User from "@/models/user/user";
 
 // Invite to team route
 export const POST = async (request, { params }) => {
+  const { usernameOfInvitedUser, sendingUserId } = await request.json();
+
   try {
     await connectToDB();
 
-    const { usernameOfInvitedUser, sendingUserId } = await request.json();
+    const invitedUser = await User.findOne({ username: usernameOfInvitedUser });
 
-    let invitedUser;
-    try {
-      invitedUser = await User.findOne({ username: usernameOfInvitedUser });
-      if (!invitedUser) {
-        return response("Could not find user", 404);
-      }
-    } catch (error) {
+    if (!invitedUser) {
       return response("Could not find user", 404);
     }
 
-    let sendingUser;
-    try {
-      sendingUser = await User.findById(sendingUserId);
-      if (!sendingUser) {
-        return response("Could not find user", 404);
-      }
-    } catch (error) {
+    const sendingUser = await User.findById(sendingUserId);
+
+    if (!sendingUser) {
       return response("Could not find user", 404);
     }
 
-    let team;
-    try {
-      team = await Team.findById(params.teamId);
-      if (!team) {
-        return response("Could not find team", 404);
-      }
-    } catch (error) {
+    const team = await Team.findById(params.teamId);
+
+    if (!team) {
       return response("Could not find team", 404);
     }
 
@@ -51,11 +39,10 @@ export const POST = async (request, { params }) => {
       invitedUser.notifications.push(notification);
       await team.save();
       await invitedUser.save();
+      return response("User added to the team successfully", 200);
     } catch (error) {
       return response("Could not add user to team, please try again", 500);
     }
-
-    return response("User added to the team successfully", 200);
   } catch (error) {
     console.log(error);
     return response("Internal Server Error", 500);

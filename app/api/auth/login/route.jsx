@@ -5,46 +5,37 @@ import jwt from "jsonwebtoken";
 import { response } from "@/lib/response";
 
 export const POST = async (request) => {
+  const { email, password } = await request.json();
+
   try {
     await connectToDB();
-  } catch (error) {
-    console.log(error);
-  }
-  const { email, password } = await request.json();
-  let existingUser;
-  try {
-    existingUser = await User.findOne({ email: email });
-  } catch (error) {
-    return response("Cannot find a user", 404);
-  }
 
-  if (!existingUser) {
-    return response("User cannot be found", 404);
-  }
+    const existingUser = await User.findOne({ email: email });
 
-  let isPasswordValid;
-  try {
-    isPasswordValid = await bcrypt.compare(password, existingUser.password);
-  } catch (error) {
-    return response("Could not login, please check credentials", 500);
-  }
+    if (!existingUser) {
+      return response("User cannot be found", 404);
+    }
 
-  if (!isPasswordValid) {
-    return response("Could not login, please check credentials", 500);
-  }
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
 
-  let token;
-  try {
-    token = jwt.sign({ userId: existingUser.id }, "strongsecret", {
+    if (!isPasswordValid) {
+      return response("Could not login, please check credentials", 500);
+    }
+
+    const token = jwt.sign({ userId: existingUser._id }, "strongsecret", {
       expiresIn: "2h",
     });
+
+    const userInfo = {
+      token: token,
+    };
+
+    return new Response(JSON.stringify(userInfo), { status: 200 });
   } catch (error) {
-    return response("Failed to login, please try again", 500);
+    console.log(error);
+    return response("Internal Server Error", 500);
   }
-
-  const userInfo = {
-    token: token,
-  };
-
-  return new Response(JSON.stringify(userInfo), { status: 200 });
 };
