@@ -11,7 +11,6 @@ export const POST = async (request) => {
     console.log(error);
   }
   const { email, password } = await request.json();
-
   let existingUser;
   try {
     existingUser = await User.findOne({ email: email });

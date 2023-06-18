@@ -12,8 +12,19 @@ const UserSchema = new Schema({
   website: { type: String },
   biography: { type: String },
   address: { type: String },
-  role: { type: String, default: "Admin" },
-  team: [{ type: Schema.Types.ObjectId, ref: "Team" }],
+  teams: [
+    {
+      team: { type: Schema.Types.ObjectId, ref: "Team" },
+      role: { type: String },
+    },
+  ],
+  notifications: [
+    {
+      image: { type: String },
+      message: { type: String },
+      date: { type: Date, default: Date.now() },
+    },
+  ],
 });
 
 const User = models.User || model("User", UserSchema);

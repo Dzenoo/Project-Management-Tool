@@ -1,6 +1,7 @@
 import { connectToDB } from "@/lib/database";
 import { response } from "@/lib/response";
 import Team from "@/models/shared/Team";
+import User from "@/models/user/user";
 
 export const POST = async (request) => {
   try {
@@ -9,7 +10,17 @@ export const POST = async (request) => {
     console.log(error);
   }
 
-  const { name, description } = await request.json();
+  const { name, description, userId } = await request.json();
+
+  let user;
+  try {
+    user = await User.findById(userId);
+    if (!user) {
+      return response("Could not find user", 404);
+    }
+  } catch (error) {
+    return response("Could not find user", 404);
+  }
 
   const createdTeam = new Team({
     name,
@@ -21,6 +32,9 @@ export const POST = async (request) => {
   });
 
   try {
+    createdTeam.teamMembers.push({ user: user._id, role: "admin" });
+    user.teams.push({ team: createdTeam._id, role: "admin" });
+    await user.save();
     await createdTeam.save();
     return response("Team created successfully!", 201);
   } catch (error) {

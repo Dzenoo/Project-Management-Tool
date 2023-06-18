@@ -44,7 +44,7 @@ export const POST = async (request) => {
     website: "",
     biography: "",
     address: "",
-    role: "",
+    notifications: [],
   });
 
   let user;
