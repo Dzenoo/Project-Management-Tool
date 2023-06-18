@@ -14,13 +14,38 @@ import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
 import { useState } from "react";
+import MainModal from "@/components/shared/MainModal";
 
 const TeamDetail = ({ params }) => {
   const team = teams.find((team) => team.id === params.teamId);
+  const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
+  const closeInviteModal = () => setisOpenInviteModal(false);
+  const openInviteModal = () => setisOpenInviteModal(true);
+
+  const invite = (
+    <form className={classes.invite_form}>
+      <TextField
+        fullWidth
+        placeholder="contact@email.com"
+        label="Enter Member Email"
+      />
+      <Button variant="contained" sx={{ bgcolor: "#121212" }}>
+        Invite
+      </Button>
+    </form>
+  );
 
   return (
     <Box className={classes.team_details_container}>
+      {/* Invite Modal */}
+      <MainModal
+        isOpen={isOpenInviteModal}
+        close={closeInviteModal}
+        title="Invite User"
+        text="Invite new user to this team and start collaborating"
+        content={invite}
+      />
       <div className={classes.team_details_top}>
         <Typography variant="h4" fontWeight="bold">
           {team?.teamName}
@@ -70,7 +95,7 @@ const TeamDetail = ({ params }) => {
           <MenuItem>Admin</MenuItem>
           <MenuItem>Manager</MenuItem>
         </Select>
-        <Button size="large" variant="contained">
+        <Button size="large" variant="contained" onClick={openInviteModal}>
           Invite Member
         </Button>
       </div>

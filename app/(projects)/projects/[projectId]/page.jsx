@@ -33,7 +33,6 @@ export async function generateStaticParams() {
 const Project = ({ params }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const [isTypeTask, setisTypeTask] = useState("kanban");
-  const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
@@ -45,8 +44,6 @@ const Project = ({ params }) => {
     settaskDetailIsOpen(true);
   };
   const closeTaskDetail = () => settaskDetailIsOpen(false);
-  const closeInviteModal = () => setisOpenInviteModal(false);
-  const openInviteModal = () => setisOpenInviteModal(true);
 
   const project = projects.find((p) => p.id === params.projectId);
 
@@ -59,29 +56,8 @@ const Project = ({ params }) => {
     />
   );
 
-  const invite = (
-    <form className={classes.invite_form}>
-      <TextField
-        fullWidth
-        placeholder="contact@email.com"
-        label="Enter Member Email"
-      />
-      <Button variant="contained" sx={{ bgcolor: "#121212" }}>
-        Invite
-      </Button>
-    </form>
-  );
-
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>
-      {/* Invite Modal */}
-      <MainModal
-        isOpen={isOpenInviteModal}
-        close={closeInviteModal}
-        title="Share Project"
-        text="Give your teammates access to this project and start collaborating in real time"
-        content={invite}
-      />
       {taskDetailIsOpen && (
         <TaskDetailsSidebar task={task} onClose={closeTaskDetail} />
       )}
@@ -144,14 +120,6 @@ const Project = ({ params }) => {
               <IconButton size="large" className={classes.iconBtn}></IconButton>
             </Tooltip>
           ))}
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ borderRadius: "100px", bgcolor: "royalblue" }}
-            onClick={openInviteModal}
-          >
-            +
-          </Button>
         </Box>
       </Box>
       {typeOfProjectDetail === "discussion" && <ProjectDiscussion />}

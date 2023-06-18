@@ -28,8 +28,7 @@
 }
 
 .projects_container {
-  display: flex;
-  flex-wrap: wrap;
+  display: flex !important;
   justify-content: center;
   gap: 12px;
   padding: 12px;
@@ -103,7 +102,7 @@
   background-color: #0066ff17;
   padding: 30px;
   overflow: scroll;
-  flex: 1; /* Fill remaining space */
+  height: 100%;
 }
 
 .main_project_details .main_tasks_dashboard .show_actions {
