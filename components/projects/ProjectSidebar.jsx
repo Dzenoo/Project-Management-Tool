@@ -30,6 +30,7 @@ const ProjectSidebar = () => {
   const pathname = usePathname();
   const favoritedProjects = projects.filter((p) => p.type === "Favorites");
   const archivedProjects = projects.filter((p) => p.type === "Archived");
+  const isTeam = false;
 
   return (
     <Card className={classes.projects_sidebar}>
@@ -184,13 +185,15 @@ const ProjectSidebar = () => {
           </Collapse>
         </CardContent>
       </Box>
-      <CardActions>
-        <Link href="/projects/create">
-          <Button variant="contained" size="large" fullWidth>
-            Create New Project
-          </Button>
-        </Link>
-      </CardActions>
+      {isTeam && (
+        <CardActions>
+          <Link href="/projects/create">
+            <Button variant="contained" size="large" fullWidth>
+              Create New Project
+            </Button>
+          </Link>
+        </CardActions>
+      )}
     </Card>
   );
 };
