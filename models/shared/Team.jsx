@@ -4,7 +4,7 @@ const TeamSchema = new Schema(
   {
     name: { type: String, required: [true, "Name is required"] },
     description: { type: String, required: [true, "Description is required"] },
-    image: { type: Date },
+    image: { type: String },
     teamMembers: [{ type: Schema.Types.ObjectId, ref: "User" }],
     project: [{ type: Schema.Types.ObjectId, ref: "Project" }],
   },
