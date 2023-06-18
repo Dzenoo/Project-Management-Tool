@@ -116,3 +116,28 @@
 .role {
 }
 /* TABLE TYPE */
+
+.team_actions_btns {
+  display: flex;
+  gap: 12px;
+}
+
+.create_team_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.invite_form {
+  display: flex;
+}
+
+.invite_form input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px;
+}
+
+.invite_form button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
