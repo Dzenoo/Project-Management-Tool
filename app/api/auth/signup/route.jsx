@@ -39,6 +39,12 @@ export const POST = async (request) => {
     password: hashedPassword,
     image:
       "https://res.cloudinary.com/dzwb60tk1/image/upload/v1685889800/seifnijtssyuj3xrexkm.png",
+    github: "",
+    linkedin: "",
+    website: "",
+    biography: "",
+    address: "",
+    role: "",
   });
 
   let user;

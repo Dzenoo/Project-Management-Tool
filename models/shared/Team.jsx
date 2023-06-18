@@ -6,7 +6,7 @@ const TeamSchema = new Schema(
     description: { type: String, required: [true, "Description is required"] },
     image: { type: String },
     teamMembers: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    project: [{ type: Schema.Types.ObjectId, ref: "Project" }],
+    projects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
   },
   { timestamps: true }
 );

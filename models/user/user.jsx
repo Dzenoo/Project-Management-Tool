@@ -12,6 +12,7 @@ const UserSchema = new Schema({
   website: { type: String },
   biography: { type: String },
   address: { type: String },
+  role: { type: String, default: "Admin" },
   team: [{ type: Schema.Types.ObjectId, ref: "Team" }],
 });
 
