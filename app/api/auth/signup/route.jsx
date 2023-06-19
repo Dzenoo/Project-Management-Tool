@@ -43,6 +43,7 @@ export const POST = async (request) => {
 
     const userInfo = {
       token: token,
+      userId: user._id,
     };
 
     return new Response(JSON.stringify(userInfo), { status: 200 });

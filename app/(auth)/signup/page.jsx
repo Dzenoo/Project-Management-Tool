@@ -31,6 +31,7 @@ const Signup = () => {
 
     if (response.token) {
       login(response.token);
+      localStorage.setItem("User", JSON.stringify({ userId: response.userId }));
       router.push("/");
     }
   };
