@@ -1,7 +1,6 @@
 "use client";
 
 import classes from "@/styles/team/team.module.css";
-import { teams } from "@/data/tasks.jsonData.config.json";
 import TeamCard from "@/components/team/TeamCard";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import MainModal from "@/components/shared/MainModal";
@@ -15,6 +14,7 @@ import { useHttpPost } from "@/hooks/Http/useHttpPost";
 const TeamPage = () => {
   const { user } = useContext(AppContext);
   const [isOpenModal, setisOpenModal] = useState(false);
+  const [searchedTeam, setsearchedTeam] = useState("");
   const { sendPostRequest, isLoading } = useHttpPost();
   const closeModal = () => setisOpenModal(false);
   const openModal = () => setisOpenModal(true);
@@ -32,7 +32,7 @@ const TeamPage = () => {
     try {
       await sendPostRequest("/api/team/create", "POST", formValues);
     } catch (error) {
-      console.log(error);
+      alert(error.message);
     }
   };
 
@@ -89,20 +89,32 @@ const TeamPage = () => {
           <Button onClick={openModal} variant="contained">
             Create Team
           </Button>
-          <TextField placeholder="Search Teams..." label="Search" />
+          <TextField
+            placeholder="Search Teams..."
+            label="Search"
+            onChange={(e) => setsearchedTeam(e.target.value)}
+          />
         </div>
       </Box>
       <Box className={classes.team_container}>
-        {user.teams.map((teamObject) => (
-          <TeamCard
-            key={teamObject.team._id}
-            id={teamObject.team._id}
-            image={teamObject.team.image}
-            teamName={teamObject.team.name}
-            teamDescription={teamObject.team.description}
-            dateCreated={teamObject.team.updatedAt}
-          />
-        ))}
+        {user.teams.length === 0 && (
+          <Typography variant="p">No Teams Found</Typography>
+        )}
+        {user.teams.length > 0 &&
+          user.teams
+            .filter((tm) =>
+              tm.team.name.toLowerCase().includes(searchedTeam.toLowerCase())
+            )
+            .map((teamObject) => (
+              <TeamCard
+                key={teamObject.team._id}
+                id={teamObject.team._id}
+                image={teamObject.team.image}
+                teamName={teamObject.team.name}
+                teamDescription={teamObject.team.description}
+                dateCreated={teamObject.team.updatedAt}
+              />
+            ))}
       </Box>
     </Box>
   );

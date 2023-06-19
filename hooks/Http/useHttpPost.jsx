@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export const useHttpPost = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const sendPostRequest = async (
     url = "",
@@ -22,17 +21,17 @@ export const useHttpPost = () => {
       if (response.ok) {
         setIsLoading(false);
       } else {
-        setError(resData.message);
+        alert(resData.message);
       }
       return resData;
     } catch (err) {
       console.log(err.message);
-      setError(err.message);
+      alert(err.message);
       setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { isLoading, error, sendPostRequest };
+  return { isLoading, sendPostRequest };
 };

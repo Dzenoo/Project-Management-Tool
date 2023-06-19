@@ -58,7 +58,7 @@ const TeamsCard = () => {
                 <div>
                   <Typography variant="p" fontWeight="bold">
                     {tm.user.first_name}
-                  </Typography>
+                  </Typography>{" "}
                   <Typography variant="p" fontWeight="bold">
                     {tm.user.last_name}
                   </Typography>

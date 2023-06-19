@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 const Signup = () => {
   const { login } = useAuth();
-  const { sendPostRequest, isLoading, error } = useHttpPost();
+  const { sendPostRequest, isLoading } = useHttpPost();
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -42,10 +42,6 @@ const Signup = () => {
         <ClipLoader />
       </div>
     );
-  }
-
-  if (error) {
-    toast.error(error);
   }
 
   return (

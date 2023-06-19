@@ -32,7 +32,7 @@ const TeamDetail = ({ params }) => {
   const [isMode, setisMode] = useState("card");
   const [searchUserInput, setsearchUserInput] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
-  const { sendPostRequest, isLoading, error } = useHttpPost();
+  const { sendPostRequest, isLoading } = useHttpPost();
   const closeInviteModal = () => setisOpenInviteModal(false);
   const openInviteModal = () => setisOpenInviteModal(true);
 
@@ -48,6 +48,7 @@ const TeamDetail = ({ params }) => {
 
     try {
       await sendPostRequest(`/api/team/${params.teamId}`, "POST", formValues);
+      setisOpenInviteModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -67,12 +68,6 @@ const TeamDetail = ({ params }) => {
         <ClipLoader />
       </div>
     );
-  }
-
-  if (error) {
-    if (error) {
-      toast.error(error);
-    }
   }
 
   const invite = (
