@@ -27,8 +27,12 @@ const Signup = () => {
       "POST",
       enteredData
     );
-    login(response.token);
-    router.push("/");
+    console.log(response);
+
+    if (response.ok) {
+      login(response.token);
+      router.push("/");
+    }
   };
 
   if (isLoading) {
