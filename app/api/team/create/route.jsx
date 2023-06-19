@@ -3,6 +3,7 @@ import { response } from "@/lib/response";
 import Team from "@/models/shared/Team";
 import User from "@/models/user/user";
 
+// Create Team
 export const POST = async (request) => {
   const { name, description, userId } = await request.json();
 
