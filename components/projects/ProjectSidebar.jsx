@@ -20,17 +20,17 @@ import Collapse from "@mui/material/Collapse";
 import Link from "next/link";
 import { projects } from "@/data/projects.jsonData.config.json";
 import { AppContext } from "@/context/AppContext";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const ProjectSidebar = () => {
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
   const [openArchived, setOpenArchived] = useState(true);
-  const { handleProjectInput } = useContext(AppContext);
+  const { handleProjectInput, user } = useContext(AppContext);
   const pathname = usePathname();
   const favoritedProjects = projects.filter((p) => p.type === "Favorites");
   const archivedProjects = projects.filter((p) => p.type === "Archived");
-  const isTeam = false;
+  const isTeam = user.teams.length > 0;
 
   return (
     <Card className={classes.projects_sidebar}>

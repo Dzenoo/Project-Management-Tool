@@ -11,15 +11,20 @@ import {
   Typography,
 } from "@mui/material";
 import classes from "@/styles/projects/projects.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { ProjectStatusTypes } from "@/data/data";
+import { AppContext } from "@/context/AppContext";
 
-const NewProjectForm = () => {
+const NewProjectForm = ({ submitCreateProject }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [categories, setCategories] = useState([]);
+  const [teamSelect, setTeamSelect] = useState("");
+  const { user } = useContext(AppContext);
+
+  const userTeamsSelect = user.teams.map((teamObject) => teamObject.team);
 
   const name = useValidation([VALIDATOR_REQUIRE()]);
   const description = useValidation([VALIDATOR_REQUIRE()]);
@@ -46,6 +51,22 @@ const NewProjectForm = () => {
     setCategories(categoriesNew);
   };
 
+  const submitData = () => {
+    const enteredData = {
+      name: name.value,
+      description: description.value,
+      startDate: startDate.value,
+      endDate: endDate.value,
+      projectManager: projectManager.value,
+      team: teamSelect,
+      budget: budget.value,
+      status: status.value,
+      categories: categories,
+    };
+
+    submitCreateProject(enteredData);
+  };
+
   const ButtonIcon = (
     <Image
       src="/images/graphic/right-arrow.png"
@@ -55,6 +76,15 @@ const NewProjectForm = () => {
       style={{ transform: "rotate(180deg)" }}
     />
   );
+
+  const isStepOneInputsEmpty =
+    name.value === "" ||
+    description.value === "" ||
+    startDate.value === "" ||
+    endDate.value === "";
+  const isStepTwoInputsEmpty =
+    projectManager.value === "" || budget.value === "";
+  const isStepThreeInputsEmpty = status.value === "" || categories.length === 0;
 
   return (
     <Card>
@@ -173,7 +203,28 @@ const NewProjectForm = () => {
               <label>
                 <b>Select Team</b>
               </label>
-              <Select placeholder="Select Team" fullWidth></Select>
+              <Select
+                onChange={(e) => setTeamSelect(e.target.value)}
+                placeholder="Select Team"
+                fullWidth
+                required
+              >
+                {userTeamsSelect.map((team) => (
+                  <MenuItem
+                    key={team._id}
+                    sx={{ display: "flex", gap: "12px", alignItems: "center" }}
+                    value={team.name}
+                  >
+                    <Image
+                      src={team.image}
+                      alt={team.name}
+                      width={20}
+                      height={20}
+                    />
+                    {team.name}
+                  </MenuItem>
+                ))}
+              </Select>
             </FormControl>
             <FormControl className={classes.form_control}>
               <label>
@@ -276,22 +327,21 @@ const NewProjectForm = () => {
             {(currentStep === 1 && "Back") || (currentStep === 2 && "Back")}
           </Button>
           <Button
-            disabled={
-              !name.isValid ||
-              !description.isValid ||
-              !startDate.isValid ||
-              !endDate.isValid
-            }
             variant="contained"
+            disabled={
+              (currentStep === 0 && isStepOneInputsEmpty) ||
+              (currentStep === 1 && isStepTwoInputsEmpty) ||
+              (currentStep === 2 && isStepThreeInputsEmpty)
+            }
             onClick={() => {
               if (currentStep >= 2) {
-                alert("Submit Form");
+                submitData();
                 return;
               }
               setCurrentStep((prevStep) => prevStep + 1);
             }}
           >
-            {"Next Step"}
+            {currentStep === 2 ? "Create" : "Next Step"}
           </Button>
         </Box>
       </form>
