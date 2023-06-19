@@ -7,14 +7,14 @@ import Link from "next/link";
 const TeamCard = ({ id, image, teamName, teamDescription, dateCreated }) => {
   return (
     <Card className={classes.team_card}>
-      <Image src={image} width={100} height={100} alt="img" />
+      <Image src={image} width={200} height={200} alt="img" />
       <Link href={`/team/${id}`}>
         <Typography variant="h4" fontWeight="bold">
           {teamName}
         </Typography>
       </Link>
       <Typography color="textSecondary" fontWeight="bold">
-        {dateCreated}
+        {new Date(dateCreated).toLocaleDateString()}
       </Typography>
       <Typography color="textSecondary">{teamDescription}</Typography>
     </Card>

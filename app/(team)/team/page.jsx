@@ -6,8 +6,11 @@ import TeamCard from "@/components/team/TeamCard";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import MainModal from "@/components/shared/MainModal";
 import { useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
 
 const TeamPage = () => {
+  const { user } = useContext(AppContext);
   const [isOpenModal, setisOpenModal] = useState(false);
   const closeModal = () => setisOpenModal(false);
   const openModal = () => setisOpenModal(true);
@@ -41,14 +44,14 @@ const TeamPage = () => {
         </div>
       </Box>
       <Box className={classes.team_container}>
-        {teams.map((team) => (
+        {user.teams.map((teamObject) => (
           <TeamCard
-            key={team.id}
-            id={team.id}
-            image={team.teamImage}
-            teamName={team.teamName}
-            teamDescription={team.teamDescription}
-            dateCreated={team.dateCreated}
+            key={teamObject.team._id}
+            id={teamObject.team._id}
+            image={teamObject.team.image}
+            teamName={teamObject.team.name}
+            teamDescription={teamObject.team.description}
+            dateCreated={teamObject.team.updatedAt}
           />
         ))}
       </Box>
