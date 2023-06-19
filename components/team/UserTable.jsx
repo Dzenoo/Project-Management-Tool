@@ -11,7 +11,7 @@ import { Button, MenuItem, Select, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 
-const UserTable = ({ team }) => {
+const UserTable = ({ team, searchValue, roleValue }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -32,51 +32,74 @@ const UserTable = ({ team }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {team.teamMembers.map((row) => (
-            <TableRow key={row.user.name}>
-              <TableCell
-                sx={{ display: "flex", gap: "12px", alignItems: "center" }}
-              >
-                <Image src={row.user.image} width={60} height={60} alt="team" />
-                <strong>
-                  {row.user.first_name} {row.user.last_name}
-                </strong>
-              </TableCell>
-              <TableCell align="right">
-                <Typography color="textSecondary">{row.user.email}</Typography>
-              </TableCell>
-              <TableCell align="right">
-                <span
-                  style={{ marginRight: "12px" }}
-                  className={
-                    (row.role === "admin" && "admin") ||
-                    (row.role === "Manager" && "manager") ||
-                    (row.role === "member" && "teamember")
-                  }
-                >
-                  {row.role}
-                </span>
-                <Select sx={{ width: "160px" }} value={row.role}>
-                  <MenuItem value="admin">admin</MenuItem>
-                  <MenuItem value="User">User</MenuItem>
-                  <MenuItem value="member">member</MenuItem>
-                </Select>
-              </TableCell>
-              <TableCell align="right">
-                <Typography color="textSecondary">{row.dateAdded}</Typography>
-              </TableCell>
-              <TableCell align="right">
-                <Button>
-                  <Image
-                    src={"/images/graphic/option.png"}
-                    width={30}
-                    height={30}
-                    alt="options"
-                  />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {team.teamMembers.length > 0 &&
+            team.teamMembers
+              .filter((tm) => {
+                const nameMatch =
+                  tm.user.first_name
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase()) ||
+                  tm.user.last_name
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase());
+
+                const roleFilter = roleValue === "" || tm.role === roleValue;
+                return nameMatch && roleFilter;
+              })
+              .map((row) => (
+                <TableRow key={row.user.name}>
+                  <TableCell
+                    sx={{ display: "flex", gap: "12px", alignItems: "center" }}
+                  >
+                    <Image
+                      src={row.user.image}
+                      width={60}
+                      height={60}
+                      alt="team"
+                    />
+                    <strong>
+                      {row.user.first_name} {row.user.last_name}
+                    </strong>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Typography color="textSecondary">
+                      {row.user.email}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right">
+                    <span
+                      style={{ marginRight: "12px" }}
+                      className={
+                        (row.role === "admin" && "admin") ||
+                        (row.role === "Manager" && "manager") ||
+                        (row.role === "member" && "teamember")
+                      }
+                    >
+                      {row.role}
+                    </span>
+                    <Select sx={{ width: "160px" }} value={row.role}>
+                      <MenuItem value="admin">admin</MenuItem>
+                      <MenuItem value="User">User</MenuItem>
+                      <MenuItem value="member">member</MenuItem>
+                    </Select>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Typography color="textSecondary">
+                      {row.dateAdded}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button>
+                      <Image
+                        src={"/images/graphic/option.png"}
+                        width={30}
+                        height={30}
+                        alt="options"
+                      />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
     </TableContainer>

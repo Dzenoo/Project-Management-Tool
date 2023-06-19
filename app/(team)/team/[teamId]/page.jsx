@@ -1,7 +1,6 @@
 "use client";
 
 import UserCard from "@/components/team/UserCard";
-import { teams } from "@/data/tasks.jsonData.config.json";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import {
@@ -31,6 +30,8 @@ const TeamDetail = ({ params }) => {
   ).team;
   const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
+  const [searchUserInput, setsearchUserInput] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
   const { sendPostRequest, isLoading, error } = useHttpPost();
   const closeInviteModal = () => setisOpenInviteModal(false);
   const openInviteModal = () => setisOpenInviteModal(true);
@@ -151,11 +152,20 @@ const TeamDetail = ({ params }) => {
           </Button>
         </div>
         <div className={classes.team_details_content}>
-          <TextField placeholder="Search..." label="Search Here" />
-          <Select label="Role" className={classes.select}>
-            <MenuItem>Member</MenuItem>
-            <MenuItem>Admin</MenuItem>
-            <MenuItem>Manager</MenuItem>
+          <TextField
+            placeholder="Search..."
+            label="Search Here"
+            onChange={(e) => setsearchUserInput(e.target.value)}
+          />
+          <Select
+            className={classes.select}
+            onChange={(e) => setSelectedRole(e.target.value)}
+            value={selectedRole}
+          >
+            <MenuItem value="">All</MenuItem>
+            <MenuItem value="admin">Admin</MenuItem>
+            <MenuItem value="manager">Manager</MenuItem>
+            <MenuItem value="member">Member</MenuItem>
           </Select>
           <Button size="large" variant="contained" onClick={openInviteModal}>
             Add Member
@@ -163,21 +173,42 @@ const TeamDetail = ({ params }) => {
         </div>
         <div className={classes.team_details_cards}>
           {isMode === "card" ? (
-            team.teamMembers.map((tm) => (
-              <UserCard
-                key={tm.user._id}
-                image={tm.user.image}
-                fname={tm.user.first_name}
-                lname={tm.user.last_name}
-                email={tm.user.email}
-                role={tm.role}
-                github={tm.user.github}
-                linkedin={tm.user.linkedin}
-                workAs={"Developer"}
-              />
-            ))
+            team.teamMembers.length > 0 ? (
+              team.teamMembers
+                .filter((tm) => {
+                  const nameMatch =
+                    tm.user.first_name
+                      .toLowerCase()
+                      .includes(searchUserInput.toLowerCase()) ||
+                    tm.user.last_name
+                      .toLowerCase()
+                      .includes(searchUserInput.toLowerCase());
+                  const roleMatch =
+                    selectedRole === "" || tm.role === selectedRole;
+                  return nameMatch && roleMatch;
+                })
+                .map((tm) => (
+                  <UserCard
+                    key={tm.user._id}
+                    image={tm.user.image}
+                    fname={tm.user.first_name}
+                    lname={tm.user.last_name}
+                    email={tm.user.email}
+                    role={tm.role}
+                    github={tm.user.github}
+                    linkedin={tm.user.linkedin}
+                    workAs={"Developer"}
+                  />
+                ))
+            ) : (
+              <Typography variant="body1">No team members found.</Typography>
+            )
           ) : (
-            <UserTable team={team} />
+            <UserTable
+              team={team}
+              searchValue={searchUserInput}
+              roleValue={selectedRole}
+            />
           )}
         </div>
       </Box>
