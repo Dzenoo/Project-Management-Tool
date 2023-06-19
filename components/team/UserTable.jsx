@@ -33,31 +33,33 @@ const UserTable = ({ team }) => {
         </TableHead>
         <TableBody>
           {team.teamMembers.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row" className={classes.name}>
-                <Image src={row.image} width={60} height={60} alt="team" />
+            <TableRow key={row.user.name}>
+              <TableCell
+                sx={{ display: "flex", gap: "12px", alignItems: "center" }}
+              >
+                <Image src={row.user.image} width={60} height={60} alt="team" />
                 <strong>
-                  {row.firstName} {row.lastName}
+                  {row.user.first_name} {row.user.last_name}
                 </strong>
               </TableCell>
               <TableCell align="right">
-                <Typography color="textSecondary">{row.email}</Typography>
+                <Typography color="textSecondary">{row.user.email}</Typography>
               </TableCell>
               <TableCell align="right">
                 <span
                   style={{ marginRight: "12px" }}
                   className={
-                    (row.role === "Admin" && "admin") ||
+                    (row.role === "admin" && "admin") ||
                     (row.role === "Manager" && "manager") ||
-                    (row.role === "Team Member" && "teamember")
+                    (row.role === "member" && "teamember")
                   }
                 >
                   {row.role}
                 </span>
                 <Select sx={{ width: "160px" }} value={row.role}>
-                  <MenuItem value="Admin">Admin</MenuItem>
+                  <MenuItem value="admin">admin</MenuItem>
                   <MenuItem value="User">User</MenuItem>
-                  <MenuItem value="Manager">Manager</MenuItem>
+                  <MenuItem value="member">member</MenuItem>
                 </Select>
               </TableCell>
               <TableCell align="right">

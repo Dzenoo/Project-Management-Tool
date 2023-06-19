@@ -14,7 +14,7 @@ export const GET = async (request, { params }) => {
         populate: {
           path: "teamMembers.user",
           model: "User",
-          select: "first_name last_name email image github linkedin",
+          select: "first_name last_name email image github linkedin specialize",
         },
       });
 

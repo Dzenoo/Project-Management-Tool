@@ -15,13 +15,29 @@ import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
 import { useState } from "react";
 import MainModal from "@/components/shared/MainModal";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
+import { ClipLoader } from "react-spinners";
 
 const TeamDetail = ({ params }) => {
-  const team = teams.find((team) => team.id === params.teamId);
+  const { user } = useContext(AppContext);
+  const team = user.teams.find(
+    (teamObject) => teamObject.team._id === params.teamId
+  ).team;
+
+  console.log(team);
   const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
   const closeInviteModal = () => setisOpenInviteModal(false);
   const openInviteModal = () => setisOpenInviteModal(true);
+
+  if (!team) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   const invite = (
     <form className={classes.invite_form}>
@@ -48,7 +64,7 @@ const TeamDetail = ({ params }) => {
       />
       <div className={classes.team_details_top}>
         <Typography variant="h4" fontWeight="bold">
-          {team?.teamName}
+          {team.name}
         </Typography>
         <div>
           <Button
@@ -103,13 +119,13 @@ const TeamDetail = ({ params }) => {
         {isMode === "card" ? (
           team.teamMembers.map((tm) => (
             <UserCard
-              key={tm.id}
-              image={tm.image}
-              fname={tm.firstName}
-              lname={tm.lastName}
-              email={tm.email}
+              key={tm.user._id}
+              image={tm.user.image}
+              fname={tm.user.first_name}
+              lname={tm.user.last_name}
+              email={tm.user.email}
               role={tm.role}
-              workAs={tm.workAs}
+              workAs={"Developer"}
             />
           ))
         ) : (

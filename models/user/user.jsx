@@ -12,6 +12,7 @@ const UserSchema = new Schema({
   website: { type: String },
   biography: { type: String },
   address: { type: String },
+  specialize: { type: String },
   teams: [
     {
       team: { type: Schema.Types.ObjectId, ref: "Team" },
