@@ -4,12 +4,21 @@ import classes from "@/styles/team/team.module.css";
 import PropTypes from "prop-types";
 import Link from "next/link";
 
-const UserCard = ({ image, role, fname, lname, workAs, email }) => {
+const UserCard = ({
+  image,
+  role,
+  fname,
+  lname,
+  workAs,
+  email,
+  github,
+  linkedin,
+}) => {
   return (
     <Card className={classes.team_user_card}>
       <Box className={classes.team_user_header}>
         <div className={classes.team_user_links}>
-          <Link href="team">
+          <Link href={github}>
             <Image
               src={"/images/graphic/linkedin.png"}
               width={30}
@@ -17,7 +26,7 @@ const UserCard = ({ image, role, fname, lname, workAs, email }) => {
               alt="linkedin"
             />
           </Link>
-          <Link href="team">
+          <Link href={linkedin}>
             <Image
               src={"/images/graphic/github.png"}
               width={30}
@@ -30,9 +39,9 @@ const UserCard = ({ image, role, fname, lname, workAs, email }) => {
           <Typography
             fontWeight="bold"
             className={
-              (role === "Admin" && "admin") ||
-              (role === "Manager" && "manager") ||
-              (role === "Team Member" && "teamember")
+              (role === "admin" && "admin") ||
+              (role === "manager" && "manager") ||
+              (role === "member" && "teamember")
             }
           >
             {role}

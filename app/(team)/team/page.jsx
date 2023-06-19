@@ -8,18 +8,67 @@ import MainModal from "@/components/shared/MainModal";
 import { useState } from "react";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
+import { useValidation } from "@/hooks/Auth/useValidation";
+import { VALIDATOR_REQUIRE } from "@/utils/validators";
+import { useHttpPost } from "@/hooks/Http/useHttpPost";
 
 const TeamPage = () => {
   const { user } = useContext(AppContext);
   const [isOpenModal, setisOpenModal] = useState(false);
+  const { sendPostRequest, isLoading } = useHttpPost();
   const closeModal = () => setisOpenModal(false);
   const openModal = () => setisOpenModal(true);
 
+  const name = useValidation([VALIDATOR_REQUIRE()]);
+  const description = useValidation([VALIDATOR_REQUIRE()]);
+
+  const submitCreateTeam = async () => {
+    const formValues = {
+      name: name.value,
+      description: description.value,
+      userId: user._id,
+    };
+
+    try {
+      await sendPostRequest("/api/team/create", "POST", formValues);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const create = (
-    <form className={classes.create_team_form}>
-      <TextField fullWidth label="Name" />
-      <TextField fullWidth label="Description" multiline rows={3} />
-      <Button variant="contained">Create</Button>
+    <form onSubmit={submitCreateTeam} className={classes.create_team_form}>
+      <TextField
+        fullWidth
+        label="Name"
+        onChange={name.onChangeInputHandler}
+        onBlur={name.onBlurInputHandler}
+        value={name.value}
+        error={!name.isValid && name.isTouched}
+        helperText={
+          !name.isValid && name.isTouched && "Please enter valid name of team"
+        }
+        required
+      />
+      <TextField
+        fullWidth
+        label="Description"
+        multiline
+        rows={3}
+        onChange={description.onChangeInputHandler}
+        onBlur={description.onBlurInputHandler}
+        value={description.value}
+        error={!description.isValid && description.isTouched}
+        helperText={
+          !description.isValid &&
+          description.isTouched &&
+          "Please enter valid description of team"
+        }
+        required
+      />
+      <Button variant="contained" type="submit">
+        Create
+      </Button>
     </form>
   );
 

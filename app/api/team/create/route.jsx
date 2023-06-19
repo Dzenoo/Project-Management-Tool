@@ -9,7 +9,6 @@ export const POST = async (request) => {
 
   try {
     await connectToDB();
-
     const user = await User.findById(userId);
 
     if (!user) {

@@ -28,6 +28,14 @@ export const POST = async (request, { params }) => {
       return response("Could not find team", 404);
     }
 
+    const isUserAlreadyMember = team.teamMembers.some(
+      (member) => member.user.toString() === invitedUser._id.toString()
+    );
+
+    if (isUserAlreadyMember) {
+      return response("User is already a member of the team", 400);
+    }
+
     const notification = {
       image: sendingUser.image,
       message: `${sendingUser.first_name} ${sendingUser.last_name} added you to team ${team.name}`,

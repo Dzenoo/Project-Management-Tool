@@ -24,7 +24,7 @@ export const AppProvider = ({ children }) => {
     { id: "s4", title: "Done", tasks: doneTasks, color: "#1cc800" },
   ]);
   const [projectInputValue, setprojectInputValue] = useState("");
-  const { data: user, error } = useFetch(`/api/user/${userInfo.userId}`);
+  const { data: user, error } = useFetch(`/api/user/${userInfo?.userId}`);
 
   console.log(user);
 
