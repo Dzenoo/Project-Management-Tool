@@ -29,7 +29,7 @@ export const POST = async (request) => {
       expiresIn: "2h",
     });
 
-    return new Response(JSON.stringify(token), { status: 200 });
+    return new Response(JSON.stringify({ token: token }), { status: 200 });
   } catch (error) {
     console.log(error);
     return response("Internal Server Error", 500);

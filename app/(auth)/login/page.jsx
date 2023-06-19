@@ -29,10 +29,8 @@ const Login = () => {
     );
     console.log(response);
 
-    if (response.ok) {
-      login(response.token);
-      router.push("/");
-    }
+    login(response.token);
+    router.push("/");
   };
 
   if (isLoading) {
