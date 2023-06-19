@@ -56,7 +56,7 @@ const NewProjectForm = ({ submitCreateProject }) => {
       name: name.value,
       description: description.value,
       startDate: startDate.value,
-      endDate: endDate.value,
+      finishDate: endDate.value,
       projectManager: projectManager.value,
       team: teamSelect,
       budget: budget.value,
