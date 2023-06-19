@@ -8,11 +8,11 @@ import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 
 const Projects = () => {
-  const { projectInputValue } = useContext(AppContext);
+  const { projectInputValue, userProjects } = useContext(AppContext);
 
   return (
     <Container maxWidth="xl" className={classes.projects_container}>
-      {projects
+      {userProjects
         .filter((p) => p.name.toLowerCase().includes(projectInputValue))
         .map((pr) => (
           <ProjectCard project={pr} />

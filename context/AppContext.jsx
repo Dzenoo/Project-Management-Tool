@@ -36,11 +36,30 @@ export const AppProvider = ({ children }) => {
     );
   }
 
+  const isTeam = user.teams.length > 0;
+
+  const userProjects = user.teams.reduce((acc, team) => {
+    const teamProjects = team.team.projects.map((project) => ({
+      ...project,
+      teamName: team.team.name,
+    }));
+    return [...acc, ...teamProjects];
+  }, []);
+
+  console.log(userProjects);
+
   const handleProjectInput = (e) => setprojectInputValue(e.target.value);
 
   return (
     <AppContext.Provider
-      value={{ projectInputValue, handleProjectInput, columns, user }}
+      value={{
+        projectInputValue,
+        handleProjectInput,
+        columns,
+        user,
+        isTeam,
+        userProjects,
+      }}
     >
       {children}
     </AppContext.Provider>

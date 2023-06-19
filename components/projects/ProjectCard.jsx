@@ -5,12 +5,12 @@ import classes from "@/styles/projects/projects.module.css";
 
 const ProjectCard = ({ project }) => {
   const {
-    projectImage,
+    image,
     name,
     description,
     status,
     startDate,
-    endDate,
+    finishDate,
     teamMembers,
   } = project;
 
@@ -27,7 +27,7 @@ const ProjectCard = ({ project }) => {
         >
           {status}
         </Typography>
-        <Image src={projectImage} alt={name} width={120} height={120} />
+        <Image src={image} alt={name} width={120} height={120} />
       </Box>
       <Box className={classes.project_desc}>
         <Typography variant="h6" fontWeight="bold">
@@ -36,18 +36,23 @@ const ProjectCard = ({ project }) => {
         <Typography variant="p" color="textSecondary">
           {description}
         </Typography>
-        <Typography variant="p">📅 Start Date: {startDate}</Typography>
-        <Typography variant="p">📅 End Date: {endDate}</Typography>
+
+        <Typography variant="p">
+          📅 Start Date: {new Date(startDate).toLocaleDateString()}
+        </Typography>
+        <Typography variant="p">
+          📅 End Date: {new Date(finishDate).toLocaleDateString()}{" "}
+        </Typography>
       </Box>
       <Box className={classes.project_actions}>
-        {teamMembers.map((mb) => (
+        {/* {teamMembers.map((mb) => (
           <Tooltip title={mb} placement="top">
             <IconButton
               className={classes.project_team_member}
               size="large"
             ></IconButton>
           </Tooltip>
-        ))}
+        ))} */}
       </Box>
     </Card>
   );
