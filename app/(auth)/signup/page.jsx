@@ -29,7 +29,7 @@ const Signup = () => {
     );
     console.log(response);
 
-    if (response.ok) {
+    if (response.token) {
       login(response.token);
       router.push("/");
     }

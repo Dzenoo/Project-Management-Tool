@@ -27,10 +27,11 @@ const Login = () => {
       "POST",
       enteredData
     );
-    console.log(response);
 
-    login(response.token);
-    router.push("/");
+    if (response.token) {
+      login(response.token);
+      router.push("/");
+    }
   };
 
   if (isLoading) {
