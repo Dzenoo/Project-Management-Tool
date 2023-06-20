@@ -14,7 +14,6 @@ const UserSchema = new Schema({
   address: { type: String },
   specialize: { type: String },
   favoritedProjects: [],
-  archivedProjects: [],
   teams: [
     {
       team: { type: Schema.Types.ObjectId, ref: "Team" },

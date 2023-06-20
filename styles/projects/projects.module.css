@@ -12,6 +12,14 @@
   flex-direction: column;
 }
 
+.projects_sidebar .hover_favorites {
+  width: 200px;
+}
+
+.projects_sidebar .hover_all {
+  width: 200px;
+}
+
 .projects_sidebar .hover_favorites:hover {
   background-color: #ffd90034;
   border-radius: 12px;
@@ -19,11 +27,6 @@
 
 .projects_sidebar .hover_all:hover {
   background-color: #00ff0849;
-  border-radius: 12px;
-}
-
-.projects_sidebar .hover_archived:hover {
-  background-color: #9e9e9e44;
   border-radius: 12px;
 }
 

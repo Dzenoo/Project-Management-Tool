@@ -142,47 +142,6 @@ const ProjectSidebar = () => {
               </ListItemText>
             </List>
           </Collapse>
-          {/* ARCHIVED PROJECTS */}
-          <ListItemButton
-            className={classes.hover_archived}
-            onClick={() => setOpenArchived((prevState) => !prevState)}
-          >
-            <ListItemText>
-              <Typography fontWeight="bold" color="#C0C0C0">
-                Archived
-              </Typography>
-            </ListItemText>
-            {openArchived ? (
-              <Image
-                src="/images/graphic/upload.png"
-                width={20}
-                height={20}
-                alt="ar"
-              />
-            ) : (
-              <Image
-                src="/images/graphic/down-arrow.png"
-                width={20}
-                height={20}
-                alt="arro"
-              />
-            )}
-          </ListItemButton>
-          <Collapse in={openArchived} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemText sx={{ pl: 2 }}>
-                {archivedProjects.map((fp) => (
-                  <Link href={`/projects/${fp.id}`} key={fp.id}>
-                    <ListItemButton>
-                      <Typography variant="p" color="textSecondary">
-                        {fp.name}
-                      </Typography>
-                    </ListItemButton>
-                  </Link>
-                ))}
-              </ListItemText>
-            </List>
-          </Collapse>
         </CardContent>
       </Box>
       {isTeam && (
