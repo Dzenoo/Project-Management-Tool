@@ -25,10 +25,9 @@ export const AppProvider = ({ children }) => {
   ]);
   const [projectInputValue, setprojectInputValue] = useState("");
   const { data: user, error } = useFetch(`/api/user/${userInfo?.userId}`);
+  const { data: projects, error: projectError } = useFetch("/api/projects/");
 
-  console.log(user);
-
-  if (!user) {
+  if (!user || !projects) {
     return (
       <div className="loader_wrapper">
         <ClipLoader />
@@ -46,19 +45,24 @@ export const AppProvider = ({ children }) => {
     return [...acc, ...teamProjects];
   }, []);
 
-  console.log(userProjects);
-
   const handleProjectInput = (e) => setprojectInputValue(e.target.value);
+
+  const getProjectById = (id) => {
+    const project = projects.find((p) => p._id === id);
+    return project;
+  };
 
   return (
     <AppContext.Provider
       value={{
         projectInputValue,
         handleProjectInput,
+        getProjectById,
         columns,
         user,
         isTeam,
         userProjects,
+        projects,
       }}
     >
       {children}

@@ -2,7 +2,6 @@
 
 "use client";
 
-import { projects } from "@/data/projects.jsonData.config.json";
 import { tasks } from "@/data/tasks.jsonData.config.json";
 import { useContext, useState } from "react";
 import {
@@ -25,8 +24,10 @@ import MainModal from "@/components/shared/MainModal";
 import { AppContext } from "@/context/AppContext";
 
 export async function generateStaticParams() {
+  const projects = await fetch("/api/projects");
+
   return projects.map((project) => ({
-    slug: project.id,
+    slug: project._id,
   }));
 }
 
@@ -36,7 +37,7 @@ const Project = ({ params }) => {
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
-  const { columns } = useContext(AppContext);
+  const { columns, getProjectById } = useContext(AppContext);
 
   const openTaskDetail = (id) => {
     const currentOpenedTask = tasks.find((task) => task.id === id);
@@ -45,7 +46,9 @@ const Project = ({ params }) => {
   };
   const closeTaskDetail = () => settaskDetailIsOpen(false);
 
-  const project = projects.find((p) => p.id === params.projectId);
+  const project = getProjectById(params.projectId);
+
+  console.log(project);
 
   const deleteIcon = (
     <Image
@@ -115,9 +118,15 @@ const Project = ({ params }) => {
           </Button>
         </Box>
         <Box className={classes.main_tooltip}>
-          {project?.teamMembers.map((mb) => (
-            <Tooltip title={mb} placement="top" key={mb}>
-              <IconButton size="large" className={classes.iconBtn}></IconButton>
+          {project.team.teamMembers.slice(0, 2).map((mb) => (
+            <Tooltip title={mb.user.username} placement="top" key={mb}>
+              <Image
+                src={mb.user.image}
+                width={60}
+                height={60}
+                alt={mb.user.username}
+                className={classes.iconBtn}
+              />
             </Tooltip>
           ))}
         </Box>

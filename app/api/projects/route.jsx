@@ -8,7 +8,14 @@ export const GET = async () => {
   try {
     await connectToDB();
 
-    const projects = await Project.find();
+    const projects = await Project.find().populate({
+      path: "team",
+      populate: {
+        path: "teamMembers.user",
+        model: "User",
+        select: "image _id username",
+      },
+    });
 
     return new Response(JSON.stringify(projects), { status: 200 });
   } catch (error) {

@@ -73,6 +73,7 @@
   flex-direction: column;
   gap: 12px;
   height: 100vh;
+  overflow-y: scroll;
 }
 
 .main_project_details .main_topbar {
@@ -89,13 +90,16 @@
 
 .main_project_details .main_information .main_tooltip {
   display: flex;
-  gap: 12px;
+  align-items: center;
 }
 
 .main_project_details .main_information .main_tooltip .iconBtn {
-  background-color: aqua;
-  padding: 20px;
-  border-radius: 20px;
+  border-radius: 100px;
+}
+
+.main_project_details .main_information .btn {
+  font-weight: bold;
+  font-size: larger;
 }
 
 .main_project_details .main_tasks_dashboard {
@@ -103,6 +107,7 @@
   padding: 30px;
   overflow: scroll;
   height: 100%;
+  margin-top: 12px;
 }
 
 .main_project_details .main_tasks_dashboard .show_actions {
