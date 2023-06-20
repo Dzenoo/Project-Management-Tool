@@ -4,13 +4,13 @@ import Project from "@/models/projects/project";
 import Team from "@/models/shared/Team";
 
 // Get Projects
-export const GET = async (request) => {
-  const {} = await request.json();
-
+export const GET = async () => {
   try {
     await connectToDB();
 
-    const teamObj = await Team.findOne({ name: team });
+    const projects = await Project.find();
+
+    return new Response(JSON.stringify(projects), { status: 200 });
   } catch (error) {
     return response("Internal server error", 500);
   }
