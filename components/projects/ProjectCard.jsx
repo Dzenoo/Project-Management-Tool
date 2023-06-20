@@ -1,28 +1,68 @@
-import { Box, Card, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  MenuItem,
+  Select,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import classes from "@/styles/projects/projects.module.css";
+import { useState } from "react";
 
 const ProjectCard = ({ project, getProjectById }) => {
   const { _id, image, name, description, status, startDate, finishDate } =
     project;
-
+  const [statusSelect, setStatus] = useState(status);
   const projectTeam = getProjectById(_id);
 
-  console.log(projectTeam);
+  const changeStatusHandler = async (e) => {
+    const selectedStatus = e.target.value;
+    setStatus(selectedStatus);
+
+    try {
+      const response = await fetch(`/api/projects/${_id}`, {
+        method: "POST",
+        body: JSON.stringify({
+          status: selectedStatus,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        console.log("Status changed successfully.");
+      } else {
+        throw new Error("Failed to change status.");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <Card className={classes.project_card}>
       <Box className={classes.project_top}>
-        <Typography
-          className={`${
-            (status === "In Progress" && "progress") ||
-            (status === "Cancelled" && "cancelled") ||
-            (status === "Finished" && "finished")
-          }`}
-          sx={{ margin: "auto" }}
-        >
-          {status}
-        </Typography>
+        <div className={classes.project_status}>
+          <Typography
+            className={`${
+              (status === "In Progress" && "progress") ||
+              (status === "Cancelled" && "cancelled") ||
+              (status === "Finished" && "finished")
+            }`}
+            sx={{ margin: "auto" }}
+          >
+            {status}
+          </Typography>
+          <Select
+            sx={{ width: "200px" }}
+            value={statusSelect}
+            onChange={(e) => changeStatusHandler(e)}
+          >
+            <MenuItem value="In Progress">In Progress</MenuItem>
+            <MenuItem value="Cancelled">Cancelled</MenuItem>
+            <MenuItem value="Finished">Finished</MenuItem>
+          </Select>
+        </div>
         <Image src={image} alt={name} width={120} height={120} />
       </Box>
       <Box className={classes.project_desc}>

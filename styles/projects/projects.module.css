@@ -49,6 +49,12 @@
   padding: 12px;
 }
 
+.project_card .project_top .project_status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .project_card .project_desc {
   text-align: center;
   display: flex;

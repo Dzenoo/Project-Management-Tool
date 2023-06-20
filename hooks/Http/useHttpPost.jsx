@@ -20,6 +20,7 @@ export const useHttpPost = () => {
 
       if (response.ok) {
         setIsLoading(false);
+        alert(resData.message);
       } else {
         alert(resData.message);
       }

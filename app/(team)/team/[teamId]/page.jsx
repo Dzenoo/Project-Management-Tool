@@ -192,7 +192,7 @@ const TeamDetail = ({ params }) => {
                     role={tm.role}
                     github={tm.user.github}
                     linkedin={tm.user.linkedin}
-                    workAs={"Developer"}
+                    workAs={tm.user.specialize}
                   />
                 ))
             ) : (
