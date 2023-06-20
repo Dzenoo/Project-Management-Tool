@@ -3,9 +3,12 @@
 import NotificationCard from "@/components/notifications/NotificationCard";
 import classes from "@/styles/notifications/notification.module.css";
 import { Box, Container, Typography } from "@mui/material";
-import { NotificationsData } from "@/data/data";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
 
 const Notifications = () => {
+  const { user } = useContext(AppContext);
+
   return (
     <Container maxWidth="xl" className={classes.notifications_container}>
       <Box>
@@ -18,7 +21,7 @@ const Notifications = () => {
         </Typography>
       </Box>
       <Box className={classes.notifications_cards}>
-        {NotificationsData.map((not) => {
+        {user.notifications.map((not) => {
           return (
             <NotificationCard
               key={not.id}

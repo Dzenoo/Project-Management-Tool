@@ -9,6 +9,7 @@
   padding: 12px;
   transition: 0.2s;
   height: 100vh;
+  z-index: 20;
 }
 
 .main_navigation .menu_list {
@@ -28,6 +29,7 @@
 }
 
 .main_navigation.open {
+  transition: 0.2s;
   width: 240px;
 }
 

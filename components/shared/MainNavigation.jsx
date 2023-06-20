@@ -57,96 +57,96 @@ const MainNavigation = () => {
         )}
         {user?.token && (
           <MenuList className={classes.menu_list}>
-            <MenuItem className={classes.menu_item}>
-              <Link href="/">
+            <Link href="/">
+              <MenuItem className={classes.menu_item}>
                 <Image
                   src="/images/graphic/dashboard.png"
                   width={30}
                   height={30}
                   alt="dashboard"
                 />
-              </Link>
-              <Link href="/" className={classes.menu_wider}>
-                <Typography variant="p" fontWeight="bold">
-                  Dashboard
-                </Typography>
-              </Link>
-            </MenuItem>
-            <MenuItem className={classes.menu_item}>
-              <Link href="/projects">
+                <Link href="/" className={classes.menu_wider}>
+                  <Typography variant="p" fontWeight="bold">
+                    Dashboard
+                  </Typography>
+                </Link>
+              </MenuItem>
+            </Link>
+            <Link href="/projects">
+              <MenuItem className={classes.menu_item}>
                 <Image
                   src="/images/graphic/layers.png"
                   width={30}
                   height={30}
                   alt="projects"
                 />
-              </Link>
-              <Link href="/projects" className={classes.menu_wider}>
-                <Typography variant="p" fontWeight="bold">
-                  Projects
-                </Typography>
-              </Link>
-            </MenuItem>
-            <MenuItem className={classes.menu_item}>
-              <Link href="/tasks">
+                <Link href="/projects" className={classes.menu_wider}>
+                  <Typography variant="p" fontWeight="bold">
+                    Projects
+                  </Typography>
+                </Link>
+              </MenuItem>
+            </Link>
+            <Link href="/tasks">
+              <MenuItem className={classes.menu_item}>
                 <Image
                   src="/images/graphic/clipboard.png"
                   width={30}
                   height={30}
                   alt="tasks"
                 />
-              </Link>
-              <Link href="/tasks" className={classes.menu_wider}>
-                <Typography variant="p" fontWeight="bold">
-                  Tasks
-                </Typography>
-              </Link>
-            </MenuItem>
-            <MenuItem className={classes.menu_item}>
-              <Link href="/notifications">
+                <Link href="/tasks" className={classes.menu_wider}>
+                  <Typography variant="p" fontWeight="bold">
+                    Tasks
+                  </Typography>
+                </Link>
+              </MenuItem>
+            </Link>
+            <Link href="/notifications">
+              <MenuItem className={classes.menu_item}>
                 <Image
                   src="/images/graphic/notifications.png"
                   width={30}
                   height={30}
                   alt="notifications"
                 />
-              </Link>
-              <Link href="/notifications" className={classes.menu_wider}>
-                <Typography variant="p" fontWeight="bold">
-                  Notifications
-                </Typography>
-              </Link>
-            </MenuItem>
-            <MenuItem className={classes.menu_item}>
-              <Link href="/team">
+                <Link href="/notifications" className={classes.menu_wider}>
+                  <Typography variant="p" fontWeight="bold">
+                    Notifications
+                  </Typography>
+                </Link>
+              </MenuItem>
+            </Link>
+            <Link href="/team">
+              <MenuItem className={classes.menu_item}>
                 <Image
                   src="/images/graphic/posts.png"
                   width={30}
                   height={30}
                   alt="team"
                 />
-              </Link>
-              <Link href="/team" className={classes.menu_wider}>
-                <Typography variant="p" fontWeight="bold">
-                  Team
-                </Typography>
-              </Link>
-            </MenuItem>
-            <MenuItem className={classes.menu_item}>
-              <Link href="/settings">
+                <Link href="/team" className={classes.menu_wider}>
+                  <Typography variant="p" fontWeight="bold">
+                    Team
+                  </Typography>
+                </Link>
+              </MenuItem>
+            </Link>
+            <Link href="/settings">
+              <MenuItem className={classes.menu_item}>
                 <Image
                   src="/images/graphic/setting.png"
                   width={30}
                   height={30}
                   alt="settings"
                 />
-              </Link>
-              <Link href="/settings" className={classes.menu_wider}>
-                <Typography variant="p" fontWeight="bold">
-                  Settings
-                </Typography>
-              </Link>
-            </MenuItem>
+                <Link href="/settings" className={classes.menu_wider}>
+                  <Typography variant="p" fontWeight="bold">
+                    Settings
+                  </Typography>
+                </Link>
+              </MenuItem>
+            </Link>
           </MenuList>
         )}
       </CardContent>
