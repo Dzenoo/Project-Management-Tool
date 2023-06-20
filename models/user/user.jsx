@@ -14,12 +14,7 @@ const UserSchema = new Schema({
   address: { type: String },
   specialize: { type: String },
   favoritedProjects: [],
-  teams: [
-    {
-      team: { type: Schema.Types.ObjectId, ref: "Team" },
-      role: { type: String },
-    },
-  ],
+  teams: [{ type: Schema.Types.ObjectId, ref: "Team" }],
   notifications: [
     {
       image: { type: String },

@@ -17,6 +17,8 @@ const ProjectCard = ({ project, getProjectById }) => {
   const [statusSelect, setStatus] = useState(status);
   const projectTeam = getProjectById(_id);
 
+  console.log(projectTeam);
+
   const changeStatusHandler = async (e) => {
     const selectedStatus = e.target.value;
     setStatus(selectedStatus);
@@ -63,7 +65,13 @@ const ProjectCard = ({ project, getProjectById }) => {
             <MenuItem value="Finished">Finished</MenuItem>
           </Select>
         </div>
-        <Image src={image} alt={name} width={120} height={120} />
+        <Image
+          style={{ marginTop: "20px" }}
+          src={image}
+          alt={name}
+          width={120}
+          height={120}
+        />
       </Box>
       <Box className={classes.project_desc}>
         <Typography variant="h6" fontWeight="bold">
@@ -82,8 +90,8 @@ const ProjectCard = ({ project, getProjectById }) => {
       </Box>
       <Box className={classes.project_actions}>
         {projectTeam.team.teamMembers.slice(0, 2).map((mb) => (
-          <Tooltip title={mb.user.username} placement="top">
-            <Image src={mb.user.image} width={60} height={60} alt={"img"} />
+          <Tooltip title={mb.username} placement="top">
+            <Image src={mb.image} width={60} height={60} alt={"img"} />
           </Tooltip>
         ))}
       </Box>

@@ -13,11 +13,13 @@
 }
 
 .projects_sidebar .hover_favorites {
-  width: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .projects_sidebar .hover_all {
-  width: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .projects_sidebar .hover_favorites:hover {

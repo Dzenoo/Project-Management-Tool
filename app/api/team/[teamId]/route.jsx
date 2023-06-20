@@ -42,8 +42,8 @@ export const POST = async (request, { params }) => {
     };
 
     try {
-      team.teamMembers.push({ user: invitedUser._id, role: "member" });
-      invitedUser.teams.push({ team: team._id, role: "member" });
+      team.teamMembers.push(invitedUser._id);
+      invitedUser.teams.push(team._id);
       invitedUser.notifications.push(notification);
       await team.save();
       await invitedUser.save();

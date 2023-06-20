@@ -7,11 +7,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, MenuItem, Select, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import classes from "@/styles/team/team.module.css";
+import Link from "next/link";
 
-const UserTable = ({ team, searchValue, roleValue }) => {
+const UserTable = ({ team, searchValue, selectedSpecialize }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -24,10 +24,10 @@ const UserTable = ({ team, searchValue, roleValue }) => {
               <strong>Mail</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>Role</strong>
+              <strong>Specialize</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>Date Added</strong>
+              <strong>Social</strong>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -36,57 +36,56 @@ const UserTable = ({ team, searchValue, roleValue }) => {
             team.teamMembers
               .filter((tm) => {
                 const nameMatch =
-                  tm.user.first_name
+                  tm.first_name
                     .toLowerCase()
                     .includes(searchValue.toLowerCase()) ||
-                  tm.user.last_name
+                  tm.last_name
                     .toLowerCase()
                     .includes(searchValue.toLowerCase());
 
-                const roleFilter = roleValue === "" || tm.role === roleValue;
-                return nameMatch && roleFilter;
+                const selectedFilter =
+                  selectedSpecialize === "" ||
+                  tm.specialize === selectedSpecialize;
+                return nameMatch && selectedFilter;
               })
               .map((row) => (
-                <TableRow key={row.user.name}>
+                <TableRow key={row.name}>
                   <TableCell
                     sx={{ display: "flex", gap: "12px", alignItems: "center" }}
                   >
-                    <Image
-                      src={row.user.image}
-                      width={60}
-                      height={60}
-                      alt="team"
-                    />
+                    <Image src={row.image} width={60} height={60} alt="team" />
                     <strong>
-                      {row.user.first_name} {row.user.last_name}
+                      {row.first_name} {row.last_name}
                     </strong>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography color="textSecondary">
-                      {row.user.email}
-                    </Typography>
+                    <Typography color="textSecondary">{row.email}</Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <span
-                      style={{ marginRight: "12px" }}
-                      className={
-                        (row.role === "admin" && "admin") ||
-                        (row.role === "Manager" && "manager") ||
-                        (row.role === "member" && "teamember")
-                      }
-                    >
-                      {row.role}
+                    <span style={{ marginRight: "12px" }} className={"workAs"}>
+                      {row.specialize}
                     </span>
-                    <Select sx={{ width: "160px" }} value={row.role}>
-                      <MenuItem value="admin">admin</MenuItem>
-                      <MenuItem value="User">User</MenuItem>
-                      <MenuItem value="member">member</MenuItem>
-                    </Select>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography color="textSecondary">
-                      {row.dateAdded}
-                    </Typography>
+                    <div>
+                      <Link href={row.github}>
+                        <Image
+                          src={"/images/graphic/linkedin.png"}
+                          width={30}
+                          height={30}
+                          style={{ marginRight: "12px" }}
+                          alt="linkedin"
+                        />
+                      </Link>
+                      <Link href={row.linkedin}>
+                        <Image
+                          src={"/images/graphic/github.png"}
+                          width={30}
+                          height={30}
+                          alt="github"
+                        />
+                      </Link>
+                    </div>
                   </TableCell>
                   <TableCell align="right">
                     <Button>

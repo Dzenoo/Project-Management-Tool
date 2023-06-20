@@ -24,7 +24,7 @@ const NewProjectForm = ({ submitCreateProject }) => {
   const [teamSelect, setTeamSelect] = useState("");
   const { user } = useContext(AppContext);
 
-  const userTeamsSelect = user.teams.map((teamObject) => teamObject.team);
+  const userTeamsSelect = user.teams.map((Team) => team);
 
   const name = useValidation([VALIDATOR_REQUIRE()]);
   const description = useValidation([VALIDATOR_REQUIRE()]);

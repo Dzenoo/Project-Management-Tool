@@ -36,6 +36,7 @@ export const POST = async (request) => {
       favoritedProjects: [],
       archivedProjects: [],
       notifications: [],
+      teams: [],
     });
 
     const user = await createdUser.save();

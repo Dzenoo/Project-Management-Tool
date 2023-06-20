@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { teams } from "@/data/tasks.jsonData.config.json";
 import Image from "next/image";
 import classes from "@/styles/dashboard/dashboard.module.css";
 import { useContext } from "react";
@@ -16,13 +15,13 @@ import { AppContext } from "@/context/AppContext";
 
 const TeamsCard = () => {
   const { user } = useContext(AppContext);
-  const teamsNames = user.teams.map((team) => team.team.name);
+  const teamsNames = user.teams.map((team) => team.name);
 
   const [selectValue, setSelectValue] = useState(teamsNames[0]);
   const [team, setteam] = useState();
 
   useEffect(() => {
-    const newTeam = user.teams.find((team) => team.team.name === selectValue);
+    const newTeam = user.teams.find((team) => team.name === selectValue);
     setteam(newTeam);
   }, [user.teams, selectValue]);
 
@@ -51,21 +50,21 @@ const TeamsCard = () => {
       {selectValue === "" && <p>Select Team</p>}
       {selectValue !== "" && (
         <Box className={classes.team_cards}>
-          {team?.team.teamMembers.map((tm) => (
+          {team?.teamMembers.map((tm) => (
             <Card className={classes.team_card}>
-              <Image src={tm.user.image} width={120} height={120} alt="img" />
+              <Image src={tm.image} width={120} height={120} alt="img" />
               <Box className={classes.team_card_box}>
                 <div>
                   <Typography variant="p" fontWeight="bold">
-                    {tm.user.first_name}
+                    {tm.first_name}
                   </Typography>{" "}
                   <Typography variant="p" fontWeight="bold">
-                    {tm.user.last_name}
+                    {tm.last_name}
                   </Typography>
                 </div>
                 <div>
                   <Typography variant="p" color="textSecondary">
-                    {tm.user.email}
+                    {tm.email}
                   </Typography>
                 </div>
                 <div>
@@ -73,12 +72,12 @@ const TeamsCard = () => {
                     variant="p"
                     fontWeight="bold"
                     color={
-                      (tm.user.specialize === "Designer" && "orange") ||
-                      (tm.user.specialize === "Developer" && "royalblue") ||
-                      (tm.user.specialize === "Manager" && "greenyellow")
+                      (tm.specialize === "Designer" && "orange") ||
+                      (tm.specialize === "Developer" && "royalblue") ||
+                      (tm.specialize === "Manager" && "greenyellow")
                     }
                   >
-                    {tm?.user.specialize}
+                    {tm?.specialize}
                   </Typography>
                 </div>
               </Box>

@@ -25,13 +25,11 @@ import { useHttpPost } from "@/hooks/Http/useHttpPost";
 
 const TeamDetail = ({ params }) => {
   const { user } = useContext(AppContext);
-  const team = user.teams.find(
-    (teamObject) => teamObject.team._id === params.teamId
-  ).team;
+  const team = user.teams.find((team) => team._id === params.teamId);
   const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
   const [searchUserInput, setsearchUserInput] = useState("");
-  const [selectedRole, setSelectedRole] = useState("");
+  const [selectedSpecialize, setSelectedSpecialize] = useState("");
   const { sendPostRequest, isLoading } = useHttpPost();
   const closeInviteModal = () => setisOpenInviteModal(false);
   const openInviteModal = () => setisOpenInviteModal(true);
@@ -154,13 +152,13 @@ const TeamDetail = ({ params }) => {
           />
           <Select
             className={classes.select}
-            onChange={(e) => setSelectedRole(e.target.value)}
-            value={selectedRole}
+            onChange={(e) => setSelectedSpecialize(e.target.value)}
+            value={selectedSpecialize}
           >
             <MenuItem value="">All</MenuItem>
-            <MenuItem value="admin">Admin</MenuItem>
-            <MenuItem value="manager">Manager</MenuItem>
-            <MenuItem value="member">Member</MenuItem>
+            <MenuItem value="Developer">Developer</MenuItem>
+            <MenuItem value="Designer">Designer</MenuItem>
+            <MenuItem value="Manager">Manager</MenuItem>
           </Select>
           <Button size="large" variant="contained" onClick={openInviteModal}>
             Add Member
@@ -172,27 +170,27 @@ const TeamDetail = ({ params }) => {
               team.teamMembers
                 .filter((tm) => {
                   const nameMatch =
-                    tm.user.first_name
+                    tm.first_name
                       .toLowerCase()
                       .includes(searchUserInput.toLowerCase()) ||
-                    tm.user.last_name
+                    tm.last_name
                       .toLowerCase()
                       .includes(searchUserInput.toLowerCase());
-                  const roleMatch =
-                    selectedRole === "" || tm.role === selectedRole;
-                  return nameMatch && roleMatch;
+                  const specializeMatch =
+                    selectedSpecialize === "" ||
+                    tm.specialize === selectedSpecialize;
+                  return nameMatch && specializeMatch;
                 })
                 .map((tm) => (
                   <UserCard
-                    key={tm.user._id}
-                    image={tm.user.image}
-                    fname={tm.user.first_name}
-                    lname={tm.user.last_name}
-                    email={tm.user.email}
-                    role={tm.role}
-                    github={tm.user.github}
-                    linkedin={tm.user.linkedin}
-                    workAs={tm.user.specialize}
+                    key={tm._id}
+                    image={tm.image}
+                    fname={tm.first_name}
+                    lname={tm.last_name}
+                    email={tm.email}
+                    github={tm.github}
+                    linkedin={tm.linkedin}
+                    workAs={tm.specialize}
                   />
                 ))
             ) : (
@@ -202,7 +200,7 @@ const TeamDetail = ({ params }) => {
             <UserTable
               team={team}
               searchValue={searchUserInput}
-              roleValue={selectedRole}
+              selectedSpecialize={selectedSpecialize}
             />
           )}
         </div>

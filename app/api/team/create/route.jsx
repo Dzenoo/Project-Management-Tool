@@ -25,8 +25,8 @@ export const POST = async (request) => {
     });
 
     try {
-      createdTeam.teamMembers.push({ user: user._id, role: "admin" });
-      user.teams.push({ team: createdTeam._id, role: "admin" });
+      createdTeam.teamMembers.push(user._id);
+      user.teams.push(createdTeam._id);
       await user.save();
       await createdTeam.save();
       return response("Team created successfully!", 201);

@@ -10,11 +10,7 @@ export const GET = async () => {
 
     const projects = await Project.find().populate({
       path: "team",
-      populate: {
-        path: "teamMembers.user",
-        model: "User",
-        select: "image _id username",
-      },
+      populate: [{ path: "teamMembers", model: "User" }],
     });
 
     return new Response(JSON.stringify(projects), { status: 200 });

@@ -102,17 +102,17 @@ const TeamPage = () => {
         )}
         {user.teams.length > 0 &&
           user.teams
-            .filter((tm) =>
-              tm.team.name.toLowerCase().includes(searchedTeam.toLowerCase())
+            .filter((team) =>
+              team.name.toLowerCase().includes(searchedTeam.toLowerCase())
             )
-            .map((teamObject) => (
+            .map((team) => (
               <TeamCard
-                key={teamObject.team._id}
-                id={teamObject.team._id}
-                image={teamObject.team.image}
-                teamName={teamObject.team.name}
-                teamDescription={teamObject.team.description}
-                dateCreated={teamObject.team.updatedAt}
+                key={team._id}
+                id={team._id}
+                image={team.image}
+                teamName={team.name}
+                teamDescription={team.description}
+                dateCreated={team.updatedAt}
               />
             ))}
       </Box>

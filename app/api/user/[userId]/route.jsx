@@ -7,23 +7,20 @@ import User from "@/models/user/user";
 export const GET = async (request, { params }) => {
   try {
     await connectToDB();
-    const user = await User.findById(params.userId)
-      .select("-password")
-      .populate({
-        path: "teams.team",
-        populate: [
-          {
-            path: "teamMembers.user",
-            model: "User",
-            select:
-              "first_name last_name email image github linkedin specialize",
-          },
-          {
-            path: "projects",
-            model: "Project",
-          },
-        ],
-      });
+    const user = await User.findById(params.userId).populate({
+      path: "teams",
+      populate: [
+        {
+          path: "teamMembers",
+          model: "User",
+        },
+        {
+          path: "projects",
+          model: "Project",
+        },
+      ],
+    });
+
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (error) {
     console.log(error);

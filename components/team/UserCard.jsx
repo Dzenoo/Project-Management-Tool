@@ -4,16 +4,7 @@ import classes from "@/styles/team/team.module.css";
 import PropTypes from "prop-types";
 import Link from "next/link";
 
-const UserCard = ({
-  image,
-  role,
-  fname,
-  lname,
-  workAs,
-  email,
-  github,
-  linkedin,
-}) => {
+const UserCard = ({ image, fname, lname, workAs, email, github, linkedin }) => {
   return (
     <Card className={classes.team_user_card}>
       <Box className={classes.team_user_header}>
@@ -34,18 +25,6 @@ const UserCard = ({
               alt="github"
             />
           </Link>
-        </div>
-        <div>
-          <Typography
-            fontWeight="bold"
-            className={
-              (role === "admin" && "admin") ||
-              (role === "manager" && "manager") ||
-              (role === "member" && "teamember")
-            }
-          >
-            {role}
-          </Typography>
         </div>
         <div>
           <Button>
@@ -79,7 +58,6 @@ const UserCard = ({
 };
 UserCard.propTypes = {
   image: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
   fname: PropTypes.string.isRequired,
   lname: PropTypes.string.isRequired,
   workAs: PropTypes.string.isRequired,

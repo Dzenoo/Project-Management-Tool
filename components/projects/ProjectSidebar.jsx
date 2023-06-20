@@ -70,21 +70,6 @@ const ProjectSidebar = () => {
                 Favorites
               </Typography>
             </ListItemText>
-            {openFavorites ? (
-              <Image
-                src="/images/graphic/upload.png"
-                width={20}
-                height={20}
-                alt="ar"
-              />
-            ) : (
-              <Image
-                src="/images/graphic/down-arrow.png"
-                width={20}
-                height={20}
-                alt="arro"
-              />
-            )}
           </ListItemButton>
           <Collapse in={openFavorites} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
@@ -111,21 +96,6 @@ const ProjectSidebar = () => {
                 All Projects
               </Typography>
             </ListItemText>
-            {openAllProjects ? (
-              <Image
-                src="/images/graphic/upload.png"
-                width={20}
-                height={20}
-                alt="ar"
-              />
-            ) : (
-              <Image
-                src="/images/graphic/down-arrow.png"
-                width={20}
-                height={20}
-                alt="arro"
-              />
-            )}
           </ListItemButton>
           <Collapse in={openAllProjects} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>

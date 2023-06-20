@@ -9,8 +9,6 @@ import {
   Button,
   Card,
   Container,
-  IconButton,
-  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -20,7 +18,6 @@ import ProjectTasks from "@/components/projects/details/ProjectTasks";
 import ProjectDiscussion from "@/components/projects/details/ProjectDiscussion";
 import ProjectFiles from "@/components/projects/details/ProjectFiles";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
-import MainModal from "@/components/shared/MainModal";
 import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
@@ -141,12 +138,12 @@ const Project = ({ params }) => {
         </Box>
         <Box className={classes.main_tooltip}>
           {project.team.teamMembers.slice(0, 2).map((mb) => (
-            <Tooltip title={mb.user.username} placement="top" key={mb}>
+            <Tooltip title={mb.username} placement="top" key={mb}>
               <Image
-                src={mb.user.image}
+                src={mb.image}
                 width={60}
                 height={60}
-                alt={mb.user.username}
+                alt={mb.username}
                 className={classes.iconBtn}
               />
             </Tooltip>
