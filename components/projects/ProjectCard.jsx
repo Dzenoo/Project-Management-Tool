@@ -1,19 +1,15 @@
-import { Box, Card, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, Card, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import classes from "@/styles/projects/projects.module.css";
 
-const ProjectCard = ({ project }) => {
-  const {
-    image,
-    name,
-    description,
-    status,
-    startDate,
-    finishDate,
-    teamMembers,
-  } = project;
+const ProjectCard = ({ project, getProjectById }) => {
+  const { _id, image, name, description, status, startDate, finishDate } =
+    project;
 
+  const projectTeam = getProjectById(_id);
+
+  console.log(projectTeam);
   return (
     <Card className={classes.project_card}>
       <Box className={classes.project_top}>
@@ -45,14 +41,11 @@ const ProjectCard = ({ project }) => {
         </Typography>
       </Box>
       <Box className={classes.project_actions}>
-        {/* {teamMembers.map((mb) => (
-          <Tooltip title={mb} placement="top">
-            <IconButton
-              className={classes.project_team_member}
-              size="large"
-            ></IconButton>
+        {projectTeam.team.teamMembers.slice(0, 2).map((mb) => (
+          <Tooltip title={mb.user.username} placement="top">
+            <Image src={mb.user.image} width={60} height={60} alt={"img"} />
           </Tooltip>
-        ))} */}
+        ))}
       </Box>
     </Card>
   );
