@@ -22,6 +22,8 @@ import ProjectFiles from "@/components/projects/details/ProjectFiles";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import MainModal from "@/components/shared/MainModal";
 import { AppContext } from "@/context/AppContext";
+import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import { ClipLoader } from "react-spinners";
 
 export async function generateStaticParams() {
   const projects = await fetch("/api/projects");
@@ -31,13 +33,23 @@ export async function generateStaticParams() {
   }));
 }
 
+const deleteIcon = (
+  <Image src="/images/graphic/x-mark.png" width={30} height={30} alt="delete" />
+);
+
 const Project = ({ params }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const [isTypeTask, setisTypeTask] = useState("kanban");
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
-  const { columns, getProjectById } = useContext(AppContext);
+  const { columns, getProjectById, user } = useContext(AppContext);
+  const { sendPostRequest, isLoading } = useHttpPost();
+
+  const projectFav = user.favoritedProjects.find(
+    (favProject) => favProject.id.toString() === params.projectId
+  );
+  const isProjectFavorited = projectFav?.id === params.projectId;
 
   const openTaskDetail = (id) => {
     const currentOpenedTask = tasks.find((task) => task.id === id);
@@ -48,16 +60,22 @@ const Project = ({ params }) => {
 
   const project = getProjectById(params.projectId);
 
-  console.log(project);
+  const favoriteProjectHandler = async () => {
+    try {
+      await sendPostRequest(
+        `/api/projects/${params.projectId}/${user._id}/favorite`,
+        "POST"
+      );
+    } catch (error) {}
+  };
 
-  const deleteIcon = (
-    <Image
-      src="/images/graphic/x-mark.png"
-      width={30}
-      height={30}
-      alt="delete"
-    />
-  );
+  if (isLoading) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>
@@ -71,9 +89,13 @@ const Project = ({ params }) => {
           </Typography>
         </Box>
         <Box className={classes.main_actions}>
-          <Button>
+          <Button onClick={favoriteProjectHandler}>
             <Image
-              src="/images/graphic/bookmark.png"
+              src={
+                isProjectFavorited
+                  ? "/images/graphic/bookmarkfill.png"
+                  : "/images/graphic/bookmark.png"
+              }
               width={30}
               height={30}
               alt="lg"

@@ -33,6 +33,8 @@ export const POST = async (request) => {
       biography: "",
       address: "",
       specialize: "",
+      favoritedProjects: [],
+      archivedProjects: [],
       notifications: [],
     });
 

@@ -26,7 +26,8 @@ const ProjectSidebar = () => {
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
   const [openArchived, setOpenArchived] = useState(true);
-  const { handleProjectInput, isTeam, userProjects } = useContext(AppContext);
+  const { handleProjectInput, isTeam, userProjects, user } =
+    useContext(AppContext);
   const pathname = usePathname();
   const favoritedProjects = projects.filter((p) => p.type === "Favorites");
   const archivedProjects = projects.filter((p) => p.type === "Archived");
@@ -88,7 +89,7 @@ const ProjectSidebar = () => {
           <Collapse in={openFavorites} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemText sx={{ pl: 2 }}>
-                {favoritedProjects.map((fp) => (
+                {user.favoritedProjects.map((fp) => (
                   <Link href={`/projects/${fp.id}`} key={fp.id}>
                     <ListItemButton>
                       <Typography variant="p" color="textSecondary">
