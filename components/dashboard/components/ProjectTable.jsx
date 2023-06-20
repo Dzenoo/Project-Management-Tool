@@ -6,42 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
-import classes from "@/styles/dashboard/dashboard.module.css";
 
-function createData(name, team, date, status) {
-  return { name, team, date, status };
-}
-
-const rows = [
-  createData(
-    "Networkly Web Application",
-    "/images/graphic/bookmark.png",
-    "20.02.2022",
-    "In Progress"
-  ),
-  createData(
-    "Networkly Web Application",
-    "/images/graphic/bookmark.png",
-    "20.02.2022",
-    "Finished"
-  ),
-  createData(
-    "Networkly Web Application",
-    "/images/graphic/bookmark.png",
-    "20.02.2022",
-    "Cancelled"
-  ),
-  createData(
-    "Networkly Web Application",
-    "/images/graphic/bookmark.png",
-    "20.02.2022",
-    "Finished"
-  ),
-];
-
-function ProjectTable() {
+function ProjectTable({ projects }) {
   return (
     <Card>
       <Box sx={{ padding: "12px" }}>
@@ -68,15 +36,19 @@ function ProjectTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {projects.map((row) => (
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
                 <TableCell align="right">
-                  <Image src={row.team} width={20} height={20} alt="team" />
+                  <Tooltip title={row.name} placement="top">
+                    <Image src={row.image} width={40} height={40} alt="team" />
+                  </Tooltip>
                 </TableCell>
-                <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right">
+                  {new Date(row.createdAt).toLocaleDateString()}
+                </TableCell>
                 <TableCell align="right">
                   <Box
                     sx={{ float: "right" }}

@@ -7,11 +7,19 @@ import TeamsCard from "@/components/dashboard/components/TeamsCard";
 import { Box, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import classes from "@/styles/dashboard/dashboard.module.css";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AppContext } from "@/context/AppContext";
 
 export default function Dashboard() {
   const router = useRouter();
   const user = JSON.parse(localStorage.getItem("user"));
+  const { userProjects } = useContext(AppContext);
+
+  const finished = userProjects.filter((p) => p.status === "Finished");
+  const cancelled = userProjects.filter((p) => p.status === "Cancelled");
+  const progress = userProjects.filter((p) => p.status === "In Progress");
+
+  console.log(userProjects);
 
   useEffect(() => {
     if (!user?.token) {
@@ -27,17 +35,17 @@ export default function Dashboard() {
       <Grid container padding={2}>
         <Grid item xl={12}>
           <ProjectOverview
-            totalProjects="40"
-            completed="12"
-            progress="13"
-            out="2"
+            totalProjects={userProjects.length}
+            completed={finished.length}
+            progress={progress.length}
+            out={cancelled.length}
           />
         </Grid>
         <Grid item xl={3} paddingTop={2}>
           <DashboardChart />
         </Grid>
         <Grid item xl={9} paddingTop={2} paddingLeft={2}>
-          <ProjectTable />
+          <ProjectTable projects={userProjects} />
         </Grid>
         <Grid xl={12}>
           <TeamsCard />
