@@ -38,8 +38,6 @@ export const AppProvider = ({ children }) => {
     );
   }
 
-  console.log(user);
-
   const isTeam = user.teams.length > 0;
 
   const userProjects = user.teams.reduce((acc, team) => {

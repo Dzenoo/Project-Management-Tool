@@ -4,14 +4,7 @@
 
 import { tasks } from "@/data/tasks.jsonData.config.json";
 import { useContext, useState } from "react";
-import {
-  Box,
-  Button,
-  Card,
-  Container,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/projects/projects.module.css";
 import ProjectTasks from "@/components/projects/details/ProjectTasks";
@@ -21,7 +14,7 @@ import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const projects = await fetch("/api/projects");
@@ -30,10 +23,6 @@ export async function generateStaticParams() {
     slug: project._id,
   }));
 }
-
-const deleteIcon = (
-  <Image src="/images/graphic/x-mark.png" width={30} height={30} alt="delete" />
-);
 
 const Project = ({ params }) => {
   const [isTypeTask, setisTypeTask] = useState("kanban");
@@ -77,6 +66,8 @@ const Project = ({ params }) => {
   if (!project) {
     notFound();
   }
+
+  console.log(project);
 
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>
@@ -147,6 +138,7 @@ const Project = ({ params }) => {
           isTypeTask={isTypeTask}
           columns={columns}
           openDetailsHandler={openTaskDetail}
+          projectMb={project}
         />
       )}
       {typeOfProjectDetail === "files" && <ProjectFiles />}

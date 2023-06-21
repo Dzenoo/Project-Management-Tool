@@ -4,9 +4,10 @@ import { Button, MenuItem, Select, TextField } from "@mui/material";
 import classes from "@/styles/tasks/kanban.module.css";
 import { useState } from "react";
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ projectMb, createTask }) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
+  const [assignTo, setassignTo] = useState("");
 
   const title = useValidation([VALIDATOR_MINLENGTH(3)]);
   const description = useValidation([VALIDATOR_MINLENGTH(20)]);
@@ -16,6 +17,8 @@ const AddTaskForm = () => {
 
   const handleCategoryInput = (event) => {
     if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission
+
       if (categories.length === 2) {
         alert("Max 2 categories");
       } else {
@@ -32,6 +35,8 @@ const AddTaskForm = () => {
 
   const handleTagInput = (event) => {
     if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission
+
       setTags([...tags, tag.value]);
       tag.onChangeInputHandler({ target: { value: "" } });
     }
@@ -42,8 +47,24 @@ const AddTaskForm = () => {
     setTags(tagsNew);
   };
 
+  const submitCreate = (e) => {
+    e.preventDefault();
+
+    const data = {
+      title: title.value,
+      description: description.value,
+      finishDate: date.value,
+      categories: categories,
+      tags: tags,
+      assignedTo: assignTo,
+      project: projectMb._id,
+    };
+
+    createTask(data);
+  };
+
   return (
-    <form className={classes.add_task_form}>
+    <form className={classes.add_task_form} onSubmit={submitCreate}>
       <TextField
         fullWidth
         placeholder="Website Redesign"
@@ -90,7 +111,6 @@ const AddTaskForm = () => {
         onBlur={category.onBlurInputHandler}
         onKeyDown={handleCategoryInput}
         placeholder="Click enter after tag"
-        required
         value={category.value}
       />
       <div className={classes.categories}>
@@ -114,7 +134,6 @@ const AddTaskForm = () => {
         onBlur={tag.onBlurInputHandler}
         value={tag.value}
         onKeyDown={handleTagInput}
-        required
         placeholder="Click enter after tag"
       />
       <div className={classes.categories}>
@@ -128,8 +147,17 @@ const AddTaskForm = () => {
             </span>
           ))}
       </div>
-      <Select fullWidth label="Assign To">
-        <MenuItem>John Doe</MenuItem>
+      <Select
+        onChange={(e) => setassignTo(e.target.value)}
+        value={assignTo}
+        fullWidth
+        label="Assign To"
+      >
+        {projectMb.team.teamMembers.map((mb) => (
+          <MenuItem value={mb.username} key={mb._id}>
+            {mb.username}
+          </MenuItem>
+        ))}
       </Select>
       <Button variant="contained" type="submit">
         Add

@@ -8,18 +8,40 @@ import classes from "@/styles/tasks/kanban.module.css";
 import MainModal from "../shared/MainModal";
 import AddTaskForm from "./helpers/AddTaskForm";
 import AddNewColumn from "./helpers/AddNewColumn";
+import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import { ClipLoader } from "react-spinners";
 
-const KanbanType = ({ openDetailsHandler, columns }) => {
+const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
   const [isOpenTaskModal, setisOpenTaskModal] = useState(false);
   const [isOpenColumnModal, setisOpenColumnModal] = useState(false);
+  const [status, setStatus] = useState("");
+  const { sendPostRequest, isLoading } = useHttpPost();
 
   const closeAddTaskModal = () => setisOpenTaskModal(false);
-  const openAddTaskModal = (type) => {
+  const openAddTaskModal = (statuss) => {
     setisOpenTaskModal(true);
+    setStatus(statuss);
   };
 
   const closeColumnModal = () => setisOpenColumnModal(false);
   const openColumnModal = () => setisOpenColumnModal(true);
+
+  const createTask = async (data) => {
+    data.status = status;
+
+    try {
+      await sendPostRequest("/api/tasks/", "POST", data);
+      setisOpenTaskModal(false);
+    } catch (error) {}
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   // useEffect(() => {
   //   const storedColumns = localStorage.getItem("kanbancolumns");
@@ -59,7 +81,7 @@ const KanbanType = ({ openDetailsHandler, columns }) => {
         close={closeAddTaskModal}
         title="Add Task"
         text="Provide the necessary information for the new task"
-        content={<AddTaskForm />}
+        content={<AddTaskForm projectMb={projectMb} createTask={createTask} />}
         showButtons={false}
       />
       <MainModal
