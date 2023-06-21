@@ -1,4 +1,6 @@
 import { Schema, model, models } from "mongoose";
+import Task from "../task/Task";
+import Team from "../shared/Team";
 
 const ProjectSchema = new Schema(
   {
@@ -12,7 +14,7 @@ const ProjectSchema = new Schema(
     },
     team: {
       type: Schema.Types.ObjectId,
-      ref: "Team",
+      ref: Team,
       required: [true, "Team is required"],
     },
     budget: { type: Number, required: [true, "Budget is required"] },
@@ -22,7 +24,7 @@ const ProjectSchema = new Schema(
     tasks: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Task",
+        ref: Task,
       },
     ],
     files: [{ type: String }],

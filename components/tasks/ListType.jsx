@@ -7,14 +7,36 @@ import classes from "@/styles/tasks/list.module.css";
 import { useState } from "react";
 import MainModal from "../shared/MainModal";
 import AddTaskForm from "./helpers/AddTaskForm";
+import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import { ClipLoader } from "react-spinners";
 
-const ListType = ({ columns, openDetailsHandler }) => {
+const ListType = ({ columns, projectMb, openDetailsHandler }) => {
   const [isOpenTaskModal, setisOpenTaskModal] = useState(false);
+  const [status, setStatus] = useState("");
+  const { sendPostRequest, isLoading } = useHttpPost();
 
   const closeAddTaskModal = () => setisOpenTaskModal(false);
   const openAddTaskModal = (type) => {
     setisOpenTaskModal(true);
+    setStatus(type);
   };
+
+  const createTask = async (data) => {
+    data.status = status;
+
+    try {
+      await sendPostRequest("/api/tasks/", "POST", data);
+      setisOpenTaskModal(false);
+    } catch (error) {}
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -23,7 +45,7 @@ const ListType = ({ columns, openDetailsHandler }) => {
         close={closeAddTaskModal}
         title="Add Task"
         text="Provide the necessary information for the new task"
-        content={<AddTaskForm />}
+        content={<AddTaskForm projectMb={projectMb} createTask={createTask} />}
         showButtons={false}
       />
       <Box className={classes.list_tasks_container}>
@@ -44,7 +66,7 @@ const ListType = ({ columns, openDetailsHandler }) => {
             <Box className={classes.list_task_cards}>
               {li.tasks.map((task) => (
                 <TaskList
-                  key={task.id}
+                  key={task._id}
                   task={task}
                   onClickView={openDetailsHandler}
                 />

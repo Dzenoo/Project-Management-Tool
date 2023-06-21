@@ -13,13 +13,13 @@ import Image from "next/image";
 const TaskDetailsSidebar = ({ task, onClose }) => {
   const {
     id,
-    name,
-    assignee,
-    dueDate,
+    title,
+    assignedTo,
+    finishDate,
     description,
     categories,
     tags,
-    comments,
+    // comments,
     status,
   } = task;
 
@@ -49,7 +49,7 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
         <Box className={classes.task_details_top_info}>
           <div>
             <Typography variant="h4" fontWeight="bold">
-              {name}
+              {title}
             </Typography>
           </div>
           <div className={classes.task_details_flex}>
@@ -59,7 +59,9 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
               height={20}
               alt="date"
             />
-            <Typography color="textSecondary">{dueDate}</Typography>
+            <Typography color="textSecondary">
+              {new Date(finishDate).toDateString()}
+            </Typography>
           </div>
           <div className={classes.task_details_flex}>
             <Image
@@ -71,7 +73,7 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
             <Typography color="textSecondary">Status:</Typography>
             <div
               className={
-                (status === "To Do" && "todo") ||
+                (status === "Todo" && "todo") ||
                 (status === "Work" && "work") ||
                 (status === "Lag" && "lag") ||
                 (status === "Done" && "done")
@@ -88,8 +90,17 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
               alt="paper"
             />
             <Typography color="textSecondary">Assigned to:</Typography>
-            <Tooltip title={assignee} placement="top" key={assignee}>
-              <IconButton size="large" className="iconBtn" />
+            <Tooltip
+              title={assignedTo.username}
+              placement="top"
+              key={assignedTo.username}
+            >
+              <Image
+                src={assignedTo.image}
+                width={60}
+                height={60}
+                alt={assignedTo.username}
+              />
             </Tooltip>
           </div>
         </Box>
@@ -114,7 +125,8 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
                     (category === "Development" && "development") ||
                     (category === "Design" && "design") ||
                     (category === "Management" && "management") ||
-                    (category === "Website" && "website")
+                    (category === "Website" && "website") ||
+                    classes.task_category
                   }
                   key={category}
                 >
@@ -161,7 +173,8 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
             </form>
           </div>
           <div style={{ marginTop: "40px" }}>
-            {comments.map((comment) => (
+            comments
+            {/* {comments.map((comment) => (
               <div key={comment.user} className={classes.task_details_comment}>
                 <Image
                   src={comment.userImage}
@@ -178,7 +191,7 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
                   </Typography>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </Box>
       </Card>

@@ -17,7 +17,7 @@ const TaskList = ({ task, onClickView }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
-  const { _id, title, assignee, dueDate, categories } = task;
+  const { _id, title, assignedTo, finishDate, categories } = task;
 
   const boxClasses = isOpenBox
     ? `${classes.open_details_box} ${classes.openBox}`
@@ -72,8 +72,8 @@ const TaskList = ({ task, onClickView }) => {
           </Button>
         </Card>
         <Box>
-          <Tooltip title={assignee} placement="top">
-            <IconButton size="large" className={classes.iconBtn}></IconButton>
+          <Tooltip title={assignedTo.username} placement="top">
+            <Image src={assignedTo.image} width={30} height={30} alt="img" />
           </Tooltip>
         </Box>
         <Box className={classes.card_task_categories}>
@@ -94,7 +94,7 @@ const TaskList = ({ task, onClickView }) => {
         </Box>
         <Box>
           <Typography color="textSecondary" fontWeight="bold">
-            {dueDate}
+            {new Date(finishDate).toDateString()}
           </Typography>
         </Box>
       </Box>

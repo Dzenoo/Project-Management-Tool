@@ -9,7 +9,7 @@ export const GET = async () => {
   try {
     await connectToDB();
 
-    const projects = await Project.find()
+    const projects = await Project.find({})
       .populate({
         path: "tasks",
         populate: [{ path: "assignedTo", model: "User" }],

@@ -62,7 +62,11 @@ const ProjectTasks = ({
           projectMb={projectMb}
         />
       ) : (
-        <ListType columns={columns} openDetailsHandler={openDetailsHandler} />
+        <ListType
+          columns={columns}
+          openDetailsHandler={openDetailsHandler}
+          projectMb={projectMb}
+        />
       )}
     </Box>
   );

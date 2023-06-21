@@ -37,14 +37,14 @@ const Project = ({ params }) => {
   );
   const isProjectFavorited = projectFav?.id === params.projectId;
 
+  const project = getProjectById(params.projectId);
+
   const openTaskDetail = (id) => {
-    const currentOpenedTask = tasks.find((task) => task.id === id);
+    const currentOpenedTask = project.tasks.find((task) => task._id === id);
     settask(currentOpenedTask);
     settaskDetailIsOpen(true);
   };
   const closeTaskDetail = () => settaskDetailIsOpen(false);
-
-  const project = getProjectById(params.projectId);
 
   const favoriteProjectHandler = async () => {
     try {
@@ -77,7 +77,10 @@ const Project = ({ params }) => {
       <Box className={classes.main_topbar}>
         <Box>
           <Typography variant="h4" fontWeight="bold">
-            {project?.name}
+            {project.name}
+          </Typography>
+          <Typography variant="p" color="textSecondary">
+            {project.description}
           </Typography>
         </Box>
         <Box className={classes.main_actions}>

@@ -115,7 +115,7 @@
 .main_project_details .main_tasks_dashboard {
   background-color: #0066ff17;
   padding: 30px;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
   margin-top: 12px;
 }
@@ -193,6 +193,18 @@
   gap: 12px;
   align-items: center;
   margin-top: 12px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_mid_info
+  .task_details_categories
+  .task_category {
+  color: #00000094;
+  background-color: #38c3dc3f;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
 }
 
 .task_details_wrapper

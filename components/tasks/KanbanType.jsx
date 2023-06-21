@@ -65,7 +65,7 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
             {column.tasks.map((task) => (
               <TaskKanban
                 task={task}
-                key={task.id}
+                key={task._id}
                 onClickView={openDetailsHandler}
               />
             ))}
