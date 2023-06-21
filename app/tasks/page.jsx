@@ -12,15 +12,13 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/tasks/tasks.module.css";
-import {
-  StatusTasksSelect,
-  CategoryasksSelect,
-  ProjectTasksSelect,
-} from "@/data/data";
+import { StatusTasksSelect, CategoryasksSelect } from "@/data/data";
 import TaskKanban from "@/components/tasks/TaskKanban";
-import { tasks } from "@/data/tasks.jsonData.config.json";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
+import { useFetch } from "@/hooks/Http/useFetch";
+import { AppContext } from "@/context/AppContext";
+import { ClipLoader } from "react-spinners";
 
 const CustomIcon = (imgUrl) => (
   <Image
@@ -33,15 +31,36 @@ const CustomIcon = (imgUrl) => (
 );
 
 const Tasks = () => {
+  const { user, userProjects } = useContext(AppContext);
+  const { data: tasks } = useFetch(`/api/tasks/${user._id}`);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
+  const [taskSearch, settaskSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [projectFilter, setProjectFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+
+  if (!tasks) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   const openTaskDetail = (id) => {
-    const currentOpenedTask = tasks.find((task) => task.id === id);
+    const currentOpenedTask = tasks.find((task) => task._id === id);
     settask(currentOpenedTask);
     settaskDetailIsOpen(true);
   };
   const closeTaskDetail = () => settaskDetailIsOpen(false);
+
+  const clearFilter = () => {
+    settaskSearch("");
+    setStatusFilter("");
+    setProjectFilter("");
+    setCategoryFilter("");
+  };
 
   return (
     <Box className={classes.tasks_container}>
@@ -52,7 +71,12 @@ const Tasks = () => {
         <Typography fontWeight="bold" variant="h4">
           Tasks
         </Typography>
-        <TextField placeholder="Search Tasks..." label="Search" />
+        <TextField
+          placeholder="Search Tasks..."
+          label="Search"
+          onChange={(e) => settaskSearch(e.target.value)}
+          value={taskSearch}
+        />
         <div></div>
       </Box>
       <Box className={classes.tasks_mid}>
@@ -64,6 +88,8 @@ const Tasks = () => {
               inputProps={{ id: "status_select" }}
               IconComponent={() => CustomIcon("/images/graphic/status.png")} // Use the custom icon component
               label="Select Status"
+              onChange={(e) => setStatusFilter(e.target.value)}
+              value={statusFilter}
             >
               {StatusTasksSelect.map((status) => (
                 <MenuItem key={status.id} value={status.name}>
@@ -79,8 +105,10 @@ const Tasks = () => {
               IconComponent={() => CustomIcon("/images/graphic/layers.png")} // Use the custom icon component
               sx={{ width: "200px" }}
               label="Select Project"
+              onChange={(e) => setProjectFilter(e.target.value)}
+              value={projectFilter}
             >
-              {ProjectTasksSelect.map((status) => (
+              {userProjects.map((status) => (
                 <MenuItem key={status.id} value={status.name}>
                   {status.name}
                 </MenuItem>
@@ -94,6 +122,8 @@ const Tasks = () => {
               IconComponent={() => CustomIcon("/images/graphic/clipboard.png")} // Use the custom icon component
               sx={{ width: "200px" }}
               label="Select Category"
+              onChange={(e) => setCategoryFilter(e.target.value)}
+              value={categoryFilter}
             >
               {CategoryasksSelect.map((status) => (
                 <MenuItem key={status.id} value={status.name}>
@@ -104,13 +134,33 @@ const Tasks = () => {
           </FormControl>
         </div>
         <div>
-          <Button variant="contained">Clear Filter</Button>
+          <Button variant="contained" onClick={clearFilter}>
+            Clear Filter
+          </Button>
         </div>
       </Box>
       <Box className={classes.tasks_cards}>
-        {tasks.map((task) => (
-          <TaskKanban task={task} key={task.id} onClickView={openTaskDetail} />
-        ))}
+        {tasks
+          .filter((task) => {
+            const searchMatch = task.title
+              .toLowerCase()
+              .includes(taskSearch.toLowerCase());
+            const statusMatch =
+              statusFilter === "" || task.status === statusFilter;
+            const projectMatch =
+              projectFilter === "" || task.project.name === projectFilter;
+            const categoryMatch =
+              categoryFilter === "" || task.categories.includes(categoryFilter);
+
+            return searchMatch && statusMatch && projectMatch && categoryMatch;
+          })
+          .map((task) => (
+            <TaskKanban
+              task={task}
+              key={task._id}
+              onClickView={openTaskDetail}
+            />
+          ))}
       </Box>
     </Box>
   );
