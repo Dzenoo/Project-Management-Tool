@@ -10,14 +10,13 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import classes from "@/styles/projects/projects.module.css";
 import { useState } from "react";
+import { notFound } from "next/navigation";
 
 const ProjectCard = ({ project, getProjectById }) => {
   const { _id, image, name, description, status, startDate, finishDate } =
     project;
   const [statusSelect, setStatus] = useState(status);
   const projectTeam = getProjectById(_id);
-
-  console.log(projectTeam);
 
   const changeStatusHandler = async (e) => {
     const selectedStatus = e.target.value;
@@ -41,6 +40,7 @@ const ProjectCard = ({ project, getProjectById }) => {
       console.log(error.message);
     }
   };
+
   return (
     <Card className={classes.project_card}>
       <Box className={classes.project_top}>
@@ -89,7 +89,7 @@ const ProjectCard = ({ project, getProjectById }) => {
         </Typography>
       </Box>
       <Box className={classes.project_actions}>
-        {projectTeam.team.teamMembers.slice(0, 2).map((mb) => (
+        {projectTeam?.team.teamMembers.slice(0, 2).map((mb) => (
           <Tooltip title={mb.username} placement="top">
             <Image src={mb.image} width={60} height={60} alt={"img"} />
           </Tooltip>

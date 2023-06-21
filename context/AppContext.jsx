@@ -7,24 +7,12 @@ import { useRouter } from "next/navigation";
 
 export const AppContext = createContext();
 
-const todoTasks = tasks.filter((task) => task.status === "To Do");
-const doneTasks = tasks.filter((task) => task.status === "Done");
-const workTasks = tasks.filter((task) => task.status === "Work");
-const lagTasks = tasks.filter((task) => task.status === "Lag");
-
 const userInfo =
   typeof window !== "undefined"
     ? JSON.parse(localStorage.getItem("User"))
     : null;
 
 export const AppProvider = ({ children }) => {
-  const [columns, setColumns] = useState([
-    { id: "s1", title: "Todo", tasks: todoTasks, color: "#7638dc" },
-    { id: "s2", title: "Work", tasks: workTasks, color: "#daa000" },
-    { id: "s3", title: "Lag", tasks: lagTasks, color: "#ff4229" },
-    { id: "s4", title: "Done", tasks: doneTasks, color: "#1cc800" },
-  ]);
-
   const [projectInputValue, setprojectInputValue] = useState("");
   const { data: user, error } = useFetch(`/api/user/${userInfo.userId}`);
   const { data: projects, error: projectError } = useFetch("/api/projects/");
@@ -58,7 +46,6 @@ export const AppProvider = ({ children }) => {
         projectInputValue,
         handleProjectInput,
         getProjectById,
-        columns,
         user,
         isTeam,
         userProjects,

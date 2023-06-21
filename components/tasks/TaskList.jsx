@@ -17,7 +17,7 @@ const TaskList = ({ task, onClickView }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
-  const { id, name, assignee, dueDate, categories } = task;
+  const { _id, title, assignee, dueDate, categories } = task;
 
   const boxClasses = isOpenBox
     ? `${classes.open_details_box} ${classes.openBox}`
@@ -44,7 +44,7 @@ const TaskList = ({ task, onClickView }) => {
   return (
     <Card className={classes.card_task_list_type}>
       <Typography fontWeight="bold" variant="p">
-        {name}
+        {title}
       </Typography>
       <Box className={classes.card_task_details}>
         <Button onMouseEnter={openBox} onMouseLeave={closeBox}>
@@ -65,7 +65,7 @@ const TaskList = ({ task, onClickView }) => {
           </Button>
           <Button
             startIcon={viewIcon}
-            onClick={() => onClickView(id)}
+            onClick={() => onClickView(_id)}
             variant="outlined"
           >
             View Task

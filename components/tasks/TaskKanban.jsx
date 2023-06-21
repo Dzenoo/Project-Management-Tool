@@ -19,10 +19,10 @@ const Task = ({ task, onClickDelete, onClickView }) => {
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
   const {
-    id,
-    name,
-    assignee,
-    dueDate,
+    _id,
+    title,
+    assignedTo,
+    finishDate,
     description,
     categories,
     tags,
@@ -89,7 +89,7 @@ const Task = ({ task, onClickDelete, onClickView }) => {
           <Button
             startIcon={viewIcon}
             variant="outlined"
-            onClick={() => onClickView(id)}
+            onClick={() => onClickView(_id)}
           >
             View Task
           </Button>
@@ -97,11 +97,11 @@ const Task = ({ task, onClickDelete, onClickView }) => {
       </Box>
       <Box className={classes.task_info}>
         <Typography fontWeight="bold" variant="p">
-          {name}
+          {title}
         </Typography>
         <Typography color="textSecondary">{description}</Typography>
         <Typography color="textSecondary" fontWeight="bold">
-          To finish: {dueDate}
+          To finish: {new Date(finishDate).toDateString()}
         </Typography>
         <Box className={classes.task_tags}>
           {tags.map((tag) => (
@@ -113,8 +113,13 @@ const Task = ({ task, onClickDelete, onClickView }) => {
       </Box>
       <hr />
       <CardActions className={classes.task_actions} draggable="true">
-        <Tooltip title={assignee} placement="top">
-          <IconButton size="large" className={classes.iconBtn}></IconButton>
+        <Tooltip title={assignedTo.username} placement="top">
+          <Image
+            src={assignedTo.image}
+            width={40}
+            height={40}
+            alt={assignedTo.username}
+          />
         </Tooltip>
         <Box>
           <Image
@@ -123,7 +128,7 @@ const Task = ({ task, onClickDelete, onClickView }) => {
             height={30}
             alt="chat"
           />
-          {comments.length}
+          {/* {comments.length} */}
         </Box>
       </CardActions>
     </Card>

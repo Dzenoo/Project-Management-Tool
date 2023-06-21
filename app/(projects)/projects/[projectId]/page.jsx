@@ -29,7 +29,7 @@ const Project = ({ params }) => {
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
-  const { columns, getProjectById, user } = useContext(AppContext);
+  const { getProjectById, user } = useContext(AppContext);
   const { sendPostRequest, isLoading } = useHttpPost();
 
   const projectFav = user.favoritedProjects.find(
@@ -136,7 +136,6 @@ const Project = ({ params }) => {
           classes={classes}
           setisTypeTask={setisTypeTask}
           isTypeTask={isTypeTask}
-          columns={columns}
           openDetailsHandler={openTaskDetail}
           projectMb={project}
         />

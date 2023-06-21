@@ -3,15 +3,27 @@ import ListType from "@/components/tasks/ListType";
 import Image from "next/image";
 import { Box, Button } from "@mui/material";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const ProjectTasks = ({
   setisTypeTask,
   isTypeTask,
   classes,
   openDetailsHandler,
-  columns,
   projectMb,
 }) => {
+  const todoTasks = projectMb.tasks.filter((task) => task.status === "Todo");
+  const doneTasks = projectMb.tasks.filter((task) => task.status === "Done");
+  const workTasks = projectMb.tasks.filter((task) => task.status === "Work");
+  const lagTasks = projectMb.tasks.filter((task) => task.status === "Lag");
+
+  const [columns] = useState([
+    { id: "s1", title: "Todo", tasks: todoTasks, color: "#7638dc" },
+    { id: "s2", title: "Work", tasks: workTasks, color: "#daa000" },
+    { id: "s3", title: "Lag", tasks: lagTasks, color: "#ff4229" },
+    { id: "s4", title: "Done", tasks: doneTasks, color: "#1cc800" },
+  ]);
+
   return (
     <Box className={classes.main_tasks_dashboard}>
       <Box className={classes.show_actions}>
