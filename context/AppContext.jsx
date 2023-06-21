@@ -47,8 +47,6 @@ export const AppProvider = ({ children }) => {
     return [...acc, ...teamProjects];
   }, []);
 
-  console.log(userProjects);
-
   const handleProjectInput = (e) => setprojectInputValue(e.target.value);
 
   const getProjectById = (id) => {

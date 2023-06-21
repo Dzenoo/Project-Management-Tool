@@ -21,6 +21,7 @@ import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
+import { notFound, useRouter } from "next/navigation";
 
 export async function generateStaticParams() {
   const projects = await fetch("/api/projects");
@@ -35,7 +36,6 @@ const deleteIcon = (
 );
 
 const Project = ({ params }) => {
-  const [isOpenBox, setisOpenBox] = useState(false);
   const [isTypeTask, setisTypeTask] = useState("kanban");
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
@@ -74,6 +74,10 @@ const Project = ({ params }) => {
     );
   }
 
+  if (!project) {
+    notFound();
+  }
+
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>
       {taskDetailIsOpen && (
@@ -98,21 +102,6 @@ const Project = ({ params }) => {
               alt="lg"
             />
           </Button>
-          <Button onClick={() => setisOpenBox((prevState) => !prevState)}>
-            <Image
-              src="/images/graphic/option.png"
-              width={30}
-              height={30}
-              alt="lg"
-            />
-          </Button>
-          {isOpenBox && (
-            <Card className={classes.main_options}>
-              <Button startIcon={deleteIcon} variant="outlined" color="error">
-                Delete Project
-              </Button>
-            </Card>
-          )}
         </Box>
       </Box>
       <Box className={classes.main_information}>
@@ -137,7 +126,7 @@ const Project = ({ params }) => {
           </Button>
         </Box>
         <Box className={classes.main_tooltip}>
-          {project.team.teamMembers.slice(0, 2).map((mb) => (
+          {project?.team.teamMembers.slice(0, 2).map((mb) => (
             <Tooltip title={mb.username} placement="top" key={mb}>
               <Image
                 src={mb.image}
