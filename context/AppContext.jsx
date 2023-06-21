@@ -1,9 +1,7 @@
 "use client";
 import { createContext, useState } from "react";
-import { tasks } from "@/data/tasks.jsonData.config.json";
 import { useFetch } from "@/hooks/Http/useFetch";
 import { ClipLoader } from "react-spinners";
-import { useRouter } from "next/navigation";
 
 export const AppContext = createContext();
 
@@ -14,9 +12,8 @@ const userInfo =
 
 export const AppProvider = ({ children }) => {
   const [projectInputValue, setprojectInputValue] = useState("");
-  const { data: user, error } = useFetch(`/api/user/${userInfo.userId}`);
-  const { data: projects, error: projectError } = useFetch("/api/projects/");
-  const router = useRouter();
+  const { data: user } = useFetch(`/api/user/${userInfo.userId}`);
+  const { data: projects } = useFetch("/api/projects/");
 
   if (!user || !projects) {
     return (
