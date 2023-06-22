@@ -13,6 +13,7 @@ import ProjectFiles from "@/components/projects/details/ProjectFiles";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import { useRouter } from "next/navigation";
 import { ClipLoader } from "react-spinners";
 import { notFound } from "next/navigation";
 
@@ -31,12 +32,19 @@ const Project = ({ params }) => {
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
-  const { getProjectById, user } = useContext(AppContext);
+  const { getProjectById, user, isLoggedIn } = useContext(AppContext);
   const { sendPostRequest, isLoading } = useHttpPost();
 
   useEffect(() => {
     localStorage.setItem("typeTask", JSON.stringify(isTypeTask));
   }, [isTypeTask, setisTypeTask]);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace("/login");
+    }
+  }, []);
 
   const projectFav = user.favoritedProjects.find(
     (favProject) => favProject.id.toString() === params.projectId

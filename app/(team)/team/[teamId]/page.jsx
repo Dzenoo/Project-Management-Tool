@@ -14,17 +14,18 @@ import {
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainModal from "@/components/shared/MainModal";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { ClipLoader } from "react-spinners";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
+import { useRouter } from "next/navigation";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 
 const TeamDetail = ({ params }) => {
-  const { user } = useContext(AppContext);
+  const { user, isLoggedIn } = useContext(AppContext);
   const team = user.teams.find((team) => team._id === params.teamId);
   const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
@@ -33,8 +34,15 @@ const TeamDetail = ({ params }) => {
   const { sendPostRequest, isLoading } = useHttpPost();
   const closeInviteModal = () => setisOpenInviteModal(false);
   const openInviteModal = () => setisOpenInviteModal(true);
+  const router = useRouter();
 
   const username = useValidation([VALIDATOR_REQUIRE()]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace("/login");
+    }
+  }, []);
 
   const submitInvite = async (e) => {
     e.preventDefault();
@@ -135,14 +143,6 @@ const TeamDetail = ({ params }) => {
               Table View
             </Button>
           </div>
-          <Button>
-            <Image
-              src={"/images/graphic/option.png"}
-              width={30}
-              height={30}
-              alt="options"
-            />
-          </Button>
         </div>
         <div className={classes.team_details_content}>
           <TextField

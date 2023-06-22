@@ -13,18 +13,17 @@ import { useFetch } from "@/hooks/Http/useFetch";
 import { ClipLoader } from "react-spinners";
 
 export default function Dashboard() {
-  const router = useRouter();
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  const { userProjects, user } = useContext(AppContext);
+  const { userProjects, user, isLoggedIn } = useContext(AppContext);
   const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
+  const router = useRouter();
 
-  const finished = userProjects.filter((p) => p.status === "Finished");
-  const cancelled = userProjects.filter((p) => p.status === "Cancelled");
-  const progress = userProjects.filter((p) => p.status === "In Progress");
+  const finished = userProjects?.filter((p) => p.status === "Finished");
+  const cancelled = userProjects?.filter((p) => p.status === "Cancelled");
+  const progress = userProjects?.filter((p) => p.status === "In Progress");
 
   useEffect(() => {
-    if (!userInfo?.token) {
-      router.replace("/login");
+    if (!isLoggedIn) {
+      router.push("/login");
     }
   }, []);
 

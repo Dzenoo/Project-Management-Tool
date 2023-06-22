@@ -13,7 +13,11 @@ const Login = () => {
   const { login } = useAuth();
   const { sendPostRequest, isLoading } = useHttpPost();
   const router = useRouter();
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  const user =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user"))
+      : null;
 
   useEffect(() => {
     if (user?.token) {

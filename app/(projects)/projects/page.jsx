@@ -5,12 +5,22 @@ import classes from "@/styles/projects/projects.module.css";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
+import { useRouter } from "next/navigation";
 
 const Projects = () => {
-  const { projectInputValue, userProjects, getProjectById } =
+  const { projectInputValue, userProjects, getProjectById, isLoggedIn } =
     useContext(AppContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace("/login");
+    }
+  }, []);
 
   useEffect(() => {}, [userProjects]);
+
+  console.log(isLoggedIn);
 
   return (
     <Container maxWidth="xl" className={classes.projects_container}>

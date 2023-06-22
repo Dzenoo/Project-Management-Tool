@@ -33,7 +33,6 @@ export const POST = async (request) => {
       JSON.stringify({ token: token, userId: existingUser._id }),
       { status: 200 }
     );
-    return response("Logged In", 200);
   } catch (error) {
     console.log(error);
     return response("Internal Server Error", 500);
