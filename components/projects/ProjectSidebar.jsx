@@ -55,60 +55,67 @@ const ProjectSidebar = () => {
             />
           </div>
         )}
-        <CardContent className={classes.project_types}>
-          {/* FAVORITES */}
-          <ListItemButton
-            className={classes.hover_favorites}
-            onClick={() => setOpenFavorites((prevState) => !prevState)}
-          >
-            <ListItemText>
-              <Typography fontWeight="bold" color="#FFD700">
-                Favorites
-              </Typography>
-            </ListItemText>
-          </ListItemButton>
-          <Collapse in={openFavorites} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemText sx={{ pl: 2 }}>
-                {user.favoritedProjects.map((fp) => (
-                  <Link href={`/projects/${fp.id}`} key={fp.id}>
-                    <ListItemButton>
-                      <Typography variant="p" color="textSecondary">
-                        {fp.name}
-                      </Typography>
-                    </ListItemButton>
-                  </Link>
-                ))}
+        {!isTeam && (
+          <Typography textAlign="center">
+            Create a team to get access to projects
+          </Typography>
+        )}
+        {isTeam && (
+          <CardContent className={classes.project_types}>
+            {/* FAVORITES */}
+            <ListItemButton
+              className={classes.hover_favorites}
+              onClick={() => setOpenFavorites((prevState) => !prevState)}
+            >
+              <ListItemText>
+                <Typography fontWeight="bold" color="#FFD700">
+                  Favorites
+                </Typography>
               </ListItemText>
-            </List>
-          </Collapse>
-          {/* ALL PROJECTS */}
-          <ListItemButton
-            className={classes.hover_all}
-            onClick={() => setOpenAllProjects((prevState) => !prevState)}
-          >
-            <ListItemText>
-              <Typography fontWeight="bold" color="#4CAF50">
-                All Projects
-              </Typography>
-            </ListItemText>
-          </ListItemButton>
-          <Collapse in={openAllProjects} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemText sx={{ pl: 2 }}>
-                {userProjects.map((fp) => (
-                  <Link href={`/projects/${fp._id}`} key={fp._id}>
-                    <ListItemButton>
-                      <Typography variant="p" color="textSecondary">
-                        {fp.name}
-                      </Typography>
-                    </ListItemButton>
-                  </Link>
-                ))}
+            </ListItemButton>
+            <Collapse in={openFavorites} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemText sx={{ pl: 2 }}>
+                  {user.favoritedProjects.map((fp) => (
+                    <Link href={`/projects/${fp.id}`} key={fp.id}>
+                      <ListItemButton>
+                        <Typography variant="p" color="textSecondary">
+                          {fp.name}
+                        </Typography>
+                      </ListItemButton>
+                    </Link>
+                  ))}
+                </ListItemText>
+              </List>
+            </Collapse>
+            {/* ALL PROJECTS */}
+            <ListItemButton
+              className={classes.hover_all}
+              onClick={() => setOpenAllProjects((prevState) => !prevState)}
+            >
+              <ListItemText>
+                <Typography fontWeight="bold" color="#4CAF50">
+                  All Projects
+                </Typography>
               </ListItemText>
-            </List>
-          </Collapse>
-        </CardContent>
+            </ListItemButton>
+            <Collapse in={openAllProjects} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemText sx={{ pl: 2 }}>
+                  {userProjects.map((fp) => (
+                    <Link href={`/projects/${fp._id}`} key={fp._id}>
+                      <ListItemButton>
+                        <Typography variant="p" color="textSecondary">
+                          {fp.name}
+                        </Typography>
+                      </ListItemButton>
+                    </Link>
+                  ))}
+                </ListItemText>
+              </List>
+            </Collapse>
+          </CardContent>
+        )}
       </Box>
       {isTeam && (
         <CardActions>
