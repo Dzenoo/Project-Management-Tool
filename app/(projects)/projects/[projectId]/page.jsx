@@ -114,26 +114,38 @@ const Project = ({ params }) => {
         <Box>
           <Button
             onClick={() => settypeOfProjectDetail("discussion")}
-            variant={typeOfProjectDetail === "discussion" && "contained"}
+            sx={
+              typeOfProjectDetail === "discussion" && {
+                borderBottom: "4px solid royalblue",
+              }
+            }
           >
             Discussion
           </Button>
           <Button
             onClick={() => settypeOfProjectDetail("tasks")}
-            variant={typeOfProjectDetail === "tasks" && "contained"}
+            sx={
+              typeOfProjectDetail === "tasks" && {
+                borderBottom: "4px solid royalblue",
+              }
+            }
           >
             Tasks
           </Button>
           <Button
             onClick={() => settypeOfProjectDetail("files")}
-            variant={typeOfProjectDetail === "files" && "contained"}
+            sx={
+              typeOfProjectDetail === "files" && {
+                borderBottom: "4px solid royalblue",
+              }
+            }
           >
             Files
           </Button>
         </Box>
         <Box className={classes.main_tooltip}>
           {project?.team.teamMembers.slice(0, 2).map((mb) => (
-            <Tooltip title={mb.username} placement="top" key={mb}>
+            <Tooltip title={mb.username} placement="top" key={mb.username}>
               <Image
                 src={mb.image}
                 width={60}

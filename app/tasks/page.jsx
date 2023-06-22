@@ -32,7 +32,7 @@ const CustomIcon = (imgUrl) => (
 );
 
 const Tasks = () => {
-  const { user, userProjects, isLoggedIn } = useContext(AppContext);
+  const { user, userProjects, isLoggedIn, isTeam } = useContext(AppContext);
   const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
@@ -117,7 +117,7 @@ const Tasks = () => {
               value={projectFilter}
             >
               {userProjects.map((status) => (
-                <MenuItem key={status.id} value={status.name}>
+                <MenuItem key={status._id} value={status.name}>
                   {status.name}
                 </MenuItem>
               ))}
@@ -147,29 +147,41 @@ const Tasks = () => {
           </Button>
         </div>
       </Box>
-      <Box className={classes.tasks_cards}>
-        {tasks
-          .filter((task) => {
-            const searchMatch = task.title
-              .toLowerCase()
-              .includes(taskSearch.toLowerCase());
-            const statusMatch =
-              statusFilter === "" || task.status === statusFilter;
-            const projectMatch =
-              projectFilter === "" || task.project.name === projectFilter;
-            const categoryMatch =
-              categoryFilter === "" || task.categories.includes(categoryFilter);
+      {!isTeam && (
+        <Typography textAlign="center">Be in team to have tasks</Typography>
+      )}
+      {isTeam && (
+        <Box className={classes.tasks_cards}>
+          {tasks.length > 0 ? (
+            tasks
+              .filter((task) => {
+                const searchMatch = task.title
+                  .toLowerCase()
+                  .includes(taskSearch.toLowerCase());
+                const statusMatch =
+                  statusFilter === "" || task.status === statusFilter;
+                const projectMatch =
+                  projectFilter === "" || task.project.name === projectFilter;
+                const categoryMatch =
+                  categoryFilter === "" ||
+                  task.categories.includes(categoryFilter);
 
-            return searchMatch && statusMatch && projectMatch && categoryMatch;
-          })
-          .map((task) => (
-            <TaskKanban
-              task={task}
-              key={task._id}
-              onClickView={openTaskDetail}
-            />
-          ))}
-      </Box>
+                return (
+                  searchMatch && statusMatch && projectMatch && categoryMatch
+                );
+              })
+              .map((task) => (
+                <TaskKanban
+                  task={task}
+                  key={task._id}
+                  onClickView={openTaskDetail}
+                />
+              ))
+          ) : (
+            <Typography textAlign="center">No Tasks yet</Typography>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };

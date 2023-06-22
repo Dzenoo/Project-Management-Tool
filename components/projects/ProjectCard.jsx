@@ -17,8 +17,6 @@ const ProjectCard = ({ project, getProjectById }) => {
   const [statusSelect, setStatus] = useState(status);
   const projectTeam = getProjectById(_id);
 
-  console.log(projectTeam);
-
   const changeStatusHandler = async (e) => {
     const selectedStatus = e.target.value;
     setStatus(selectedStatus);
@@ -89,8 +87,8 @@ const ProjectCard = ({ project, getProjectById }) => {
         </Typography>
       </Box>
       <Box className={classes.project_actions}>
-        {projectTeam.team.teamMembers.slice(0, 2).map((mb) => (
-          <Tooltip title={mb.username} placement="top">
+        {projectTeam?.team.teamMembers.slice(0, 2).map((mb) => (
+          <Tooltip title={mb.username} placement="top" key={mb.username}>
             <Image src={mb.image} width={60} height={60} alt={"img"} />
           </Tooltip>
         ))}

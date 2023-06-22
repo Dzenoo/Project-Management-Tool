@@ -75,10 +75,10 @@ const ProjectOverview = ({ totalProjects, completed, progress, out }) => {
 };
 
 ProjectOverview.propTypes = {
-  totalProjects: PropTypes.string,
-  completed: PropTypes.string,
-  progress: PropTypes.string,
-  out: PropTypes.string,
+  totalProjects: PropTypes.number.isRequired,
+  completed: PropTypes.number.isRequired,
+  progress: PropTypes.number.isRequired,
+  out: PropTypes.number.isRequired,
 };
 
 export default ProjectOverview;

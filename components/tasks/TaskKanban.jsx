@@ -29,8 +29,6 @@ const Task = ({ task, onClickView }) => {
     comments,
   } = task;
 
-  console.log(project);
-
   const dragStartHandler = (e) => {
     e.dataTransfer.setData("taskId", _id);
   };

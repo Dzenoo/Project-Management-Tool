@@ -43,10 +43,10 @@ export default function Dashboard() {
       <Grid container padding={2}>
         <Grid item xl={12}>
           <ProjectOverview
-            totalProjects={userProjects.length}
-            completed={finished.length}
-            progress={progress.length}
-            out={cancelled.length}
+            totalProjects={userProjects?.length}
+            completed={finished?.length}
+            progress={progress?.length}
+            out={cancelled?.length}
           />
         </Grid>
         <Grid item xl={3} paddingTop={2}>

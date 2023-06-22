@@ -6,7 +6,6 @@ export const POST = async (request, { params }) => {
   try {
     const { status } = await request.json();
 
-    console.log(status);
     if (!status) {
       return response("Invalid input: status is required", 400);
     }

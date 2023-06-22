@@ -51,7 +51,7 @@ const TeamsCard = () => {
       {selectValue !== "" && (
         <Box className={classes.team_cards}>
           {team?.teamMembers.map((tm) => (
-            <Card className={classes.team_card}>
+            <Card className={classes.team_card} key={tm._id}>
               <Image src={tm.image} width={120} height={120} alt="img" />
               <Box className={classes.team_card_box}>
                 <div>

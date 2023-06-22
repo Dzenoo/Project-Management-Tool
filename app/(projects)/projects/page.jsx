@@ -20,8 +20,6 @@ const Projects = () => {
 
   useEffect(() => {}, [userProjects]);
 
-  console.log(isLoggedIn);
-
   return (
     <Container maxWidth="xl" className={classes.projects_container}>
       {userProjects.length === 0 ? (
@@ -32,7 +30,11 @@ const Projects = () => {
         userProjects
           .filter((p) => p.name.toLowerCase().includes(projectInputValue))
           .map((pr) => (
-            <ProjectCard project={pr} getProjectById={getProjectById} />
+            <ProjectCard
+              key={pr._id}
+              project={pr}
+              getProjectById={getProjectById}
+            />
           ))
       )}
     </Container>

@@ -65,11 +65,11 @@ const MainNavigation = () => {
                   height={30}
                   alt="dashboard"
                 />
-                <Link href="/" className={classes.menu_wider}>
+                <span className={classes.menu_wider}>
                   <Typography variant="p" fontWeight="bold">
                     Dashboard
                   </Typography>
-                </Link>
+                </span>
               </MenuItem>
             </Link>
             <Link href="/projects">
@@ -80,11 +80,11 @@ const MainNavigation = () => {
                   height={30}
                   alt="projects"
                 />
-                <Link href="/projects" className={classes.menu_wider}>
+                <span className={classes.menu_wider}>
                   <Typography variant="p" fontWeight="bold">
                     Projects
                   </Typography>
-                </Link>
+                </span>
               </MenuItem>
             </Link>
             <Link href="/tasks">
@@ -95,11 +95,11 @@ const MainNavigation = () => {
                   height={30}
                   alt="tasks"
                 />
-                <Link href="/tasks" className={classes.menu_wider}>
+                <span className={classes.menu_wider}>
                   <Typography variant="p" fontWeight="bold">
                     Tasks
                   </Typography>
-                </Link>
+                </span>
               </MenuItem>
             </Link>
             <Link href="/notifications">
@@ -110,11 +110,11 @@ const MainNavigation = () => {
                   height={30}
                   alt="notifications"
                 />
-                <Link href="/notifications" className={classes.menu_wider}>
+                <span className={classes.menu_wider}>
                   <Typography variant="p" fontWeight="bold">
                     Notifications
                   </Typography>
-                </Link>
+                </span>
               </MenuItem>
             </Link>
             <Link href="/team">
@@ -125,11 +125,11 @@ const MainNavigation = () => {
                   height={30}
                   alt="team"
                 />
-                <Link href="/team" className={classes.menu_wider}>
+                <span className={classes.menu_wider}>
                   <Typography variant="p" fontWeight="bold">
                     Team
                   </Typography>
-                </Link>
+                </span>
               </MenuItem>
             </Link>
             <Link href="/settings">
@@ -140,11 +140,11 @@ const MainNavigation = () => {
                   height={30}
                   alt="settings"
                 />
-                <Link href="/settings" className={classes.menu_wider}>
+                <span className={classes.menu_wider}>
                   <Typography variant="p" fontWeight="bold">
                     Settings
                   </Typography>
-                </Link>
+                </span>
               </MenuItem>
             </Link>
           </MenuList>

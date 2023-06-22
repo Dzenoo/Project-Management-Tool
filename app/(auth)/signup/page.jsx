@@ -30,7 +30,6 @@ const Signup = () => {
       "POST",
       enteredData
     );
-    console.log(response);
 
     if (response.token) {
       login(response.token);

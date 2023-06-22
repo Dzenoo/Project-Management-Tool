@@ -32,7 +32,7 @@ const Notifications = () => {
         {user.notifications.map((not) => {
           return (
             <NotificationCard
-              key={not.id}
+              key={not._id}
               title={not.message}
               time={new Date(not.date).toLocaleDateString()}
               image={not.image}
