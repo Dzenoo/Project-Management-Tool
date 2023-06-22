@@ -7,14 +7,13 @@ import {
   Button,
   Card,
   CardActions,
-  IconButton,
   Tooltip,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
-const Task = ({ task, onClickDelete, onClickView }) => {
+const Task = ({ task, onClickView }) => {
   const [isOpenBox, setisOpenBox] = useState(false);
   const openBox = () => setisOpenBox(true);
   const closeBox = () => setisOpenBox(false);
@@ -26,11 +25,18 @@ const Task = ({ task, onClickDelete, onClickView }) => {
     description,
     categories,
     tags,
+    project,
     comments,
   } = task;
 
+  console.log(project);
+
   const dragStartHandler = (e) => {
     e.dataTransfer.setData("taskId", _id);
+  };
+
+  const deleteTask = async () => {
+    await fetch(`/api/tasks/${_id}`, { method: "DELETE" });
   };
 
   const boxClasses = isOpenBox
@@ -91,7 +97,12 @@ const Task = ({ task, onClickDelete, onClickView }) => {
           onMouseEnter={openBox}
           onMouseLeave={closeBox}
         >
-          <Button startIcon={deleteIcon} variant="outlined" color="error">
+          <Button
+            startIcon={deleteIcon}
+            onClick={deleteTask}
+            variant="outlined"
+            color="error"
+          >
             Delete Task
           </Button>
           <Button
@@ -107,7 +118,9 @@ const Task = ({ task, onClickDelete, onClickView }) => {
         <Typography fontWeight="bold" variant="p">
           {title}
         </Typography>
-        <Typography color="textSecondary">{description}</Typography>
+        <Typography color="textSecondary" style={{ wordBreak: "break-word" }}>
+          {description}
+        </Typography>
         <Typography color="textSecondary" fontWeight="bold">
           To finish: {new Date(finishDate).toDateString()}
         </Typography>

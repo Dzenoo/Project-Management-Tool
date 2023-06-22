@@ -32,7 +32,7 @@ const CustomIcon = (imgUrl) => (
 
 const Tasks = () => {
   const { user, userProjects } = useContext(AppContext);
-  const { data: tasks } = useFetch(`/api/tasks/${user._id}`);
+  const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [taskSearch, settaskSearch] = useState("");
