@@ -7,6 +7,12 @@
   overflow-y: scroll;
 }
 
+.settings_control {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .settings_wrapper .gradient {
   height: 200px;
   background: linear-gradient(to top right, #00caca, blue);

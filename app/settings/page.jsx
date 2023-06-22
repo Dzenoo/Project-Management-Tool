@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 
 const Settings = () => {
   const [isMode, setisMode] = useState("details");
+  const [isEditing, setisEditing] = useState(false);
   const { user, isLoggedIn } = useContext(AppContext);
   const router = useRouter();
 
@@ -20,21 +21,23 @@ const Settings = () => {
     }
   }, []);
 
+  const submitEdit = async (data) => {
+    console.log(data);
+    try {
+      // const response = await fetch("");
+    } catch (error) {}
+  };
+
   return (
     <div className={classes.settings_wrapper}>
       <div className={classes.gradient}></div>
       <div className={classes.settings_top}>
-        <Image
-          src="https://res.cloudinary.com/dzwb60tk1/image/upload/v1678535834/Untitled_design_3_zbm2cx.png"
-          width={200}
-          height={200}
-          alt="img"
-        />
+        <Image src={user.image} width={200} height={200} alt={user.username} />
         <div>
           <Typography variant="h4" fontWeight="bold">
-            Settings
+            {user.username}
           </Typography>
-          <Typography color="textSecondary">johndoe@gmail.com</Typography>
+          <Typography color="textSecondary">{user.email}</Typography>
         </div>
       </div>
       <div className={classes.settings_tabs}>
@@ -50,9 +53,20 @@ const Settings = () => {
         >
           Password
         </Button>
+        <Button onClick={() => setisEditing(!isEditing)} variant="contained">
+          {isEditing ? "Cancel" : "Edit"}
+        </Button>
       </div>
       <div className={classes.settings_content}>
-        {isMode === "details" ? <MyDetails /> : <MyPassword />}
+        {isMode === "details" ? (
+          <MyDetails
+            user={user}
+            isEditing={isEditing}
+            submitEditing={submitEdit}
+          />
+        ) : (
+          <MyPassword />
+        )}
       </div>
     </div>
   );
