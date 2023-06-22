@@ -15,6 +15,8 @@ export const AppProvider = ({ children }) => {
   const { data: user } = useFetch(`/api/user/${userInfo.userId}`);
   const { data: projects } = useFetch("/api/projects/");
 
+  console.log(user);
+
   if (!user || !projects) {
     return (
       <div className="loader_wrapper">

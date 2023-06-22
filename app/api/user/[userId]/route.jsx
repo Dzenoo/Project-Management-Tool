@@ -1,7 +1,5 @@
 import { connectToDB } from "@/lib/database";
 import { response } from "@/lib/response";
-import Project from "@/models/projects/project";
-import Team from "@/models/shared/Team";
 import User from "@/models/user/user";
 
 export const GET = async (request, { params }) => {
