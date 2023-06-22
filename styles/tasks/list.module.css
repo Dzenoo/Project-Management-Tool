@@ -29,6 +29,7 @@
   justify-content: space-between;
   padding: 12px 20px;
   overflow: visible !important;
+  cursor: move;
 }
 
 .card_task_list_type .card_task_details {

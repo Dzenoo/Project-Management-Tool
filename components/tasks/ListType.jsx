@@ -30,6 +30,22 @@ const ListType = ({ columns, projectMb, openDetailsHandler }) => {
     } catch (error) {}
   };
 
+  const dropHandler = async (e, status) => {
+    e.preventDefault();
+    const taskId = e.dataTransfer.getData("taskId");
+
+    const data = {
+      status,
+      taskId,
+    };
+
+    await sendPostRequest("/api/tasks/update", "POST", data);
+  };
+
+  const dragOverHandler = (e) => {
+    e.preventDefault();
+  };
+
   if (isLoading) {
     return (
       <div className="loader_wrapper">
@@ -50,7 +66,12 @@ const ListType = ({ columns, projectMb, openDetailsHandler }) => {
       />
       <Box className={classes.list_tasks_container}>
         {columns.map((li) => (
-          <Box key={li.id} className={classes.list_task_status}>
+          <Box
+            key={li.id}
+            className={classes.list_task_status}
+            onDrop={(e) => dropHandler(e, li.title)}
+            onDragOver={dragOverHandler}
+          >
             <Box className={classes.list_task_add}>
               <Typography color={li.color} variant="p" fontWeight="bold">
                 {li.title}

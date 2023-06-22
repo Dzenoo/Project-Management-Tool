@@ -19,6 +19,10 @@ const TaskList = ({ task, onClickView }) => {
   const closeBox = () => setisOpenBox(false);
   const { _id, title, assignedTo, finishDate, categories } = task;
 
+  const dragStartHandler = (e) => {
+    e.dataTransfer.setData("taskId", _id);
+  };
+
   const boxClasses = isOpenBox
     ? `${classes.open_details_box} ${classes.openBox}`
     : `${classes.open_details_box}`;
@@ -42,7 +46,11 @@ const TaskList = ({ task, onClickView }) => {
   );
 
   return (
-    <Card className={classes.card_task_list_type}>
+    <Card
+      className={classes.card_task_list_type}
+      onDragStart={dragStartHandler}
+      draggable="true"
+    >
       <Typography fontWeight="bold" variant="p">
         {title}
       </Typography>
