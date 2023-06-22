@@ -3,7 +3,7 @@
 "use client";
 
 import { tasks } from "@/data/tasks.jsonData.config.json";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Box, Button, Container, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/projects/projects.module.css";
@@ -25,12 +25,18 @@ export async function generateStaticParams() {
 }
 
 const Project = ({ params }) => {
-  const [isTypeTask, setisTypeTask] = useState("kanban");
+  const [isTypeTask, setisTypeTask] = useState(
+    JSON.parse(localStorage.getItem("typeTask"))
+  );
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
   const { getProjectById, user } = useContext(AppContext);
   const { sendPostRequest, isLoading } = useHttpPost();
+
+  useEffect(() => {
+    localStorage.setItem("typeTask", JSON.stringify(isTypeTask));
+  }, [isTypeTask, setisTypeTask]);
 
   const projectFav = user.favoritedProjects.find(
     (favProject) => favProject.id.toString() === params.projectId
@@ -66,8 +72,6 @@ const Project = ({ params }) => {
   if (!project) {
     notFound();
   }
-
-  console.log(project);
 
   return (
     <Container maxWidth="xl" className={classes.main_project_details}>

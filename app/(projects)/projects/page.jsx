@@ -3,12 +3,14 @@
 import { Container, Typography } from "@mui/material";
 import classes from "@/styles/projects/projects.module.css";
 import ProjectCard from "@/components/projects/ProjectCard";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
 
 const Projects = () => {
   const { projectInputValue, userProjects, getProjectById } =
     useContext(AppContext);
+
+  useEffect(() => {}, [userProjects]);
 
   return (
     <Container maxWidth="xl" className={classes.projects_container}>

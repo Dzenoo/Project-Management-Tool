@@ -18,19 +18,15 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import Link from "next/link";
-import { projects } from "@/data/projects.jsonData.config.json";
 import { AppContext } from "@/context/AppContext";
 import { usePathname } from "next/navigation";
 
 const ProjectSidebar = () => {
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
-  const [openArchived, setOpenArchived] = useState(true);
   const { handleProjectInput, isTeam, userProjects, user } =
     useContext(AppContext);
   const pathname = usePathname();
-  const favoritedProjects = projects.filter((p) => p.type === "Favorites");
-  const archivedProjects = projects.filter((p) => p.type === "Archived");
 
   return (
     <Card className={classes.projects_sidebar}>
