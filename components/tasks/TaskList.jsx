@@ -55,14 +55,6 @@ const TaskList = ({ task, onClickView }) => {
         {title}
       </Typography>
       <Box className={classes.card_task_details}>
-        <Button onMouseEnter={openBox} onMouseLeave={closeBox}>
-          <Image
-            src="/images/graphic/option.png"
-            width={30}
-            height={30}
-            alt="option"
-          />
-        </Button>
         <Card
           className={boxClasses}
           onMouseLeave={closeBox}
@@ -79,11 +71,6 @@ const TaskList = ({ task, onClickView }) => {
             View Task
           </Button>
         </Card>
-        <Box>
-          <Tooltip title={assignedTo.username} placement="top">
-            <Image src={assignedTo.image} width={30} height={30} alt="img" />
-          </Tooltip>
-        </Box>
         <Box className={classes.card_task_categories}>
           {categories.map((ca) => (
             <Box
@@ -101,10 +88,23 @@ const TaskList = ({ task, onClickView }) => {
           ))}
         </Box>
         <Box>
+          <Tooltip title={assignedTo.username} placement="top">
+            <Image src={assignedTo.image} width={30} height={30} alt="img" />
+          </Tooltip>
+        </Box>
+        <Box>
           <Typography color="textSecondary" fontWeight="bold">
             {new Date(finishDate).toDateString()}
           </Typography>
         </Box>
+        <Button onMouseEnter={openBox} onMouseLeave={closeBox}>
+          <Image
+            src="/images/graphic/option.png"
+            width={30}
+            height={30}
+            alt="option"
+          />
+        </Button>
       </Box>
     </Card>
   );
