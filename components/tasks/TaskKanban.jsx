@@ -26,7 +26,7 @@ const Task = ({ task, onClickView }) => {
     categories,
     tags,
     project,
-    comments,
+    messages,
   } = task;
 
   const dragStartHandler = (e) => {
@@ -147,7 +147,7 @@ const Task = ({ task, onClickView }) => {
             height={30}
             alt="chat"
           />
-          {/* {comments.length} */}
+          {messages.length}
         </Box>
       </CardActions>
     </Card>

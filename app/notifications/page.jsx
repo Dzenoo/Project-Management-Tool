@@ -29,6 +29,9 @@ const Notifications = () => {
         </Typography>
       </Box>
       <Box className={classes.notifications_cards}>
+        {user.notifications.length === 0 && (
+          <Typography textAlign="center">No New Notifications</Typography>
+        )}
         {user.notifications.map((not) => {
           return (
             <NotificationCard

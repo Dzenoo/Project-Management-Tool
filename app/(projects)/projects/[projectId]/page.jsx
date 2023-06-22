@@ -1,8 +1,5 @@
-// @refresh disable
-
 "use client";
 
-import { tasks } from "@/data/tasks.jsonData.config.json";
 import { useContext, useEffect, useState } from "react";
 import { Box, Button, Container, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
@@ -39,6 +36,8 @@ const Project = ({ params }) => {
     localStorage.setItem("typeTask", JSON.stringify(isTypeTask));
   }, [isTypeTask, setisTypeTask]);
   const router = useRouter();
+
+  useEffect(() => {}, [task, settask]);
 
   useEffect(() => {
     if (!isLoggedIn) {

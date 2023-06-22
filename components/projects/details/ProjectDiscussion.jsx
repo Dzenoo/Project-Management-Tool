@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProjectDiscussion = () => {
-  return <div>ProjectDiscussion</div>;
+  return <div>In the process</div>;
 };
 
 export default ProjectDiscussion;

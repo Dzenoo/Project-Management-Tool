@@ -2,6 +2,33 @@ import { connectToDB } from "@/lib/database";
 import { response } from "@/lib/response";
 import Project from "@/models/projects/project";
 import Task from "@/models/task/Task";
+import User from "@/models/user/user";
+
+export const POST = async (request, { params }) => {
+  try {
+    await connectToDB();
+
+    const { message, userId } = await request.json();
+
+    const task = await Task.findById(params.taskId);
+    const user = await User.findById(userId);
+
+    const createdMessage = {
+      message,
+      username: user.username,
+      image: user.image,
+    };
+
+    task.messages.push(createdMessage);
+
+    await task.save();
+
+    return response("Commented successfully!", 200);
+  } catch (error) {
+    console.log(error);
+    return response("Internal Server Error", 500);
+  }
+};
 
 export const DELETE = async (request, { params }) => {
   try {

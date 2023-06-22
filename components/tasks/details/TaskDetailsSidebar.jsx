@@ -2,26 +2,52 @@ import {
   Box,
   Button,
   Card,
-  IconButton,
   TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
 import classes from "@/styles/projects/projects.module.css";
 import Image from "next/image";
+import { useValidation } from "@/hooks/Auth/useValidation";
+import { VALIDATOR_REQUIRE } from "@/utils/validators";
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
+import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import { ClipLoader } from "react-spinners";
 
 const TaskDetailsSidebar = ({ task, onClose }) => {
   const {
-    id,
+    _id,
     title,
     assignedTo,
     finishDate,
     description,
     categories,
     tags,
-    // comments,
+    messages,
     status,
   } = task;
+
+  const comment = useValidation([VALIDATOR_REQUIRE()]);
+  const { sendPostRequest, isLoading } = useHttpPost();
+  const { user } = useContext(AppContext);
+
+  const postComment = async (e) => {
+    e.preventDefault();
+    const data = {
+      message: comment.value,
+      userId: user._id,
+    };
+    await sendPostRequest(`/api/tasks/${_id}`, "POST", data);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   const EditIcon = (
     <Image
@@ -31,9 +57,7 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
       alt="icon"
     />
   );
-  const ShareIcon = (
-    <Image src="/images/graphic/share.png" width={20} height={20} alt="icon" />
-  );
+
   const CloseIcon = (
     <Image src="/images/graphic/close.png" width={20} height={20} alt="icon" />
   );
@@ -43,7 +67,6 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
       <Card className={classes.task_details_sidebar}>
         <Box className={classes.task_details_buttons}>
           <Button startIcon={EditIcon} />
-          <Button startIcon={ShareIcon} />
           <Button startIcon={CloseIcon} onClick={onClose} />
         </Box>
         <Box className={classes.task_details_top_info}>
@@ -161,37 +184,51 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
             <Typography variant="h6" fontWeight="bold">
               Comments
             </Typography>
-            <form className={classes.task_details_form}>
+            <form className={classes.task_details_form} onSubmit={postComment}>
               <TextField
                 fullWidth
                 placeholder="Enter New Comment"
                 sx={{ mt: 1.2 }}
+                label="Comment"
+                onChange={comment.onChangeInputHandler}
+                onBlur={comment.onBlurInputHandler}
+                value={comment.value}
+                error={!comment.isValid && comment.isTouched}
+                helperText={
+                  !comment.isValid &&
+                  comment.isTouched &&
+                  "Please enter valid comment"
+                }
+                required
               />
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                type="submit"
+                disabled={!comment.isValid}
+              >
                 Publish
               </Button>
             </form>
           </div>
-          <div style={{ marginTop: "40px" }}>
-            comments
-            {/* {comments.map((comment) => (
-              <div key={comment.user} className={classes.task_details_comment}>
+          <div style={{ marginTop: "20px" }}>
+            {messages.map((message) => (
+              <div key={message._id} className={classes.task_details_comment}>
                 <Image
-                  src={comment.userImage}
+                  src={message.image}
                   width={60}
                   height={60}
-                  alt={comment.user}
+                  alt={message.username}
                 />
                 <div>
                   <Typography variant="p" fontWeight="bold">
-                    {comment.user}
+                    {message.username}
                   </Typography>
                   <Typography color="textSecondary">
-                    {comment.comment}
+                    {message.message}
                   </Typography>
                 </div>
               </div>
-            ))} */}
+            ))}
           </div>
         </Box>
       </Card>

@@ -10,7 +10,13 @@ const TaskSchema = new Schema(
     status: { type: String, required: [true, "Status is required"] },
     assignedTo: { type: Schema.Types.ObjectId, ref: "User" },
     project: { type: Schema.Types.ObjectId, ref: "Project" },
-    messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
+    messages: [
+      {
+        message: { type: String, required: [true, "Message is required"] },
+        username: { type: String, required: [true, "Username is required"] },
+        image: { type: String, required: [true, "Image is required"] },
+      },
+    ],
   },
   { timestamps: true }
 );
