@@ -36,8 +36,12 @@
 
 .num {
   position: absolute;
-  top: 56%;
-  left: 47%;
+  top: 54%;
+  left: 48%;
+}
+
+.num * {
+  font-size: 40px;
 }
 
 /* Projects table */

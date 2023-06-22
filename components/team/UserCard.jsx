@@ -26,16 +26,6 @@ const UserCard = ({ image, fname, lname, workAs, email, github, linkedin }) => {
             />
           </Link>
         </div>
-        <div>
-          <Button>
-            <Image
-              src={"/images/graphic/option.png"}
-              width={30}
-              height={30}
-              alt="options"
-            />
-          </Button>
-        </div>
       </Box>
       <Box className={classes.team_user_content}>
         <Image

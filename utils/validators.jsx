@@ -25,7 +25,6 @@ export const VALIDATOR_PASSWORD_MATCH = (password) => ({
   type: VALIDATOR_TYPE_PASSWORD_MATCH,
   password: password,
 });
-
 export const validate = (value, validators) => {
   let isValid = true;
   for (const validator of validators) {

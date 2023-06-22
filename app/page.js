@@ -9,23 +9,32 @@ import { useRouter } from "next/navigation";
 import classes from "@/styles/dashboard/dashboard.module.css";
 import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
+import { useFetch } from "@/hooks/Http/useFetch";
+import { ClipLoader } from "react-spinners";
 
 export default function Dashboard() {
   const router = useRouter();
-  const user = JSON.parse(localStorage.getItem("user"));
-  const { userProjects } = useContext(AppContext);
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const { userProjects, user } = useContext(AppContext);
+  const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
 
   const finished = userProjects.filter((p) => p.status === "Finished");
   const cancelled = userProjects.filter((p) => p.status === "Cancelled");
   const progress = userProjects.filter((p) => p.status === "In Progress");
 
-  console.log(userProjects);
-
   useEffect(() => {
-    if (!user?.token) {
+    if (!userInfo?.token) {
       router.replace("/login");
     }
   }, []);
+
+  if (!tasks) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   return (
     <Box className={classes.dashboard_page}>
@@ -42,7 +51,7 @@ export default function Dashboard() {
           />
         </Grid>
         <Grid item xl={3} paddingTop={2}>
-          <DashboardChart />
+          <DashboardChart tasks={tasks} />
         </Grid>
         <Grid item xl={9} paddingTop={2} paddingLeft={2}>
           <ProjectTable projects={userProjects} />

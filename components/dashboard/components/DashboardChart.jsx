@@ -3,12 +3,22 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
-const DashboardChart = () => {
+const DashboardChart = ({ tasks }) => {
+  const todoTasks = tasks.filter((task) => task.status === "Todo");
+  const doneTasks = tasks.filter((task) => task.status === "Done");
+  const workTasks = tasks.filter((task) => task.status === "Work");
+  const lagTasks = tasks.filter((task) => task.status === "Lag");
+
+  const todo = (todoTasks.length / tasks.length) * 100;
+  const done = (doneTasks.length / tasks.length) * 100;
+  const work = (workTasks.length / tasks.length) * 100;
+  const lag = (lagTasks.length / tasks.length) * 100;
+
   const data = {
-    labels: ["To Do", "Work", "Error", "Done"],
+    labels: ["Todo", "Work", "Lag", "Done"],
     datasets: [
       {
-        data: [34.2, 24.4, 23.4, 18],
+        data: [todo, work, lag, done],
         backgroundColor: ["#7638DC", "#F9CF62", "#DA2020", "#1CC800"],
       },
     ],
@@ -26,7 +36,7 @@ const DashboardChart = () => {
         <Doughnut data={data} />
       </CardContent>
       <Box className={classes.num}>
-        <strong>120</strong>
+        <strong>{tasks.length}</strong>
       </Box>
     </Card>
   );

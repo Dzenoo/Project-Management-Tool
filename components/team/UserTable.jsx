@@ -87,16 +87,6 @@ const UserTable = ({ team, searchValue, selectedSpecialize }) => {
                       </Link>
                     </div>
                   </TableCell>
-                  <TableCell align="right">
-                    <Button>
-                      <Image
-                        src={"/images/graphic/option.png"}
-                        width={30}
-                        height={30}
-                        alt="options"
-                      />
-                    </Button>
-                  </TableCell>
                 </TableRow>
               ))}
         </TableBody>
