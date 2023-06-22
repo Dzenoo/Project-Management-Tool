@@ -25,6 +25,10 @@
   overflow: hidden;
 }
 
+.task_card .draggable {
+  background-color: red;
+}
+
 .task_card .task_top {
   display: flex;
   align-items: center;

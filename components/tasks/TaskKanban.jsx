@@ -29,6 +29,10 @@ const Task = ({ task, onClickDelete, onClickView }) => {
     comments,
   } = task;
 
+  const dragStartHandler = (e) => {
+    e.dataTransfer.setData("taskId", _id);
+  };
+
   const boxClasses = isOpenBox
     ? `${classes.open_details_box} ${classes.openBox}`
     : `${classes.open_details_box}`;
@@ -52,7 +56,11 @@ const Task = ({ task, onClickDelete, onClickView }) => {
   );
 
   return (
-    <Card className={classes.task_card}>
+    <Card
+      className={classes.task_card}
+      onDragStart={dragStartHandler}
+      draggable="true"
+    >
       <Box className={classes.task_top}>
         <Box className={classes.task_categories}>
           {categories.map((ca) => (
@@ -112,7 +120,7 @@ const Task = ({ task, onClickDelete, onClickView }) => {
         </Box>
       </Box>
       <hr />
-      <CardActions className={classes.task_actions} draggable="true">
+      <CardActions className={classes.task_actions}>
         <Tooltip title={assignedTo.username} placement="top">
           <Image
             src={assignedTo.image}

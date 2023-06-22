@@ -30,6 +30,22 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
     } catch (error) {}
   };
 
+  const dropHandler = async (e, status) => {
+    e.preventDefault();
+    const taskId = e.dataTransfer.getData("taskId");
+
+    const data = {
+      status,
+      taskId,
+    };
+
+    await sendPostRequest("/api/tasks/update", "POST", data);
+  };
+
+  const dragOverHandler = (e) => {
+    e.preventDefault();
+  };
+
   if (isLoading) {
     return (
       <div className="loader_wrapper">
@@ -50,7 +66,12 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
       />
       <Box className={classes.status_tasks_container}>
         {columns.map((column) => (
-          <Box key={column.id} className={classes.status_task}>
+          <Box
+            key={column.id}
+            className={classes.status_task}
+            onDrop={(e) => dropHandler(e, column.title)}
+            onDragOver={dragOverHandler}
+          >
             <Typography color={column.color} variant="p" fontWeight="bold">
               {column.title}
             </Typography>
