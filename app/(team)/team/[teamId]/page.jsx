@@ -20,7 +20,7 @@ import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { ClipLoader } from "react-spinners";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 
@@ -59,6 +59,10 @@ const TeamDetail = ({ params }) => {
       console.log(error);
     }
   };
+
+  if (!team) {
+    notFound();
+  }
 
   if (!team) {
     return (

@@ -12,8 +12,17 @@ import classes from "@/styles/projects/projects.module.css";
 import { useState } from "react";
 
 const ProjectCard = ({ project, getProjectById }) => {
-  const { _id, image, name, description, status, startDate, finishDate } =
-    project;
+  const {
+    _id,
+    image,
+    name,
+    description,
+    status,
+    startDate,
+    finishDate,
+    budget,
+    projectManager,
+  } = project;
   const [statusSelect, setStatus] = useState(status);
   const projectTeam = getProjectById(_id);
 
@@ -78,7 +87,12 @@ const ProjectCard = ({ project, getProjectById }) => {
         <Typography variant="p" color="textSecondary">
           {description}
         </Typography>
-
+        <Typography fontWeight="bold" variant="p" color="#36522b">
+          Budget: ${budget}
+        </Typography>
+        <Typography fontWeight="bold" variant="p">
+          Manager: {projectManager}
+        </Typography>
         <Typography variant="p">
           📅 Start Date: {new Date(startDate).toLocaleDateString()}
         </Typography>

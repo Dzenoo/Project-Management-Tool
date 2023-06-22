@@ -22,6 +22,7 @@ const AddNewProject = () => {
   const submitCreateProject = async (enteredData) => {
     try {
       await sendPostRequest("/api/projects/create", "POST", enteredData);
+      router.push("/projects");
     } catch (error) {
       console.log(error);
     }

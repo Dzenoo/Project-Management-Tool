@@ -30,19 +30,23 @@ const MainNavigation = () => {
   return (
     <Card className={menuClasses}>
       {menuIsOpen ? (
-        <Image
-          src="/images/graphic/log.png"
-          width={70}
-          height={70}
-          alt="logo"
-        />
+        <Link href="/">
+          <Image
+            src="/images/graphic/log.png"
+            width={70}
+            height={70}
+            alt="logo"
+          />
+        </Link>
       ) : (
-        <Image
-          src="/images/graphic/logooo.png"
-          width={200}
-          height={60}
-          alt="logo"
-        />
+        <Link href="/">
+          <Image
+            src="/images/graphic/logooo.png"
+            width={200}
+            height={60}
+            alt="logo"
+          />
+        </Link>
       )}
       <CardContent>
         {!user?.token && (
