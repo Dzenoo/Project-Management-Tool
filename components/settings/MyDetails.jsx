@@ -28,11 +28,8 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
 
   const submitEdit = (e) => {
     e.preventDefault();
-
     submitEditing(formValues);
   };
-
-  console.log(formValues);
 
   return (
     <form className={classes.settings_form} onSubmit={submitEdit}>
@@ -52,6 +49,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 firstname.isTouched &&
                 "Please enter valid firstname"
               }
+              disabled={!isEditing}
               defaultValue={user.first_name}
             />
           </div>
@@ -68,6 +66,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 lastname.isTouched &&
                 "Please enter valid lastname"
               }
+              disabled={!isEditing}
               defaultValue={user.last_name}
             />
           </div>
@@ -82,6 +81,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
               helperText={
                 !email.isValid && email.isTouched && "Please enter valid email"
               }
+              disabled={!isEditing}
               defaultValue={user.email}
             />
           </div>
@@ -90,22 +90,6 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
       <div className={classes.settings_form_control}>
         <Typography variant="h6">Contact Info</Typography>
         <div className={classes.settings_inputs}>
-          <div className={classes.settings_control}>
-            <label htmlFor="">
-              <b>Specialize</b>
-            </label>
-            <TextField
-              onChange={specialize.onChangeInputHandler}
-              oBlur={specialize.onBlurInputHandler}
-              error={!specialize.isValid && specialize.isTouched}
-              helperText={
-                !specialize.isValid &&
-                specialize.isTouched &&
-                "Please enter valid specialize"
-              }
-              defaultValue={user.specialize}
-            />
-          </div>
           <div className={classes.settings_control}>
             <label htmlFor="">
               <b>Biography</b>
@@ -119,9 +103,30 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 biography.isTouched &&
                 "Please enter valid biography"
               }
+              disabled={!isEditing}
               defaultValue={user.biography}
+              multiline
+              rows={3}
             />
           </div>
+          <div className={classes.settings_control}>
+            <label htmlFor="">
+              <b>Specialize</b>
+            </label>
+            <TextField
+              onChange={specialize.onChangeInputHandler}
+              oBlur={specialize.onBlurInputHandler}
+              error={!specialize.isValid && specialize.isTouched}
+              helperText={
+                !specialize.isValid &&
+                specialize.isTouched &&
+                "Please enter valid specialize"
+              }
+              disabled={!isEditing}
+              defaultValue={user.specialize}
+            />
+          </div>
+
           <div className={classes.settings_control}>
             <label htmlFor="">
               <b>Address</b>
@@ -135,6 +140,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 address.isTouched &&
                 "Please enter valid address"
               }
+              disabled={!isEditing}
               defaultValue={user.address}
             />
           </div>
@@ -156,6 +162,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 github.isTouched &&
                 "Please enter valid github"
               }
+              disabled={!isEditing}
               defaultValue={user.github}
             />
           </div>
@@ -172,6 +179,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 linkedin.isTouched &&
                 "Please enter valid linkedin"
               }
+              disabled={!isEditing}
               defaultValue={user.linkedin}
             />
           </div>
@@ -188,6 +196,7 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
                 website.isTouched &&
                 "Please enter valid website"
               }
+              disabled={!isEditing}
               defaultValue={user.website}
             />
           </div>

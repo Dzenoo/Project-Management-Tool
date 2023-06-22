@@ -21,12 +21,6 @@ export default function Dashboard() {
   const cancelled = userProjects?.filter((p) => p.status === "Cancelled");
   const progress = userProjects?.filter((p) => p.status === "In Progress");
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/login");
-    }
-  }, []);
-
   if (!tasks) {
     return (
       <div className="loader_wrapper">

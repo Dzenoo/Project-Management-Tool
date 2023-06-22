@@ -24,7 +24,11 @@ const Settings = () => {
   const submitEdit = async (data) => {
     console.log(data);
     try {
-      // const response = await fetch("");
+      const response = await fetch(`/api/user/${user._id}`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
     } catch (error) {}
   };
 
@@ -54,7 +58,7 @@ const Settings = () => {
           Password
         </Button>
         <Button onClick={() => setisEditing(!isEditing)} variant="contained">
-          {isEditing ? "Cancel" : "Edit"}
+          {isEditing ? "Save" : "Edit"}
         </Button>
       </div>
       <div className={classes.settings_content}>

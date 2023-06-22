@@ -31,7 +31,6 @@ export const AppProvider = ({ children }) => {
   }
 
   const isLoggedIn = !!userToken?.token;
-
   let isTeam;
   let userProjects;
   if (!userInfo) {
