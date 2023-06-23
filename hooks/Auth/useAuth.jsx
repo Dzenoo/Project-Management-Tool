@@ -26,6 +26,7 @@ export const useAuth = () => {
     settoken(null);
     settokenExpirationTime(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("User");
     router.replace("/login");
   }, []);
 
