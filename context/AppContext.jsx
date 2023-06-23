@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useFetch } from "@/hooks/Http/useFetch";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
@@ -21,6 +21,8 @@ export const AppProvider = ({ children }) => {
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { data: projects } = useFetch("/api/projects/");
   const router = useRouter();
+
+  useEffect(() => {}, [userInfo]);
 
   if (!user || !projects) {
     return (

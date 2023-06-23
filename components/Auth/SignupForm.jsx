@@ -23,6 +23,7 @@ import PropTypes from "prop-types";
 const SignupForm = ({ submitSignupHandler }) => {
   const firstName = useValidation([VALIDATOR_FIRSTNAME()]);
   const lastName = useValidation([VALIDATOR_REQUIRE()]);
+  const specialize = useValidation([VALIDATOR_REQUIRE()]);
   const userName = useValidation([VALIDATOR_MINLENGTH(4)]);
   const email = useValidation([VALIDATOR_EMAIL()]);
   const password = useValidation([VALIDATOR_MINLENGTH(4)]);
@@ -34,6 +35,7 @@ const SignupForm = ({ submitSignupHandler }) => {
   if (
     firstName.isValid &&
     lastName.isValid &&
+    specialize.isValid &&
     userName.isValid &&
     email.isValid &&
     password.isValid &&
@@ -45,6 +47,7 @@ const SignupForm = ({ submitSignupHandler }) => {
   const signupData = {
     first_name: firstName.value,
     last_name: lastName.value,
+    specialize: specialize.value,
     username: userName.value,
     email: email.value,
     password: password.value,
@@ -125,6 +128,22 @@ const SignupForm = ({ submitSignupHandler }) => {
             error={!email.isValid && email.isTouched}
             helperText={
               !email.isValid && email.isTouched && "Please enter valid email"
+            }
+            required
+          />
+        </FormControl>
+        <FormControl>
+          <TextField
+            placeholder="Developer, Designer, Manager"
+            label="Specialize"
+            onChange={specialize.onChangeInputHandler}
+            onBlur={specialize.onBlurInputHandler}
+            value={specialize.value}
+            error={!specialize.isValid && specialize.isTouched}
+            helperText={
+              !specialize.isValid &&
+              specialize.isTouched &&
+              "Please enter valid specialize"
             }
             required
           />

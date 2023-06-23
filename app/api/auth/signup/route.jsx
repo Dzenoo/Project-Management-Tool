@@ -5,7 +5,7 @@ import { response } from "@/lib/response";
 import jwt from "jsonwebtoken";
 
 export const POST = async (request) => {
-  const { first_name, last_name, username, email, password } =
+  const { first_name, last_name, specialize, username, email, password } =
     await request.json();
 
   try {
@@ -32,7 +32,7 @@ export const POST = async (request) => {
       website: "",
       biography: "",
       address: "",
-      specialize: "",
+      specialize,
       favoritedProjects: [],
       archivedProjects: [],
       notifications: [],
@@ -48,6 +48,7 @@ export const POST = async (request) => {
     const userInfo = {
       token: token,
       userId: user._id,
+      message: "Successfully signup",
     };
 
     return new Response(JSON.stringify(userInfo), { status: 200 });

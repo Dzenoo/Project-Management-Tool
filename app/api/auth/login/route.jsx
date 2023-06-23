@@ -30,7 +30,11 @@ export const POST = async (request) => {
     });
 
     return new Response(
-      JSON.stringify({ token: token, userId: existingUser._id }),
+      JSON.stringify({
+        token: token,
+        userId: existingUser._id,
+        message: "Successfully logged in",
+      }),
       { status: 200 }
     );
   } catch (error) {
