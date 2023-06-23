@@ -2,7 +2,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useFetch } from "@/hooks/Http/useFetch";
 import { ClipLoader } from "react-spinners";
-import { useRouter } from "next/navigation";
 
 export const AppContext = createContext();
 
@@ -17,11 +16,6 @@ const userToken =
     : null;
 
 export const AppProvider = ({ children }) => {
-  const router = useRouter();
-
-  if (!userInfo) {
-    router.replace("/login");
-  }
   const [projectInputValue, setprojectInputValue] = useState("");
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { data: projects } = useFetch("/api/projects/");
@@ -37,18 +31,12 @@ export const AppProvider = ({ children }) => {
   }
 
   const isLoggedIn = !!userToken?.token;
-  let isTeam;
-  let userProjects;
-  if (!userInfo) {
-    router.push("/login");
-  } else {
-    isTeam = user.teams.length > 0;
+  const isTeam = user.teams.length > 0;
 
-    userProjects = user.teams.reduce((acc, team) => {
-      const teamProjects = team.projects.map((project) => project);
-      return [...acc, ...teamProjects];
-    }, []);
-  }
+  const userProjects = user.teams.reduce((acc, team) => {
+    const teamProjects = team.projects.map((project) => project);
+    return [...acc, ...teamProjects];
+  }, []);
 
   const handleProjectInput = (e) => setprojectInputValue(e.target.value);
 

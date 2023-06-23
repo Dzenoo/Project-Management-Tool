@@ -42,10 +42,10 @@ export default function Dashboard() {
           />
         </Grid>
         <Grid item xl={3} paddingTop={2}>
-          <DashboardChart tasks={tasks} />
+          <DashboardChart tasks={tasks || []} />
         </Grid>
         <Grid item xl={9} paddingTop={2} paddingLeft={2}>
-          <ProjectTable projects={userProjects} />
+          <ProjectTable projects={userProjects || []} />
         </Grid>
         <Grid xl={12}>
           <TeamsCard />
