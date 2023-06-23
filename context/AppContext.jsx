@@ -6,12 +6,13 @@ import { ClipLoader } from "react-spinners";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  let userInfo;
-  if (typeof window !== "undefined") {
-    userInfo = localStorage.getItem("User");
-  }
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
   const [projectInputValue, setprojectInputValue] = useState("");
-  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
+  const { data: user } = useFetch(`/api/user/${userInfo.userId}`);
   const { data: projects } = useFetch("/api/projects/");
 
   useEffect(() => {}, [userInfo]);
