@@ -1,5 +1,4 @@
 "use client";
-import ProjectSidebar from "@/components/projects/ProjectSidebar";
 import { AppContext } from "@/context/AppContext";
 import { Typography } from "@mui/material";
 import { useContext } from "react";
@@ -17,7 +16,6 @@ const layout = ({ children }) => {
 
   return (
     <div className="main_layout">
-      <ProjectSidebar />
       <div className="content">{children}</div>
     </div>
   );

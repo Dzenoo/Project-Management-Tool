@@ -5,17 +5,13 @@ import classes from "@/styles/projects/projects.module.css";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
-import { useRouter } from "next/navigation";
 
 const Projects = () => {
-  const { projectInputValue, userProjects, getProjectById, isLoggedIn } =
-    useContext(AppContext);
-  const router = useRouter();
+  const { projectInputValue, user, getProjectById } = useContext(AppContext);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/login");
-    }
+  const userProjects = user?.teams.reduce((acc, team) => {
+    const teamProjects = team.projects.map((project) => project);
+    return [...acc, ...teamProjects];
   }, []);
 
   useEffect(() => {}, [userProjects]);

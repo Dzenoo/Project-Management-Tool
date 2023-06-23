@@ -12,12 +12,16 @@ import { useFetch } from "@/hooks/Http/useFetch";
 import { ClipLoader } from "react-spinners";
 
 export default function Dashboard() {
-  const { userProjects, user } = useContext(AppContext);
+  const { user, userInfo } = useContext(AppContext);
   const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
 
-  const finished = userProjects?.filter((p) => p.status === "Finished");
-  const cancelled = userProjects?.filter((p) => p.status === "Cancelled");
-  const progress = userProjects?.filter((p) => p.status === "In Progress");
+  if (!userInfo || userInfo === undefined) {
+    return (
+      <Typography textAlign="center" mt={2} fontWeight="bold">
+        Please log in or sign up
+      </Typography>
+    );
+  }
 
   if (!tasks) {
     return (
@@ -26,6 +30,15 @@ export default function Dashboard() {
       </div>
     );
   }
+
+  const userProjects = user?.teams.reduce((acc, team) => {
+    const teamProjects = team.projects.map((project) => project);
+    return [...acc, ...teamProjects];
+  }, []);
+
+  const finished = userProjects?.filter((p) => p.status === "Finished");
+  const cancelled = userProjects?.filter((p) => p.status === "Cancelled");
+  const progress = userProjects?.filter((p) => p.status === "In Progress");
 
   return (
     <Box className={classes.dashboard_page}>

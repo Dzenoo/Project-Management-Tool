@@ -4,30 +4,22 @@ import classes from "@/styles/team/team.module.css";
 import TeamCard from "@/components/team/TeamCard";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import MainModal from "@/components/shared/MainModal";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
-import { useRouter } from "next/navigation";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 
 const TeamPage = () => {
-  const { user, isLoggedIn } = useContext(AppContext);
+  const { user } = useContext(AppContext);
   const [isOpenModal, setisOpenModal] = useState(false);
   const [searchedTeam, setsearchedTeam] = useState("");
   const { sendPostRequest } = useHttpPost();
   const closeModal = () => setisOpenModal(false);
   const openModal = () => setisOpenModal(true);
-  const router = useRouter();
 
   const name = useValidation([VALIDATOR_REQUIRE()]);
   const description = useValidation([VALIDATOR_REQUIRE()]);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/login");
-    }
-  }, []);
 
   const submitCreateTeam = async () => {
     const formValues = {

@@ -24,9 +24,15 @@ import { usePathname } from "next/navigation";
 const ProjectSidebar = () => {
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
-  const { handleProjectInput, isTeam, userProjects, user } =
-    useContext(AppContext);
+  const { handleProjectInput, user } = useContext(AppContext);
   const pathname = usePathname();
+
+  const isTeam = user.teams.length > 0;
+
+  const userProjects = user?.teams.reduce((acc, team) => {
+    const teamProjects = team.projects.map((project) => project);
+    return [...acc, ...teamProjects];
+  }, []);
 
   return (
     <Card className={classes.projects_sidebar}>

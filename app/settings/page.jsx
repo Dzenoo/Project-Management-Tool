@@ -5,19 +5,19 @@ import { AppContext } from "@/context/AppContext";
 import classes from "@/styles/settings/settings.module.css";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 const Settings = () => {
   const [isEditing, setisEditing] = useState(false);
-  const { user, isLoggedIn } = useContext(AppContext);
-  const router = useRouter();
+  const { user, userInfo } = useContext(AppContext);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/login");
-    }
-  }, []);
+  if (!userInfo || userInfo === undefined) {
+    return (
+      <Typography textAlign="center" mt={2} fontWeight="bold">
+        Please log in or sign up
+      </Typography>
+    );
+  }
 
   const submitEdit = async (data) => {
     try {

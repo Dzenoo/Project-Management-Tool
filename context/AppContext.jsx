@@ -10,11 +10,6 @@ const userInfo =
     ? JSON.parse(localStorage.getItem("User"))
     : null;
 
-const userToken =
-  typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("user"))
-    : null;
-
 export const AppProvider = ({ children }) => {
   const [projectInputValue, setprojectInputValue] = useState("");
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
@@ -30,14 +25,6 @@ export const AppProvider = ({ children }) => {
     );
   }
 
-  const isLoggedIn = !!userToken?.token;
-  const isTeam = user.teams.length > 0;
-
-  const userProjects = user.teams.reduce((acc, team) => {
-    const teamProjects = team.projects.map((project) => project);
-    return [...acc, ...teamProjects];
-  }, []);
-
   const handleProjectInput = (e) => setprojectInputValue(e.target.value);
 
   const getProjectById = (id) => {
@@ -52,10 +39,8 @@ export const AppProvider = ({ children }) => {
         handleProjectInput,
         getProjectById,
         user,
-        isTeam,
-        userProjects,
         projects,
-        isLoggedIn,
+        userInfo,
       }}
     >
       {children}

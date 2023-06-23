@@ -14,18 +14,18 @@ import {
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import MainModal from "@/components/shared/MainModal";
 import { AppContext } from "@/context/AppContext";
 import { ClipLoader } from "react-spinners";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import PropTypes from "prop-types";
 
 const TeamDetail = ({ params }) => {
-  const { user, isLoggedIn } = useContext(AppContext);
+  const { user } = useContext(AppContext);
   const team = user.teams.find((team) => team._id === params.teamId);
   const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
@@ -34,15 +34,8 @@ const TeamDetail = ({ params }) => {
   const { sendPostRequest, isLoading } = useHttpPost();
   const closeInviteModal = () => setisOpenInviteModal(false);
   const openInviteModal = () => setisOpenInviteModal(true);
-  const router = useRouter();
 
   const username = useValidation([VALIDATOR_REQUIRE()]);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/login");
-    }
-  }, []);
 
   const submitInvite = async (e) => {
     e.preventDefault();

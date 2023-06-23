@@ -3,19 +3,19 @@
 import NotificationCard from "@/components/notifications/NotificationCard";
 import classes from "@/styles/notifications/notification.module.css";
 import { Box, Container, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 
 const Notifications = () => {
-  const { user, isLoggedIn } = useContext(AppContext);
-  const router = useRouter();
+  const { user, userInfo } = useContext(AppContext);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/login");
-    }
-  }, []);
+  if (!userInfo || userInfo === undefined) {
+    return (
+      <Typography textAlign="center" mt={2} fontWeight="bold">
+        Please log in or sign up
+      </Typography>
+    );
+  }
 
   return (
     <Container maxWidth="xl" className={classes.notifications_container}>

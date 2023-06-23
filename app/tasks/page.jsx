@@ -10,12 +10,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import classes from "@/styles/tasks/tasks.module.css";
 import { StatusTasksSelect, CategoryasksSelect } from "@/data/data";
 import TaskKanban from "@/components/tasks/TaskKanban";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import { useFetch } from "@/hooks/Http/useFetch";
 import { AppContext } from "@/context/AppContext";
@@ -32,7 +31,7 @@ const CustomIcon = (imgUrl) => (
 );
 
 const Tasks = () => {
-  const { user, userProjects, isLoggedIn, isTeam } = useContext(AppContext);
+  const { user, userInfo } = useContext(AppContext);
   const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
@@ -40,13 +39,14 @@ const Tasks = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [projectFilter, setProjectFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
-  const router = useRouter();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/login");
-    }
-  }, []);
+  if (!userInfo || userInfo === undefined) {
+    return (
+      <Typography textAlign="center" mt={2} fontWeight="bold">
+        Please log in or sign up
+      </Typography>
+    );
+  }
 
   if (!tasks) {
     return (
@@ -55,6 +55,13 @@ const Tasks = () => {
       </div>
     );
   }
+
+  const isTeam = user.teams.length > 0;
+
+  const userProjects = user?.teams.reduce((acc, team) => {
+    const teamProjects = team.projects.map((project) => project);
+    return [...acc, ...teamProjects];
+  }, []);
 
   const openTaskDetail = (id) => {
     const currentOpenedTask = tasks.find((task) => task._id === id);
