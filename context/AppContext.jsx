@@ -17,10 +17,14 @@ const userToken =
     : null;
 
 export const AppProvider = ({ children }) => {
+  const router = useRouter();
+
+  if (!userInfo) {
+    router.replace("/login");
+  }
   const [projectInputValue, setprojectInputValue] = useState("");
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { data: projects } = useFetch("/api/projects/");
-  const router = useRouter();
 
   useEffect(() => {}, [userInfo]);
 
