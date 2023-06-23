@@ -1,16 +1,16 @@
-import MainNavigation from "@/components/shared/MainNavigation";
-import "./globals.css";
-import { Inter } from "next/font/google";
-import { AppProvider } from "@/context/AppContext";
+import MainNavigation from '@/components/shared/MainNavigation'
+import './globals.css'
+import { Inter } from 'next/font/google'
+import { AppProvider } from '@/context/AppContext'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "Projexity",
-  description: "Projexity is a fully functional project management tool!",
-};
+  title: 'Projexity',
+  description: 'Projexity is a fully functional project management tool!'
+}
 
-export default function RootLayout({ children }) {
+export default function RootLayout ({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -22,5 +22,5 @@ export default function RootLayout({ children }) {
         </div>
       </body>
     </html>
-  );
+  )
 }

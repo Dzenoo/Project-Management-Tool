@@ -7,7 +7,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import classes from "@/styles/dashboard/dashboard.module.css";
 import { useContext } from "react";
@@ -38,6 +38,7 @@ const TeamsCard = () => {
             onChange={(e) => setSelectValue(e.target.value)}
             inputProps={{ id: "team_select" }}
             label="Select Team"
+            sx={{ width: "200px" }}
           >
             {teamsNames.map((name) => (
               <MenuItem key={name} value={name}>
