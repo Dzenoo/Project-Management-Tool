@@ -18,7 +18,7 @@ export const POST = async (request) => {
 
     const isPasswordValid = await bcrypt.compare(
       password,
-      existingUser.password
+      existingUser.password,
     );
 
     if (!isPasswordValid) {
@@ -35,7 +35,7 @@ export const POST = async (request) => {
         userId: existingUser._id,
         message: "Successfully logged in",
       }),
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
