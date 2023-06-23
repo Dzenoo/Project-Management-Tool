@@ -6,7 +6,7 @@ import { ClipLoader } from "react-spinners";
 export const AppContext = createContext();
 
 const userInfo =
-  typeof window !== "undefined"
+  typeof window !== "undefined" && localStorage.getItem("User")
     ? JSON.parse(localStorage.getItem("User"))
     : null;
 
