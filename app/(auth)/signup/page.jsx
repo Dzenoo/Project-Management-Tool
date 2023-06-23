@@ -1,6 +1,6 @@
 "use client";
 
-import SignupForm from "@/components/auth/SignupForm.jsx";
+import SignupForm from "@/components/auth/SignupForm";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
 import { useAuth } from "@/hooks/Auth/useAuth";

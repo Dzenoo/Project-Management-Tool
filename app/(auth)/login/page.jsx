@@ -1,9 +1,9 @@
 "use client";
 
-import LoginForm from "@/components/auth/LoginForm.jsx";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
+import LoginForm from "@/components/auth/LoginForm";
 import { useAuth } from "@/hooks/Auth/useAuth";
 import { useEffect } from "react";
 
