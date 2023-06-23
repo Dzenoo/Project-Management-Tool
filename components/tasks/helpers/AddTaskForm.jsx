@@ -2,6 +2,7 @@ import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "@/utils/validators";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import classes from "@/styles/tasks/kanban.module.css";
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 const AddTaskForm = ({ projectMb, createTask }) => {
@@ -54,8 +55,8 @@ const AddTaskForm = ({ projectMb, createTask }) => {
       title: title.value,
       description: description.value,
       finishDate: date.value,
-      categories: categories,
-      tags: tags,
+      categories,
+      tags,
       assignedTo: assignTo,
       project: projectMb._id,
     };
@@ -164,6 +165,11 @@ const AddTaskForm = ({ projectMb, createTask }) => {
       </Button>
     </form>
   );
+};
+
+AddTaskForm.propTypes = {
+  createTask: PropTypes.func,
+  projectMb: PropTypes.array,
 };
 
 export default AddTaskForm;

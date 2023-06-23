@@ -2,14 +2,7 @@
 
 import PropTypes from "prop-types";
 import classes from "@/styles/tasks/list.module.css";
-import {
-  Box,
-  Button,
-  Card,
-  IconButton,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Card, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -112,6 +105,7 @@ const TaskList = ({ task, onClickView }) => {
 
 TaskList.propTypes = {
   task: PropTypes.object.isRequired,
+  onClickView: PropTypes.func,
 };
 
 export default TaskList;

@@ -1,4 +1,3 @@
-import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,6 +6,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box, Card, Tooltip, Typography } from "@mui/material";
+import PropTypes from "prop-types";
 import Image from "next/image";
 
 function ProjectTable({ projects }) {
@@ -69,5 +69,9 @@ function ProjectTable({ projects }) {
     </Card>
   );
 }
+
+ProjectTable.propTypes = {
+  projects: PropTypes.array,
+};
 
 export default ProjectTable;

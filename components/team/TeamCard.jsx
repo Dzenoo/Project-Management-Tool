@@ -22,6 +22,7 @@ const TeamCard = ({ id, image, teamName, teamDescription, dateCreated }) => {
 };
 
 TeamCard.propTypes = {
+  id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   teamName: PropTypes.string.isRequired,
   teamDescription: PropTypes.string.isRequired,

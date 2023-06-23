@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 const Task = ({ task, onClickView }) => {
@@ -25,7 +26,6 @@ const Task = ({ task, onClickView }) => {
     description,
     categories,
     tags,
-    project,
     messages,
   } = task;
 
@@ -152,6 +152,11 @@ const Task = ({ task, onClickView }) => {
       </CardActions>
     </Card>
   );
+};
+
+Task.propTypes = {
+  task: PropTypes.object,
+  onClickView: PropTypes.func,
 };
 
 export default Task;

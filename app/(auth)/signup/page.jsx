@@ -2,7 +2,7 @@
 
 import SignupForm from "@/components/auth/SignupForm";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
 import { useAuth } from "@/hooks/Auth/useAuth";
@@ -28,7 +28,7 @@ const Signup = () => {
     const response = await sendPostRequest(
       "/api/auth/signup",
       "POST",
-      enteredData
+      enteredData,
     );
 
     if (response.token) {

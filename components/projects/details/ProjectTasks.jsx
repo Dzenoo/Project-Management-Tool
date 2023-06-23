@@ -84,6 +84,9 @@ const ProjectTasks = ({
 ProjectTasks.propTypes = {
   setisTypeTask: PropTypes.func,
   isTypeTask: PropTypes.string,
+  classes: PropTypes.object,
+  openDetailsHandler: PropTypes.func,
+  projectMb: PropTypes.object,
 };
 
 export default ProjectTasks;

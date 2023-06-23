@@ -2,7 +2,7 @@
 
 import LoginForm from "@/components/auth/LoginForm";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
@@ -29,7 +29,7 @@ const Login = () => {
     const response = await sendPostRequest(
       "/api/auth/login",
       "POST",
-      enteredData
+      enteredData,
     );
 
     if (response.token) {

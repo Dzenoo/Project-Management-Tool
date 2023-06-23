@@ -2,22 +2,22 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true
+    node: true,
   },
-  extends: ['standard', 'plugin:react/recommended'],
+  extends: [
+    "standard",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+  ],
   parserOptions: {
-    ecmaVersion: 2021,
-    sourceType: 'module'
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: ['react'],
+  plugins: ["react", "prettier"],
   rules: {
-    'react/react-in-jsx-scope': 'off',
-    semi: ['error', 'never'],
-    quotes: ['error', 'single'],
-    'no-unused-vars': 'off',
-    'react/prop-types': 'off',
-    'import/no-duplicates': 'error',
-    'comma-dangle': ['error', 'never'],
-    'space-before-function-paren': ['error', 'always']
-  }
-}
+    quotes: ["error", "double", { avoidEscape: true }],
+    "react/jsx-uses-react": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
+  },
+};

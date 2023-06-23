@@ -7,10 +7,9 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import classes from "@/styles/dashboard/dashboard.module.css";
-import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 
 const TeamsCard = () => {

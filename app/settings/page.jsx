@@ -21,7 +21,7 @@ const Settings = () => {
 
   const submitEdit = async (data) => {
     try {
-      const response = await fetch(`/api/user/${user._id}`, {
+      await fetch(`/api/user/${user._id}`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },

@@ -113,6 +113,7 @@ const ProjectCard = ({ project, getProjectById }) => {
 
 ProjectCard.propTypes = {
   project: PropTypes.object.isRequired,
+  getProjectById: PropTypes.func.isRequired,
 };
 
 export default ProjectCard;

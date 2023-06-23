@@ -2,6 +2,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import classes from "@/styles/settings/settings.module.css";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
+import PropTypes from "prop-types";
 
 const MyDetails = ({ user, isEditing, submitEditing }) => {
   const firstname = useValidation([VALIDATOR_REQUIRE()]);
@@ -209,6 +210,12 @@ const MyDetails = ({ user, isEditing, submitEditing }) => {
       )}
     </form>
   );
+};
+
+MyDetails.propTypes = {
+  user: PropTypes.object,
+  isEditing: PropTypes.bool,
+  submitEditing: PropTypes.func,
 };
 
 export default MyDetails;

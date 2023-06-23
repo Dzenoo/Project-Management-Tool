@@ -15,6 +15,7 @@ import { useContext, useState } from "react";
 import Image from "next/image";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { useValidation } from "@/hooks/Auth/useValidation";
+import PropTypes from "prop-types";
 import { ProjectStatusTypes } from "@/data/data";
 import { AppContext } from "@/context/AppContext";
 
@@ -352,6 +353,10 @@ const NewProjectForm = ({ submitCreateProject }) => {
       </Box>
     </Card>
   );
+};
+
+NewProjectForm.propTypes = {
+  submitCreateProject: PropTypes.func,
 };
 
 export default NewProjectForm;

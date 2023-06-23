@@ -103,5 +103,6 @@ const ListType = ({ columns, projectMb, openDetailsHandler }) => {
 ListType.propTypes = {
   openDetailsHandler: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,
+  projectMb: PropTypes.array,
 };
 export default ListType;

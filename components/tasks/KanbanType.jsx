@@ -111,6 +111,7 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
 KanbanType.propTypes = {
   openDetailsHandler: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,
+  projectMb: PropTypes.array,
 };
 
 export default KanbanType;

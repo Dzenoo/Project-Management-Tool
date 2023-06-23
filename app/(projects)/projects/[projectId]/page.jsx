@@ -10,9 +10,8 @@ import ProjectFiles from "@/components/projects/details/ProjectFiles";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
-import { useRouter } from "next/navigation";
+import { useRouter, notFound } from "next/navigation";
 import { ClipLoader } from "react-spinners";
-import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const projects = await fetch("/api/projects");
@@ -24,7 +23,7 @@ export async function generateStaticParams() {
 
 const Project = ({ params }) => {
   const [isTypeTask, setisTypeTask] = useState(
-    JSON.parse(localStorage.getItem("typeTask"))
+    JSON.parse(localStorage.getItem("typeTask")),
   );
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
@@ -46,7 +45,7 @@ const Project = ({ params }) => {
   }, []);
 
   const projectFav = user.favoritedProjects.find(
-    (favProject) => favProject.id.toString() === params.projectId
+    (favProject) => favProject.id.toString() === params.projectId,
   );
   const isProjectFavorited = projectFav?.id === params.projectId;
 
@@ -63,7 +62,7 @@ const Project = ({ params }) => {
     try {
       await sendPostRequest(
         `/api/projects/${params.projectId}/${user._id}/favorite`,
-        "POST"
+        "POST",
       );
     } catch (error) {}
   };

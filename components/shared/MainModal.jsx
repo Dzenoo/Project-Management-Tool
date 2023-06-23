@@ -1,5 +1,6 @@
 "use client";
 import { Box, Button, Typography } from "@mui/material";
+import PropTypes from "prop-types";
 import Modal from "@mui/material/Modal";
 
 const style = {
@@ -68,6 +69,17 @@ const MainModal = ({
       </Box>
     </Modal>
   );
+};
+
+MainModal.propTypes = {
+  isOpen: PropTypes.bool,
+  close: PropTypes.func,
+  text: PropTypes.string,
+  title: PropTypes.string,
+  onClick: PropTypes.func,
+  content: PropTypes.object,
+  disabled: PropTypes.bool,
+  showButtons: PropTypes.bool,
 };
 
 export default MainModal;

@@ -1,4 +1,4 @@
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import PropTypes from "prop-types";
@@ -52,6 +52,8 @@ UserCard.propTypes = {
   lname: PropTypes.string.isRequired,
   workAs: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  github: PropTypes.string.isRequired,
+  linkedin: PropTypes.string.isRequired,
 };
 
 export default UserCard;

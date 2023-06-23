@@ -1,6 +1,7 @@
 import classes from "@/styles/dashboard/dashboard.module.css";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
+import PropTypes from "prop-types";
 import { Chart as ChartJS } from "chart.js/auto";
 
 const DashboardChart = ({ tasks }) => {
@@ -40,6 +41,10 @@ const DashboardChart = ({ tasks }) => {
       </Box>
     </Card>
   );
+};
+
+DashboardChart.propTypes = {
+  tasks: PropTypes.array,
 };
 
 export default DashboardChart;

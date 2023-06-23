@@ -13,6 +13,7 @@ import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "@/utils/validators";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import PropTypes from "prop-types";
 import { ClipLoader } from "react-spinners";
 
 const TaskDetailsSidebar = ({ task, onClose }) => {
@@ -313,6 +314,11 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
       </Card>
     </Box>
   );
+};
+
+TaskDetailsSidebar.propTypes = {
+  task: PropTypes.object,
+  onClose: PropTypes.func,
 };
 
 export default TaskDetailsSidebar;

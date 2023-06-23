@@ -1,5 +1,5 @@
 import classes from "@/styles/dashboard/dashboard.module.css";
-import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import Image from "next/image";
 import PropTypes from "prop-types";
 

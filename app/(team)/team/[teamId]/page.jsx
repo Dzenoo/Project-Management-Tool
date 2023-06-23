@@ -14,9 +14,8 @@ import {
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import MainModal from "@/components/shared/MainModal";
-import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { ClipLoader } from "react-spinners";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
