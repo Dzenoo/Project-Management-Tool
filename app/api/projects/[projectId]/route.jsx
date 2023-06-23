@@ -15,7 +15,7 @@ export const POST = async (request, { params }) => {
     const updatedProject = await Project.findOneAndUpdate(
       { _id: params.projectId },
       { status },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedProject) {

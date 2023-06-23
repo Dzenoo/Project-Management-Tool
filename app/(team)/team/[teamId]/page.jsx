@@ -2,7 +2,7 @@
 
 import UserCard from "@/components/team/UserCard";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import {
   Box,
   Button,
@@ -22,6 +22,7 @@ import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { notFound, useRouter } from "next/navigation";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import PropTypes from "prop-types";
 
 const TeamDetail = ({ params }) => {
   const { user, isLoggedIn } = useContext(AppContext);
@@ -211,6 +212,10 @@ const TeamDetail = ({ params }) => {
       <ToastContainer />
     </>
   );
+};
+
+TeamDetail.propTypes = {
+  params: PropTypes.object,
 };
 
 export default TeamDetail;

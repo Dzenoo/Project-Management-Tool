@@ -12,6 +12,7 @@ import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { useRouter, notFound } from "next/navigation";
 import { ClipLoader } from "react-spinners";
+import PropTypes from "prop-types";
 
 export async function generateStaticParams() {
   const projects = await fetch("/api/projects");
@@ -168,6 +169,10 @@ const Project = ({ params }) => {
       {typeOfProjectDetail === "files" && <ProjectFiles />}
     </Container>
   );
+};
+
+Project.propTypes = {
+  params: PropTypes.object,
 };
 
 export default Project;

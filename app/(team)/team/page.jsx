@@ -4,8 +4,7 @@ import classes from "@/styles/team/team.module.css";
 import TeamCard from "@/components/team/TeamCard";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import MainModal from "@/components/shared/MainModal";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
@@ -16,7 +15,7 @@ const TeamPage = () => {
   const { user, isLoggedIn } = useContext(AppContext);
   const [isOpenModal, setisOpenModal] = useState(false);
   const [searchedTeam, setsearchedTeam] = useState("");
-  const { sendPostRequest, isLoading } = useHttpPost();
+  const { sendPostRequest } = useHttpPost();
   const closeModal = () => setisOpenModal(false);
   const openModal = () => setisOpenModal(true);
   const router = useRouter();
@@ -111,7 +110,7 @@ const TeamPage = () => {
         {user.teams.length > 0 &&
           user.teams
             .filter((team) =>
-              team.name.toLowerCase().includes(searchedTeam.toLowerCase())
+              team.name.toLowerCase().includes(searchedTeam.toLowerCase()),
             )
             .map((team) => (
               <TeamCard

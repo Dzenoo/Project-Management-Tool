@@ -11,7 +11,7 @@ export const POST = async (request, { params }) => {
     const task = await Task.findOneAndUpdate(
       { _id: taskId },
       { status },
-      { new: true }
+      { new: true },
     );
 
     if (!task) {

@@ -10,7 +10,7 @@ export const POST = async (request) => {
   try {
     await connectToDB();
 
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
       return response("User cannot be found", 404);
@@ -31,7 +31,7 @@ export const POST = async (request) => {
 
     return new Response(
       JSON.stringify({
-        token: token,
+        token,
         userId: existingUser._id,
         message: "Successfully logged in",
       }),

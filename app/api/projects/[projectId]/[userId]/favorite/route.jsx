@@ -18,13 +18,13 @@ export const POST = async (request, { params }) => {
     const user = await User.findById(params.userId);
 
     const existingFavorite = user.favoritedProjects.find(
-      (favProject) => favProject.id.toString() === params.projectId
+      (favProject) => favProject.id.toString() === params.projectId,
     );
 
     if (existingFavorite) {
       // Remove the favorite project
       user.favoritedProjects = user.favoritedProjects.filter(
-        (favProject) => favProject.id.toString() !== params.projectId
+        (favProject) => favProject.id.toString() !== params.projectId,
       );
     } else {
       // Add the favorite project

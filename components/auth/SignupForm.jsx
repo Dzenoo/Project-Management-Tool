@@ -45,8 +45,8 @@ const SignupForm = ({ submitSignupHandler }) => {
   }
 
   const signupData = {
-    first_name: firstName.value,
-    last_name: lastName.value,
+    firstName: firstName.value,
+    lastName: lastName.value,
     specialize: specialize.value,
     username: userName.value,
     email: email.value,

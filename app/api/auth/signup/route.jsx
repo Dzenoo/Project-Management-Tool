@@ -5,13 +5,13 @@ import { response } from "@/lib/response";
 import jwt from "jsonwebtoken";
 
 export const POST = async (request) => {
-  const { first_name, last_name, specialize, username, email, password } =
+  const { firstName, lastName, specialize, username, email, password } =
     await request.json();
 
   try {
     await connectToDB();
 
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return response("User already exists with this email", 500);
@@ -20,8 +20,8 @@ export const POST = async (request) => {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const createdUser = new User({
-      first_name,
-      last_name,
+      first_name: firstName,
+      last_name: lastName,
       username,
       email,
       password: hashedPassword,
@@ -46,7 +46,7 @@ export const POST = async (request) => {
     });
 
     const userInfo = {
-      token: token,
+      token,
       userId: user._id,
       message: "Successfully signup",
     };

@@ -29,7 +29,7 @@ export const POST = async (request, { params }) => {
     }
 
     const isUserAlreadyMember = team.teamMembers.some(
-      (member) => member.toString() === invitedUser._id.toString()
+      (member) => member.toString() === invitedUser._id.toString(),
     );
 
     if (isUserAlreadyMember) {
