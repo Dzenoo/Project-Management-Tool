@@ -1,0 +1,139 @@
+.team_wrapper {
+  padding: 20px 12px;
+}
+
+.team_wrapper .team_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team_wrapper .team_container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 3em 12px;
+  justify-content: center;
+}
+
+.team_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  gap: 1.2em;
+  padding: 2em 0.2em 20px 20px;
+  width: 400px;
+  text-align: center;
+}
+
+/* TEAM DETAILS  */
+
+.team_details_container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.team_details_container .team_details_top {
+  display: flex;
+  gap: 2em;
+  justify-content: space-between;
+}
+
+.team_details_container .team_details_content {
+  display: flex;
+  gap: 2em;
+}
+
+.team_details_container .team_details_content input {
+  width: 600px;
+}
+
+.team_details_container .team_details_content .select {
+  width: 200px;
+}
+
+.team_details_container .team_details_cards {
+  display: flex;
+  gap: 1.7em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* TEAM DETAILS  */
+
+/* CARD TYPE */
+
+.team_user_card {
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.team_user_card .team_user_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team_user_card .team_user_header .team_user_links {
+  display: flex;
+  gap: 1.2em;
+}
+
+.team_user_card .team_user_content {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
+  flex-direction: column;
+  padding: 28px 12px;
+}
+
+/* CARD TYPE */
+
+/* TABLE TYPE */
+
+.name {
+  display: flex;
+  align-items: center;
+}
+
+.name img {
+}
+
+/* TABLE TYPE */
+
+.team_actions_btns {
+  display: flex;
+  gap: 12px;
+}
+
+.create_team_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.invite_form {
+  display: flex;
+}
+
+.invite_form input {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px;
+}
+
+.invite_form button {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}

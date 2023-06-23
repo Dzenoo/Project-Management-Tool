@@ -1,0 +1,39 @@
+{
+  "projects": [
+    {
+      "id": "p1",
+      "name": "Website Redesign",
+      "description": "Redesign the company website to improve user experience and enhance branding.",
+      "startDate": "2023-06-15",
+      "endDate": "2023-08-31",
+      "projectManager": "John Smith",
+      "teamMembers": ["Emily Johnson", "Michael Davis", "Sarah Thompson"],
+      "status": "In Progress",
+      "type": "Favorites",
+      "projectImage": "/images/graphic/chat.png"
+    },
+    {
+      "id": "p2",
+      "name": "Mobile App Development",
+      "description": "Develop a mobile app for iOS and Android platforms to provide a seamless user experience.",
+      "startDate": "2023-07-01",
+      "endDate": "2023-12-31",
+      "projectManager": "Jane Anderson",
+      "teamMembers": ["David Wilson", "Lisa Roberts", "Mark Taylor"],
+      "status": "Cancelled",
+      "type": "Archived",
+      "projectImage": "/images/graphic/chat.png"
+    },
+    {
+      "id": "p3",
+      "name": "Mobile App Development",
+      "description": "Develop a mobile app for iOS and Android platforms to provide a seamless user experience.",
+      "startDate": "2023-07-01",
+      "endDate": "2023-12-31",
+      "projectManager": "Jane Anderson",
+      "teamMembers": ["David Wilson", "Lisa Roberts", "Mark Taylor"],
+      "status": "Finished",
+      "projectImage": "/images/graphic/chat.png"
+    }
+  ]
+}

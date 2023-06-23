@@ -1,0 +1,366 @@
+.projects_sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.projects_sidebar .project_types {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects_sidebar .hover_favorites {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects_sidebar .hover_all {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects_sidebar .hover_favorites:hover {
+  background-color: #ffd90034;
+  border-radius: 12px;
+}
+
+.projects_sidebar .hover_all:hover {
+  background-color: #00ff0849;
+  border-radius: 12px;
+}
+
+.projects_container {
+  display: flex !important;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  overflow-y: scroll;
+}
+
+.project_card {
+  overflow: hidden;
+  padding: 12px;
+  width: 400px;
+}
+
+.project_card .project_top {
+  text-align: center;
+  padding: 12px;
+}
+
+.project_card .project_top .project_status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project_card .project_desc {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project_card .project_actions {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 24px 0;
+  gap: 12px;
+}
+
+.project_card .project_actions .project_team_member {
+  width: 60px;
+  height: 60px;
+  background-color: aqua;
+}
+
+/* Project Details */
+.main_project_details {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.main_project_details .main_topbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_project_details .main_information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.main_project_details .main_information .main_tooltip {
+  display: flex;
+  align-items: center;
+}
+
+.main_project_details .main_information .main_tooltip .iconBtn {
+  border-radius: 100px;
+}
+
+.main_project_details .main_information .btn {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.main_project_details .main_tasks_dashboard {
+  background-color: #0066ff17;
+  padding: 30px;
+  overflow-y: scroll;
+  height: 100%;
+  margin-top: 12px;
+}
+
+.main_project_details .main_tasks_dashboard .show_actions {
+  display: flex;
+  gap: 12px;
+}
+
+.main_project_details .main_tasks_dashboard .show_actions button {
+  display: flex;
+  gap: 12px;
+}
+
+/* TASK DETAILS */
+
+.task_details_wrapper {
+  background-color: #1212125b;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  right: 0;
+  top: 0;
+  z-index: 20;
+  transition: 0.4s;
+}
+
+.task_details_wrapper .task_details_sidebar {
+  height: 100vh;
+  position: relative;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.4s;
+  gap: 2em;
+  overflow: hidden;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.task_details_wrapper .task_details_sidebar .task_details_buttons {
+  display: flex;
+  justify-content: end;
+  gap: 12px;
+}
+
+.task_details_wrapper .task_details_sidebar .task_details_top_info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_top_info
+  .task_details_flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.task_details_wrapper .task_details_sidebar .task_details_mid_info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_mid_info
+  .task_details_categories {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_mid_info
+  .task_details_categories
+  .task_category {
+  color: #00000094;
+  background-color: #38c3dc3f;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_mid_info
+  .task_details_tags {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_comments
+  .task_details_form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_comments
+  .task_details_comment {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 20px 0 0 0;
+}
+
+.task_details_wrapper
+  .task_details_sidebar
+  .task_details_comments
+  .task_details_comment
+  img {
+  border-radius: 100px;
+}
+
+.main_actions {
+  position: relative;
+}
+
+.main_actions .main_options {
+  position: absolute;
+  z-index: 20;
+  width: 220px;
+  height: fit-content;
+  padding: 12px;
+  transition: 0.2s;
+  right: 60px;
+}
+
+.invite_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.add_form_top {
+  text-align: center;
+  padding: 20px;
+}
+
+.add_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 40px;
+}
+
+.add_form .add_details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6em;
+}
+
+.add_form .add_details .flex_inputs {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.add_form .add_actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.categories {
+  display: flex;
+  gap: 1.2em;
+  overflow-y: scroll;
+}
+
+.categories .category_inp {
+  background-color: rgb(0, 87, 168);
+  color: #fff;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  border-radius: 30px;
+  margin-top: 12px;
+}
+
+.categories .category_inp button {
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 0, 0, 0.349);
+  color: #ec0707;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.step_container {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  gap: 12px;
+}
+
+.step_container span {
+  padding: 12px;
+  width: 16px;
+  height: 12px;
+  border-radius: 100px;
+  background-color: rgb(201, 201, 201);
+  transition: 0.3s;
+}
+
+.step_container span.isActive {
+  width: 36px;
+  transition: 0.3s;
+  background-color: rgb(0, 87, 168);
+}
+
+.form_control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.status_menu_item {
+  display: flex;
+  gap: 1.2em;
+}
+
+@media (max-width: 1100px) {
+  .projects_container {
+    flex-wrap: wrap;
+  }
+}

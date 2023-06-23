@@ -1,0 +1,120 @@
+.status_tasks_container {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  margin-top: 20px;
+}
+
+.status_task {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  gap: 12px;
+}
+
+.status_task .status_actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task_card {
+  width: 330px;
+  height: max-content;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.task_card .task_top {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+}
+
+.task_card .task_top .task_categories {
+  display: flex;
+  gap: 12px;
+}
+
+.task_card .task_top .task_categories .task_category {
+  background-color: lightblue;
+  padding: 12px;
+  border-radius: 100px;
+  font-weight: bold;
+}
+
+.task_card .task_top .open_details_box {
+  padding: 12px;
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  right: 40px;
+  top: 44px;
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.task_card .task_top .open_details_box.openBox {
+  opacity: 2;
+  visibility: visible;
+}
+
+.task_card .task_info {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task_card .task_actions {
+  display: flex;
+  justify-content: space-between;
+  cursor: move;
+  align-items: center;
+}
+
+.task_card .iconBtn {
+  width: 48px;
+  height: 48px;
+  background-color: #1cc800;
+}
+
+.add_task_form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categories {
+  display: flex;
+  gap: 1.2em;
+  overflow-y: scroll;
+}
+
+.categories .category_inp {
+  background-color: lightblue;
+  color: #fff;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  border-radius: 30px;
+}
+
+.categories .category_inp button {
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 0, 0, 0.349);
+  color: #ec0707;
+  padding: 6px;
+  cursor: pointer;
+}
