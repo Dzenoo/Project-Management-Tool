@@ -8,6 +8,7 @@
 .status_task {
   display: flex;
   flex-direction: column;
+  width: 330px;
   gap: 12px;
 }
 
@@ -23,10 +24,6 @@
   padding: 16px;
   border-radius: 8px;
   overflow: hidden;
-}
-
-.task_card .draggable {
-  background-color: red;
 }
 
 .task_card .task_top {

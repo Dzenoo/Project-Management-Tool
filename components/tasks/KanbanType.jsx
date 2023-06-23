@@ -13,6 +13,7 @@ import { ClipLoader } from "react-spinners";
 const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
   const [isOpenTaskModal, setisOpenTaskModal] = useState(false);
   const [status, setStatus] = useState("");
+  const [hoveredBoxId, setHoveredBoxId] = useState(null);
   const { sendPostRequest, isLoading } = useHttpPost();
 
   const closeAddTaskModal = () => setisOpenTaskModal(false);
@@ -42,8 +43,13 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
     await sendPostRequest("/api/tasks/update", "POST", data);
   };
 
-  const dragOverHandler = (e) => {
+  const dragOverHandler = (e, column) => {
     e.preventDefault();
+    setHoveredBoxId(column.id);
+  };
+
+  const dragLeaveHandler = () => {
+    setHoveredBoxId(null);
   };
 
   if (isLoading) {
@@ -70,7 +76,11 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
             key={column.id}
             className={classes.status_task}
             onDrop={(e) => dropHandler(e, column.title)}
-            onDragOver={dragOverHandler}
+            onDragOver={(e) => dragOverHandler(e, column)}
+            onDragLeave={dragLeaveHandler}
+            style={{
+              border: hoveredBoxId === column.id && "2px dotted royalblue",
+            }}
           >
             <Typography color={column.color} variant="p" fontWeight="bold">
               {column.title}
