@@ -16,9 +16,9 @@ export const PATCH = async (request, { params }) => {
       return response("Invalid inputs passed, please check data", 500);
     }
 
-    task.title = title;
-    task.description = description;
-    task.finishDate = date;
+    task.title = title || task.title;
+    task.description = description || task.description;
+    task.finishDate = date || task.finishDate;
 
     await task.save();
 

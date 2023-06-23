@@ -41,6 +41,7 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
     };
 
     await sendPostRequest("/api/tasks/update", "POST", data);
+    setHoveredBoxId(null);
   };
 
   const dragOverHandler = (e, column) => {

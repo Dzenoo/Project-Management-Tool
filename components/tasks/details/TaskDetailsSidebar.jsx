@@ -95,7 +95,6 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
                 <TextField
                   defaultValue={title}
                   fullWidth
-                  required
                   onChange={titleEdit.onChangeInputHandler}
                   onBlur={titleEdit.onBlurInputHandler}
                   error={!titleEdit.isValid && titleEdit.isTouched}
@@ -111,7 +110,6 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
                   defaultValue={description}
                   multiline
                   fullWidth
-                  required
                   onChange={descriptionEdit.onChangeInputHandler}
                   onBlur={descriptionEdit.onBlurInputHandler}
                   error={!descriptionEdit.isValid && descriptionEdit.isTouched}
@@ -126,7 +124,6 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
                 <TextField
                   type="date"
                   fullWidth
-                  required
                   onChange={dateEdit.onChangeInputHandler}
                   onBlur={dateEdit.onBlurInputHandler}
                   error={!dateEdit.isValid && dateEdit.isTouched}

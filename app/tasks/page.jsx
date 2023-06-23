@@ -152,6 +152,9 @@ const Tasks = () => {
       )}
       {isTeam && (
         <Box className={classes.tasks_cards}>
+          {!tasks.length > 0 && (
+            <Typography textAlign="center">No Tasks Yet</Typography>
+          )}
           {tasks.length > 0 ? (
             tasks
               .filter((task) => {
