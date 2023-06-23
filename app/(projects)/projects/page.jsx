@@ -7,11 +7,6 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Projects",
-  description: "A Projects for your task management app",
-};
-
 const Projects = () => {
   const { projectInputValue, userProjects, getProjectById, isLoggedIn } =
     useContext(AppContext);
