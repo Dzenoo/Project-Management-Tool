@@ -4,6 +4,31 @@ import Project from "@/models/projects/project";
 import Task from "@/models/task/Task";
 import User from "@/models/user/user";
 
+export const PATCH = async (request, { params }) => {
+  try {
+    await connectToDB();
+
+    const { title, description, date } = await request.json();
+
+    const task = await Task.findById(params.taskId);
+
+    if (!title && !description && !date) {
+      return response("Invalid inputs passed, please check data", 500);
+    }
+
+    task.title = title;
+    task.description = description;
+    task.finishDate = date;
+
+    await task.save();
+
+    return response("Task edited successfully!", 200);
+  } catch (error) {
+    console.log(error);
+    return response("Internal Server Error", 500);
+  }
+};
+
 export const POST = async (request, { params }) => {
   try {
     await connectToDB();
