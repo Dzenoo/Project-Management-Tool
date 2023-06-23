@@ -6,8 +6,6 @@ export const connectToDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
       dbName: "project_management",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
     console.log("Connected");
   } catch (error) {

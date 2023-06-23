@@ -34,7 +34,6 @@ const DashboardChart = ({ tasks }) => {
         <hr />
       </Box>
       <CardContent className={classes.task_chart}>
-        <ChartJS />
         <Doughnut data={data} />
       </CardContent>
       <Box className={classes.num}>
