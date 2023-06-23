@@ -17,7 +17,11 @@ import { useAuth } from "@/hooks/Auth/useAuth";
 
 const MainNavigation = () => {
   const { logout } = useAuth();
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  const user =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("user"))
+      : null;
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const menuClasses = menuIsOpen
     ? `${classes.main_navigation}`
