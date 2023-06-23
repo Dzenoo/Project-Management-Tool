@@ -1,8 +1,6 @@
 "use client";
 
-import LoginForm from "@/components/auth/LoginForm";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import LoginForm from "@/components/auth/LoginForm.jsx";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
@@ -47,12 +45,7 @@ const Login = () => {
     );
   }
 
-  return (
-    <>
-      <ToastContainer />
-      <LoginForm submitLoginHandler={submitLogin} />
-    </>
-  );
+  return <LoginForm submitLoginHandler={submitLogin} />;
 };
 
 export default Login;

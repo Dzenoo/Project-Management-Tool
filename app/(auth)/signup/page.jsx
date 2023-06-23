@@ -1,8 +1,6 @@
 "use client";
 
-import SignupForm from "@/components/auth/SignupForm";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import SignupForm from "@/components/auth/SignupForm.jsx";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { ClipLoader } from "react-spinners";
 import { useAuth } from "@/hooks/Auth/useAuth";
@@ -46,12 +44,7 @@ const Signup = () => {
     );
   }
 
-  return (
-    <>
-      <ToastContainer />
-      <SignupForm submitSignupHandler={submitSignup} />;
-    </>
-  );
+  return <SignupForm submitSignupHandler={submitSignup} />;
 };
 
 export default Signup;
