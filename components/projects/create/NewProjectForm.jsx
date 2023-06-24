@@ -11,21 +11,26 @@ import {
   Typography,
 } from "@mui/material";
 import classes from "@/styles/projects/projects.module.css";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import PropTypes from "prop-types";
 import { ProjectStatusTypes } from "@/data/data";
-import { AppContext } from "@/context/AppContext";
+import { useFetch } from "@/hooks/Http/useFetch";
 
 const NewProjectForm = ({ submitCreateProject }) => {
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const [currentStep, setCurrentStep] = useState(0);
   const [categories, setCategories] = useState([]);
   const [teamSelect, setTeamSelect] = useState("");
-  const { user } = useContext(AppContext);
 
-  const userTeamsSelect = user.teams.map((team) => team);
+  const userTeamsSelect = user?.teams.map((team) => team);
 
   const name = useValidation([VALIDATOR_REQUIRE()]);
   const description = useValidation([VALIDATOR_REQUIRE()]);

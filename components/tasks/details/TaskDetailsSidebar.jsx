@@ -10,11 +10,11 @@ import classes from "@/styles/projects/projects.module.css";
 import Image from "next/image";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "@/utils/validators";
-import { useContext, useState } from "react";
-import { AppContext } from "@/context/AppContext";
+import { useState } from "react";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import PropTypes from "prop-types";
 import { ClipLoader } from "react-spinners";
+import { useFetch } from "@/hooks/Http/useFetch";
 
 const TaskDetailsSidebar = ({ task, onClose }) => {
   const {
@@ -28,9 +28,13 @@ const TaskDetailsSidebar = ({ task, onClose }) => {
     messages,
     status,
   } = task;
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
 
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { sendPostRequest, isLoading } = useHttpPost();
-  const { user } = useContext(AppContext);
   const [isEdit, setisEdit] = useState(false);
 
   const comment = useValidation([VALIDATOR_REQUIRE()]);
