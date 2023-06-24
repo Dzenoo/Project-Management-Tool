@@ -1,4 +1,6 @@
 import { Schema, model, models } from "mongoose";
+import User from "../user/user";
+import Project from "../projects/project";
 
 const TaskSchema = new Schema(
   {
@@ -18,7 +20,7 @@ const TaskSchema = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Task = models.Task || model("Task", TaskSchema);

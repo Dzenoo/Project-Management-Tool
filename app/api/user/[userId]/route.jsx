@@ -51,14 +51,12 @@ export const GET = async (request, { params }) => {
         },
         {
           path: "projects",
-          model: "Project",
         },
       ],
     });
 
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (error) {
-    console.log(error);
-    return response("Internal Server Error", 500);
+    return response(error, 500);
   }
 };

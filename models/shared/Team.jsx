@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import Project from "../projects/project";
 
 const TeamSchema = new Schema(
   {
@@ -8,7 +9,7 @@ const TeamSchema = new Schema(
     teamMembers: [{ type: Schema.Types.ObjectId, ref: "User" }],
     projects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Team = models.Team || model("Team", TeamSchema);
