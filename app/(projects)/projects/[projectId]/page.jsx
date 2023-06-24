@@ -30,8 +30,6 @@ const Project = ({ params }) => {
 
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { data: projects } = useFetch("/api/projects/");
-  const project = projects.find((p) => p._id === params.projectId);
-
   const [isTypeTask, setisTypeTask] = useState(
     JSON.parse(localStorage.getItem("typeTask")),
   );
@@ -45,6 +43,16 @@ const Project = ({ params }) => {
   }, [isTypeTask, setisTypeTask]);
 
   useEffect(() => {}, [task, settask]);
+
+  if (!projects || !user) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
+
+  const project = projects.find((p) => p._id === params.projectId);
 
   const projectFav = user.favoritedProjects.find(
     (favProject) => favProject.id.toString() === params.projectId,
@@ -66,14 +74,6 @@ const Project = ({ params }) => {
       );
     } catch (error) {}
   };
-
-  if (!projects || !user) {
-    return (
-      <div className="loader_wrapper">
-        <ClipLoader />
-      </div>
-    );
-  }
 
   if (isLoading) {
     return (

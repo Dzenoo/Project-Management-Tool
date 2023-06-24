@@ -16,8 +16,9 @@ const Projects = () => {
 
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { data: projects } = useFetch("/api/projects/");
+  const { projectInputValue } = useContext(AppContext);
 
-  if (!user) {
+  if (!user || !projects) {
     return (
       <div className="loader_wrapper">
         <ClipLoader />
@@ -32,11 +33,8 @@ const Projects = () => {
 
   const getProjectById = (id) => {
     const project = projects.find((p) => p._id === id);
-
     return project;
   };
-
-  const { projectInputValue } = useContext(AppContext);
 
   return (
     <Container maxWidth="xl" className={classes.projects_container}>
