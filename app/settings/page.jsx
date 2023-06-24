@@ -1,15 +1,29 @@
 "use client";
 
 import MyDetails from "@/components/settings/MyDetails";
-import { AppContext } from "@/context/AppContext";
+import { useFetch } from "@/hooks/Http/useFetch";
 import classes from "@/styles/settings/settings.module.css";
 import { Button, Typography } from "@mui/material";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 const Settings = () => {
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const [isEditing, setisEditing] = useState(false);
-  const { user, userInfo } = useContext(AppContext);
+
+  if (!user) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   if (!userInfo || userInfo === undefined) {
     return (

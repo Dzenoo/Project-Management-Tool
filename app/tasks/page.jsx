@@ -14,10 +14,9 @@ import Image from "next/image";
 import classes from "@/styles/tasks/tasks.module.css";
 import { StatusTasksSelect, CategoryasksSelect } from "@/data/data";
 import TaskKanban from "@/components/tasks/TaskKanban";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
 import { useFetch } from "@/hooks/Http/useFetch";
-import { AppContext } from "@/context/AppContext";
 import { ClipLoader } from "react-spinners";
 
 const CustomIcon = (imgUrl) => (
@@ -31,7 +30,12 @@ const CustomIcon = (imgUrl) => (
 );
 
 const Tasks = () => {
-  const { user, userInfo } = useContext(AppContext);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
@@ -48,7 +52,7 @@ const Tasks = () => {
     );
   }
 
-  if (!tasks) {
+  if (!tasks || !user) {
     return (
       <div className="loader_wrapper">
         <ClipLoader />

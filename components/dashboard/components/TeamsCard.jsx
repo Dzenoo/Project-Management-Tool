@@ -7,13 +7,12 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import classes from "@/styles/dashboard/dashboard.module.css";
-import { AppContext } from "@/context/AppContext";
+import PropTypes from "prop-types";
 
-const TeamsCard = () => {
-  const { user } = useContext(AppContext);
+const TeamsCard = ({ user }) => {
   const teamsNames = user.teams.map((team) => team.name);
 
   const [selectValue, setSelectValue] = useState(teamsNames[0]);
@@ -87,6 +86,10 @@ const TeamsCard = () => {
       )}
     </>
   );
+};
+
+TeamsCard.propTypes = {
+  user: PropTypes.object,
 };
 
 export default TeamsCard;

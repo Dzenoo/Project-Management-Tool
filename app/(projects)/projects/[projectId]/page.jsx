@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Container, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import classes from "@/styles/projects/projects.module.css";
@@ -8,11 +8,11 @@ import ProjectTasks from "@/components/projects/details/ProjectTasks";
 import ProjectDiscussion from "@/components/projects/details/ProjectDiscussion";
 import ProjectFiles from "@/components/projects/details/ProjectFiles";
 import TaskDetailsSidebar from "@/components/tasks/details/TaskDetailsSidebar";
-import { AppContext } from "@/context/AppContext";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import { notFound } from "next/navigation";
 import { ClipLoader } from "react-spinners";
 import PropTypes from "prop-types";
+import { useFetch } from "@/hooks/Http/useFetch";
 
 export async function generateStaticParams() {
   const projects = await fetch("/api/projects");
@@ -23,13 +23,21 @@ export async function generateStaticParams() {
 }
 
 const Project = ({ params }) => {
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
+  const { data: projects } = useFetch("/api/projects/");
+  const project = projects.find((p) => p._id === params.projectId);
+
   const [isTypeTask, setisTypeTask] = useState(
     JSON.parse(localStorage.getItem("typeTask")),
   );
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [typeOfProjectDetail, settypeOfProjectDetail] = useState("tasks");
-  const { getProjectById, user } = useContext(AppContext);
   const { sendPostRequest, isLoading } = useHttpPost();
 
   useEffect(() => {
@@ -42,8 +50,6 @@ const Project = ({ params }) => {
     (favProject) => favProject.id.toString() === params.projectId,
   );
   const isProjectFavorited = projectFav?.id === params.projectId;
-
-  const project = getProjectById(params.projectId);
 
   const openTaskDetail = (id) => {
     const currentOpenedTask = project.tasks.find((task) => task._id === id);
@@ -60,6 +66,14 @@ const Project = ({ params }) => {
       );
     } catch (error) {}
   };
+
+  if (!projects || !user) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (

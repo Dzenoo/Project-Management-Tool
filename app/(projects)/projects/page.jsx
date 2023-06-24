@@ -3,18 +3,40 @@
 import { Container, Typography } from "@mui/material";
 import classes from "@/styles/projects/projects.module.css";
 import ProjectCard from "@/components/projects/ProjectCard";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
+import { useFetch } from "@/hooks/Http/useFetch";
+import { ClipLoader } from "react-spinners";
 
 const Projects = () => {
-  const { projectInputValue, user, getProjectById } = useContext(AppContext);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
+  const { data: projects } = useFetch("/api/projects/");
+
+  if (!user) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   const userProjects = user?.teams.reduce((acc, team) => {
     const teamProjects = team.projects.map((project) => project);
     return [...acc, ...teamProjects];
   }, []);
 
-  useEffect(() => {}, [userProjects]);
+  const getProjectById = (id) => {
+    const project = projects.find((p) => p._id === id);
+
+    return project;
+  };
+
+  const { projectInputValue } = useContext(AppContext);
 
   return (
     <Container maxWidth="xl" className={classes.projects_container}>

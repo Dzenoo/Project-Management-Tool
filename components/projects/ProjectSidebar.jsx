@@ -20,12 +20,27 @@ import Collapse from "@mui/material/Collapse";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
 import { usePathname } from "next/navigation";
+import { useFetch } from "@/hooks/Http/useFetch";
+import { ClipLoader } from "react-spinners";
 
 const ProjectSidebar = () => {
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const [openFavorites, setOpenFavorites] = useState(true);
   const [openAllProjects, setOpenAllProjects] = useState(true);
-  const { handleProjectInput, user } = useContext(AppContext);
+  const { handleProjectInput } = useContext(AppContext);
   const pathname = usePathname();
+
+  if (!user) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   const isTeam = user.teams.length > 0;
 

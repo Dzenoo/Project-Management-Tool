@@ -3,11 +3,15 @@
 import NotificationCard from "@/components/notifications/NotificationCard";
 import classes from "@/styles/notifications/notification.module.css";
 import { Box, Container, Typography } from "@mui/material";
-import { useContext } from "react";
-import { AppContext } from "@/context/AppContext";
+import { useFetch } from "@/hooks/Http/useFetch";
 
 const Notifications = () => {
-  const { user, userInfo } = useContext(AppContext);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
 
   if (!userInfo || userInfo === undefined) {
     return (

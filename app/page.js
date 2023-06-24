@@ -6,14 +6,14 @@ import ProjectTable from "@/components/dashboard/components/ProjectTable";
 import TeamsCard from "@/components/dashboard/components/TeamsCard";
 import { Box, Grid, Typography } from "@mui/material";
 import classes from "@/styles/dashboard/dashboard.module.css";
-import { useContext } from "react";
-import { AppContext } from "@/context/AppContext";
 import { useFetch } from "@/hooks/Http/useFetch";
 import { ClipLoader } from "react-spinners";
 
 export default function Dashboard() {
-  const { user, userInfo } = useContext(AppContext);
-  const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
 
   if (!userInfo || userInfo === undefined) {
     return (
@@ -23,7 +23,10 @@ export default function Dashboard() {
     );
   }
 
-  if (!tasks) {
+  const { data: tasks } = useFetch(`/api/tasks/user/${userInfo?.userId}`);
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
+
+  if (!tasks || !user) {
     return (
       <div className="loader_wrapper">
         <ClipLoader />
@@ -61,7 +64,7 @@ export default function Dashboard() {
           <ProjectTable projects={userProjects || []} />
         </Grid>
         <Grid xl={12}>
-          <TeamsCard />
+          <TeamsCard user={user} />
         </Grid>
       </Grid>
     </Box>

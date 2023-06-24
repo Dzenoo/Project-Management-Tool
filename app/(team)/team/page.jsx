@@ -4,14 +4,20 @@ import classes from "@/styles/team/team.module.css";
 import TeamCard from "@/components/team/TeamCard";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import MainModal from "@/components/shared/MainModal";
-import { useState, useContext } from "react";
-import { AppContext } from "@/context/AppContext";
+import { useState } from "react";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
+import { useFetch } from "@/hooks/Http/useFetch";
+import { ClipLoader } from "react-spinners";
 
 const TeamPage = () => {
-  const { user } = useContext(AppContext);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const [isOpenModal, setisOpenModal] = useState(false);
   const [searchedTeam, setsearchedTeam] = useState("");
   const { sendPostRequest } = useHttpPost();
@@ -34,6 +40,22 @@ const TeamPage = () => {
       alert(error.message);
     }
   };
+
+  if (!userInfo || userInfo === undefined) {
+    return (
+      <Typography textAlign="center" mt={2} fontWeight="bold">
+        Please log in or sign up
+      </Typography>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="loader_wrapper">
+        <ClipLoader />
+      </div>
+    );
+  }
 
   const create = (
     <form onSubmit={submitCreateTeam} className={classes.create_team_form}>

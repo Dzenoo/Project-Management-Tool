@@ -1,11 +1,12 @@
 "use client";
 import ProjectSidebar from "@/components/projects/ProjectSidebar";
-import { AppContext } from "@/context/AppContext";
 import { Typography } from "@mui/material";
-import { useContext } from "react";
 
 const layout = ({ children }) => {
-  const { userInfo } = useContext(AppContext);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
 
   if (!userInfo || userInfo === undefined) {
     return (

@@ -14,18 +14,22 @@ import {
 import Image from "next/image";
 import classes from "@/styles/team/team.module.css";
 import UserTable from "@/components/team/UserTable";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import MainModal from "@/components/shared/MainModal";
-import { AppContext } from "@/context/AppContext";
 import { ClipLoader } from "react-spinners";
 import { VALIDATOR_REQUIRE } from "@/utils/validators";
 import { notFound } from "next/navigation";
 import { useValidation } from "@/hooks/Auth/useValidation";
 import { useHttpPost } from "@/hooks/Http/useHttpPost";
 import PropTypes from "prop-types";
+import { useFetch } from "@/hooks/Http/useFetch";
 
 const TeamDetail = ({ params }) => {
-  const { user } = useContext(AppContext);
+  const userInfo =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("User"))
+      : null;
+  const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
   const team = user.teams.find((team) => team._id === params.teamId);
   const [isOpenInviteModal, setisOpenInviteModal] = useState(false);
   const [isMode, setisMode] = useState("card");
@@ -57,7 +61,7 @@ const TeamDetail = ({ params }) => {
     notFound();
   }
 
-  if (!team) {
+  if (!team || !user) {
     return (
       <div className="loader_wrapper">
         <ClipLoader />
