@@ -36,7 +36,7 @@ const Tasks = () => {
       : null;
 
   const { data: user } = useFetch(`/api/user/${userInfo?.userId}`);
-  const { data: tasks } = useFetch(`/api/tasks/user/${user._id}`);
+  const { data: tasks } = useFetch(`/api/tasks/user/${userInfo?.userId}`);
   const [taskDetailIsOpen, settaskDetailIsOpen] = useState(false);
   const [task, settask] = useState();
   const [taskSearch, settaskSearch] = useState("");
@@ -60,7 +60,7 @@ const Tasks = () => {
     );
   }
 
-  const isTeam = user.teams.length > 0;
+  const isTeam = user?.teams.length > 0;
 
   const userProjects = user?.teams.reduce((acc, team) => {
     const teamProjects = team.projects.map((project) => project);
