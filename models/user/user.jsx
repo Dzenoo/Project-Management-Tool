@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import Team from "../shared/Team";
 
 const UserSchema = new Schema({
   first_name: { type: String, required: [true, "First Name is required"] },
@@ -14,7 +15,7 @@ const UserSchema = new Schema({
   address: { type: String },
   specialize: { type: String },
   favoritedProjects: [],
-  teams: [{ type: Schema.Types.ObjectId, ref: "Team" }],
+  teams: [{ type: Schema.Types.ObjectId, ref: Team }],
   notifications: [
     {
       image: { type: String },
