@@ -35,6 +35,16 @@ const KanbanType = ({ openDetailsHandler, projectMb, columns }) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData("taskId");
 
+    const currentTaskColumn = columns.find((column) =>
+      column.tasks.some((task) => task._id === taskId),
+    );
+
+    if (currentTaskColumn && currentTaskColumn.title === status) {
+      setHoveredBoxId(null);
+      alert("This task is already in that status");
+      return;
+    }
+
     const data = {
       status,
       taskId,
