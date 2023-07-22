@@ -34,6 +34,15 @@ const ListType = ({ columns, projectMb, openDetailsHandler }) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData("taskId");
 
+    const currentTask = columns.find((column) =>
+      column.tasks.some((task) => task._id === taskId),
+    );
+
+    if (currentTask && currentTask.title === status) {
+      alert("This task is already in that status");
+      return;
+    }
+
     const data = {
       status,
       taskId,
